@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://assets/images/ammo_5x45-sheet0.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/gui_slot-sheet0.png" type="Texture" id=2]
+[ext_resource path="res://scenes/game/inventory/items/patterns/AmmoPattern.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 32, 32, 32 )
+
+[resource]
+script = ExtResource( 3 )
+name = "5.45x39 ammo"
+description = "Ammo for kalash"
+icon_inventory = SubResource( 1 )
+icon_world = ExtResource( 1 )
+count = 30
+max_count = 30
+stackable = true
+destrouble = false
+destroying_value = 0.0
+destroying = 0.0
+damage = 25.0
+speed = 600.0
+damage_diviation = 7.0
+distance = 410.714
