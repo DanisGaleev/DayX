@@ -5,29 +5,45 @@ class_name Player
 onready var fire_position = $AttackZone/FirePosition
 var inventory: Inventory
 
-var akm: WeaponFire
+var noise_level = 0.0
 func _ready():
 	._ready()
-	inventory = get_parent().get_parent().get_node("GUI/CanvasLayer/Inventory")
-	var ammo = Ammo.new()
-	ammo.create(preload("res://assets/item_patterns/5_45x39_ammo.tres"), 60, 0)
-	akm = WeaponFire.new()
-	akm.create(preload("res://assets/item_patterns/m4_weapon_fire.tres"), 1, 0)
-	ammo.use([akm])
+	inventory = get_parent().get_parent().get_node("GUI/CanvasLayer/Inv")
+	inventory.player = self
+	self.weapon_fire_2 = WeaponFire.new()
+	self.weapon_fire_2.create(preload("res://assets/item_patterns/ak74_weapon_fire.tres"), 1, 0)
 
 func _input(event):
-	if event.is_action_pressed("attack") and delta_time >= wait_time:
-		delta_time = 0
-		attack()
-	if event.is_action_pressed("fire_attack"):
-		akm.use([self.position.direction_to(get_global_mouse_position()), fire_position.global_position, get_parent()])
+	if event.is_action_pressed("weapon_near"):
+		delta_time_near = near_weapon.wait_time
+	elif event.is_action_pressed("fire_weapon_1"):
+		type_of_weapon = WeaponType.FIRE_WEAPON_1
+	elif event.is_action_pressed("fire_weapon_2"):
+		type_of_weapon = WeaponType.FIRE_WEAPON_2
+
+	if event.is_action_pressed("attack"):
+		match(type_of_weapon):
+			WeaponType.NEAR_WEAPON:
+				if near_weapon == null:
+					if delta_time_near >= wait_time:
+						delta_time_near = 0.0
+						attack()
+						noise_level = 5.0
+						yield(get_tree().create_timer(0.1), "timeout")
+						noise_level = 0.0
+				else:
+					near_weapon.hit([self])
+			WeaponType.FIRE_WEAPON_1:
+				self.weapon_fire_1.fire([self.position.direction_to(get_global_mouse_position()), fire_position.global_position, get_parent()])
+			WeaponType.FIRE_WEAPON_2:
+				self.weapon_fire_2.fire([self.position.direction_to(get_global_mouse_position()), fire_position.global_position, get_parent()])
 	if event.is_action_pressed("recharge"):
-		akm.recharge()
+		recharge(inventory)
 	if event.is_action_pressed("pick_up"):
 		for item in get_tree().get_nodes_in_group("item_world"):
 			if item.position.distance_to(position) <= 50:
 				inventory.add_item(item.item_info, item)
-				#item.queue_free()
+
 func attack():
 	last_state  = state
 	var min_dst = 9999
@@ -72,6 +88,7 @@ func choose_direction():
 		is_action = true
 	if is_action:
 		last_direction = movement
+		noise_level = 10.0
 		
 	if not is_action:
 		var angle = round(rad2deg(last_direction.angle()))
@@ -84,8 +101,16 @@ func choose_direction():
 		else:
 			state = State.Idle_back
 func upd(delta):
-	akm.update(delta)
-	#akm.delta_time_between = akm.upd(delta, akm.delta_time_between)
+	match(type_of_weapon):
+			WeaponType.NEAR_WEAPON:
+				if near_weapon == null:
+					delta_time_near += delta
+				else:
+					near_weapon.update(delta)
+			WeaponType.FIRE_WEAPON_1:
+				weapon_fire_1.update(delta)
+			WeaponType.FIRE_WEAPON_2:
+				weapon_fire_2.update(delta)
 	rotate_attack_zone(self.position.direction_to(get_global_mouse_position()).angle())
 				
 func _physics_process(delta):

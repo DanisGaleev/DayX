@@ -1,12 +1,19 @@
-extends TextureRect
+extends Control
 class_name Inventory
-export var inventory = []
+var inventory = []
+var equip = []
 
-onready var grid = $InventoryGrid
+onready var grid_inventory = $Inventory/InventoryGrid
+onready var grid_equip = $Equip/EquipGrid
+var player
 
 func _ready():
-	for i in grid.get_children():
+	for i in grid_inventory.get_children():
+		i.player = player
 		inventory.append(i)
+	for j in grid_equip.get_children():
+		j.player = player
+		equip.append(j)
 func _input(event):
 	if event.is_action_pressed("inventory"):
 		visible = not visible
@@ -25,18 +32,9 @@ func add_item(item: ItemInfo, item_container: Sprite):
 		for slot in inventory:
 			var slot_item = slot.item
 			if item.count > 0:
-				if slot_item == null: 
-					#var t = []
-					#t.append(item)
-					#slot_item = t.duplicate()
-					#print("mx: " + str(item.max_count))
-					#slot_item = item.duplicate(2)
-					#slot_item.icon_inventory = item.icon_inventory.duplicate()
-					#slot_item.icon_world = item.icon_world.duplicate()
-	
-					slot_item = item_info_copy(item.get_script().get_path(), item)
+				if slot_item == null:
+					slot_item = item_info_copy(item.type, item)
 					var diff = min(item.count, item.max_count)
-					#slot_item[0].count = diff
 					slot_item.count = diff
 					item.count -= diff
 					slot.item = slot_item
@@ -46,18 +44,19 @@ func add_item(item: ItemInfo, item_container: Sprite):
 		item_container.queue_free()
 
 
-func item_info_copy(name: String, copy: ItemInfo) -> ItemInfo:
+func item_info_copy(type: int, copy: ItemInfo) -> ItemInfo:
 	var new_iteminfo
-	if name.find("Ammo") != -1:
+	if type == Enums.ItemType.AMMO:
 		new_iteminfo = Ammo.new()
 		new_iteminfo.damage = copy.damage
 		new_iteminfo.damage_diviation = copy.damage_diviation
 		new_iteminfo.speed = copy.speed
 		new_iteminfo.distance = copy.distance
-	if name.find("WeaponFire") != -1:
+		new_iteminfo.name_of_weapon = copy.name_of_weapon
+	if type == Enums.ItemType.WEAPON_FIRE:
 		new_iteminfo = WeaponFire.new()
 		new_iteminfo.damage = copy.damage
-		new_iteminfo.damage_diviation = copy.damage_diviation
+		new_iteminfo.damage_deviation = copy.damage_deviation
 		new_iteminfo.speed = copy.speed
 		new_iteminfo.distance = copy.distance
 		new_iteminfo.delta_time_recharge = 0
@@ -69,10 +68,21 @@ func item_info_copy(name: String, copy: ItemInfo) -> ItemInfo:
 		new_iteminfo.magazine = copy.magazine
 		new_iteminfo.ammo_in_magazine = copy.ammo_in_magazine
 		new_iteminfo.accuracy = copy.accuracy
-	new_iteminfo.nname = copy.nname
+	if type == Enums.ItemType.HAND_WEAPON:
+		new_iteminfo = HandWeapon.new()
+		new_iteminfo.time_between_hit = copy.time_between_hit
+		new_iteminfo.damage = copy.damage
+		new_iteminfo.delta_time_between = copy.delta_time_between
+	if type == Enums.ItemType.EAT:
+		new_iteminfo = Food.new()
+		new_iteminfo.hunger = copy.hunger
+		new_iteminfo.thirst = copy.thirst
+		new_iteminfo.health = copy.health
+	new_iteminfo.name = copy.name
 	new_iteminfo.description = copy.description
 	new_iteminfo.icon_inventory = copy.icon_inventory.duplicate()
 	new_iteminfo.icon_world = copy.icon_world.duplicate()
+	new_iteminfo.type = copy.type
 	new_iteminfo.count = copy.count
 	new_iteminfo.max_count = copy.max_count
 	new_iteminfo.stackable = copy.stackable

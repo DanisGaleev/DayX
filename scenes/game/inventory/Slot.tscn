@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scenes/game/inventory/Slot.gd" type="Script" id=1]
+[ext_resource path="res://scenes/game/inventory/slot.gd" type="Script" id=1]
 
 [node name="Slot" type="TextureRect"]
 rect_min_size = Vector2( 64, 64 )

@@ -10,6 +10,8 @@ export var direction: Vector2
 func _ready():
 	queue_free_timer.wait_time = distance / speed
 	queue_free_timer.start()
+	
+	rotation = direction.angle()
 	apply_central_impulse(direction * speed)
 	
 	yield(queue_free_timer, "timeout")

@@ -3,6 +3,11 @@ extends KinematicBody2D
 class_name Character
 
 enum Type {Zombie, Player}
+enum WeaponType{
+	NEAR_WEAPON,
+	FIRE_WEAPON_1,
+	FIRE_WEAPON_2
+}
 enum State {
 	Idle_forward,
 	Run_forward,
@@ -37,12 +42,14 @@ var animation_d = {
 var movement = Vector2()
 var last_direction = Vector2(0, 1)
 var entered_body = []
-var delta_time = 0
+var delta_time_near = 0
 var block = false
 var last_state
 var regeneration_time = 0
-var near_weapon setget set_near_weapon
-var weapon_fire setget set_weapon_fire
+var near_weapon
+var weapon_fire_1
+var weapon_fire_2
+var type_of_weapon = WeaponType.NEAR_WEAPON
 
 export var speed = 10
 export var attack = 10
@@ -57,12 +64,6 @@ export var regeneration_delta_time = 3
 
 onready var animation = $Animation
 onready var attack_zone = $AttackZone
-
-func set_near_weapon(weapon) -> void:
-	near_weapon = weapon
-
-func set_weapon_fire(weapon) -> void:
-	weapon_fire = weapon
 
 func _ready():
 	randomize()
@@ -89,7 +90,13 @@ func move():
 
 func attack():
 	pass
-	
+func recharge(inventory):
+	match(type_of_weapon):
+			WeaponType.FIRE_WEAPON_1:
+				weapon_fire_1.recharge(inventory)
+			WeaponType.FIRE_WEAPON_2:
+				weapon_fire_2.recharge(inventory)
+
 func upd(delta):
 	pass
 	
@@ -101,7 +108,7 @@ func _process(delta):
 		queue_free()
 	regenerate(delta)
 	upd(delta)
-	delta_time += delta
+	delta_time_near += delta
 	if animation.animation != animation_d[state] and not block:
 		animation.play(animation_d[state])
 

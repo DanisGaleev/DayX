@@ -11,4 +11,6 @@ format = 1
 
 [node name="Obtacles" type="Node2D" parent="."]
 
+[node name="Buildings" type="Node2D" parent="."]
+
 [node name="Navigation" type="NavigationPolygonInstance" parent="."]
