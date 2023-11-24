@@ -38,7 +38,9 @@ func add_item(item: ItemInfo, item_container: Sprite):
 					slot_item.count = diff
 					item.count -= diff
 					slot.item = slot_item
-					print("slot max_count: " + str(slot.item.max_count))
+#					for i in slot.item.get_property_list():
+#						print(i)
+#						print(i, slot.item.get(i))
 					slot.upd()
 	if item.count <= 0:
 		item_container.queue_free()

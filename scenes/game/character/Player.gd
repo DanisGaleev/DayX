@@ -14,7 +14,7 @@ func _ready():
 	self.weapon_fire_2.create(preload("res://assets/item_patterns/ak74_weapon_fire.tres"), 1, 0)
 
 func _input(event):
-	if event.is_action_pressed("weapon_near"):
+	if event.is_action_pressed("near_weapon"):
 		delta_time_near = near_weapon.wait_time
 	elif event.is_action_pressed("fire_weapon_1"):
 		type_of_weapon = WeaponType.FIRE_WEAPON_1

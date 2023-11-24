@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://scenes/game/character/zombie.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/character/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/game/items_in_world/item.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/game/inventory/inventory.tscn" type="PackedScene" id=4]
@@ -20,10 +19,6 @@ nav_node_path = NodePath("Map1")
 [node name="Player" parent="World" instance=ExtResource( 2 )]
 position = Vector2( 1, -177 )
 
-[node name="Zombie" parent="World" instance=ExtResource( 1 )]
-position = Vector2( -96, 81 )
-navmap_path = NodePath("../Map1")
-
 [node name="ZombieSpawnerTimer" type="Timer" parent="World"]
 wait_time = 10.0
 
@@ -34,10 +29,10 @@ position = Vector2( 47, -172 )
 position = Vector2( 134, -173 )
 
 [node name="Item3" parent="World" instance=ExtResource( 3 )]
-position = Vector2( -98, -181 )
+position = Vector2( 48, -165 )
 
-[node name="Item4" parent="World" instance=ExtResource( 3 )]
-position = Vector2( 43, -214 )
+[node name="Item5" parent="World" instance=ExtResource( 3 )]
+position = Vector2( 48, -165 )
 
 [node name="TileMap" type="TileMap" parent="World"]
 format = 1
@@ -48,11 +43,16 @@ script = ExtResource( 8 )
 [node name="CanvasLayer" type="CanvasLayer" parent="GUI"]
 
 [node name="Inv" parent="GUI/CanvasLayer" instance=ExtResource( 4 )]
+visible = false
 
 [node name="HealthBar" parent="GUI/CanvasLayer" instance=ExtResource( 5 )]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -14.0
 margin_bottom = 0.0
+
+[node name="AmmoCount" type="Label" parent="GUI/CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 14.0
 
 [connection signal="timeout" from="World/ZombieSpawnerTimer" to="World" method="_on_ZombieSpawnerTimer_timeout"]

@@ -31,8 +31,10 @@ func _ready():
 	id = 0 if self.name.substr(4) == "" else int(self.name.substr(4)) - 1
 
 func get_id_by_position(inventory_or_equip_zone=true) -> int:
-	var position = rect_position + rect_size / 2
+	#var position = rect_position + rect_size / 2
+	var position = rect_global_position + rect_size / 2
 	if inventory_or_equip_zone: #inventory zone
+		position -= Vector2(196, 57)
 		return int(position.x) / 68 + int(position.y / 68) * 4
 	else: #equip zone
 		return int(position.x) / 68 + int(position.y / 68) * 2
@@ -45,7 +47,31 @@ func upd():
 		item = null
 		icon.texture = null
 		count_label.text = ""
-		
+
+func _input(event):
+	if event.is_action_pressed("print_inv_and_equip"):
+		var e = ""
+		print("INVENTORY")
+		for i in range(inventory.size()):
+			if inventory[i].item == null:
+				e += " 0"
+			else:
+				e += " 1"
+			if i > 0 and i % 4 == 3:
+				print(e)
+				e = ""
+		print()
+		print("EQUIP")
+		e = ""
+		for i in range(equip.size()):
+			if equip[i].item == null:
+				e += " 0"
+			else:
+				e += " 1"
+			if i > 0 and i % 2 == 1:
+				print(e)
+				e = ""
+		print()
 
 func set_position_by_id(inventory_or_equip_zone=true):
 	if inventory_or_equip_zone: #if in inventory zone
@@ -63,11 +89,13 @@ func _process(delta):
 		if middle.x <= 464 and middle.x >= 196 and middle.y <= 257 and middle.y >= 57: #check if now in inventory
 			var swap_id = get_id_by_position()
 			if prev_pos.x <= 132 and prev_pos.x >= 0 and prev_pos.y <= 268 and prev_pos.y >= 0: #check if was in equip
-				if inventory[swap_id] == null:
+				if inventory[swap_id].item == null:
+					print("spawp id", swap_id)
 					inventory[swap_id].item = self.item
 					inventory[swap_id].upd()
 					
-					self.item == null
+
+					self.item = null
 					upd()
 					set_position_by_id(false)
 				else:
@@ -104,7 +132,6 @@ func _process(delta):
 						upd()
 						set_position_by_id()
 				else: #if swap-item is null
-					print("was in inventory", swap_id)
 					inventory[swap_id].item = self.item
 					inventory[swap_id].upd()
 					inventory[swap_id].set_position_by_id()
@@ -112,18 +139,9 @@ func _process(delta):
 					self.item = null
 					upd()
 					set_position_by_id()
-				var e = ""
-				for i in range(inventory.size()):
-					if inventory[i].item == null:
-						e += " 0"
-					else:
-						e += " 1"
-					if i > 0 and i % 4 == 3:
-						print(e)
-						e = ""
-				print()
 		elif middle.x <= 132 and middle.x >= 0 and middle.y <= 268 and middle.y >= 0: #check if now in equip
 			if prev_pos.x <= 464 and prev_pos.x >= 196 and prev_pos.y <= 257 and prev_pos.y >= 57: #check if was in inventory
+				print(rect_position)
 				var swap_id = get_id_by_position(false)
 				if equip[swap_id].item != null:
 					var swap_item = equip[swap_id].item
@@ -142,7 +160,8 @@ func _process(delta):
 						upd()
 						set_position_by_id()
 				else: #if swap-item is null
-					if self.item.type > 1:
+					print("was in inventory", swap_id)
+					if self.item.type > Enums.ItemType.AMMO and (self.item.type - 1 == equip[swap_id].id) or (self.item.type == Enums.ItemType.WEAPON_FIRE and (equip[swap_id].id == 0 or equip[swap_id].id == 1)):
 						equip[swap_id].item = self.item
 						equip[swap_id].upd()
 						equip[swap_id].set_position_by_id(false)
@@ -153,26 +172,22 @@ func _process(delta):
 					else:
 						upd()
 						set_position_by_id()
-				var e = ""
-				for i in range(inventory.size()):
-					if inventory[i].item == null:
-						e += " 0"
-					else:
-						e += " 1"
-					if i > 0 and i % 4 == 3:
-						print(e)
-						e = ""
-				print()
 			else: #if prev position was not in inventory
 				set_position_by_id(false)
-		else: #if swap no enmpy space -> remove from inv
+		else: #if swap in enmpy space -> remove from inv
 			var new_item_on_ground = load("res://scenes/game/items_in_world/item.tscn").instance()
 			new_item_on_ground.position = player.position + Vector2(0, 10)
 			new_item_on_ground.item_info = self.item
 			get_node("../../../../../../World").add_child(new_item_on_ground)
 			item = null
 			upd()
-			set_position_by_id()
+			if self in inventory:
+				set_position_by_id()
+			else:
+				set_position_by_id(false)
+		player.near_weapon = equip[2].item
+		player.weapon_fire_1 = equip[0]
+		player.weapon_fire_2 = equip[1]
 
 
 func _on_Slot_mouse_entered():
