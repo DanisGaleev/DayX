@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 class_name Character
 
@@ -8,22 +8,35 @@ enum WeaponType{
 	FIRE_WEAPON_1,
 	FIRE_WEAPON_2
 }
+#enum State {
+	#Idle_forward,
+	#Run_forward,
+	#Idle_back,
+	#Run_back,
+	#Idle_left,
+	#Run_left,
+	#Idle_right,
+	#Run_right,
+	#Near_attack_right,
+	#Near_attack_forward,
+	#Near_attack_left,
+	#Near_attack_back
+#}
+
 enum State {
 	Idle_forward,
-	Run_forward,
 	Idle_back,
-	Run_back,
 	Idle_left,
-	Run_left,
 	Idle_right,
+	Run_forward,
+	Run_back,
+	Run_left,
 	Run_right,
-	Near_attack_right,
 	Near_attack_forward,
+	Near_attack_back,
 	Near_attack_left,
-	Near_attack_back
+	Near_attack_right
 }
-
-
 var animation_d = {
 	State.Idle_forward : "idle_forward",
 	State.Run_forward : "run_forward",
@@ -51,23 +64,25 @@ var weapon_fire_1
 var weapon_fire_2
 var type_of_weapon = WeaponType.NEAR_WEAPON
 
-export var speed = 10
-export var attack = 10
-export var type = Type.Zombie
-export var state = State.Idle_back
-export var health = 100
-export var playerble = false
-export var angry_distance = 50
-export var wait_time = 0.1
-export var regeneration_value = 1
-export var regeneration_delta_time = 3
+@export var speed = 10
+@export var dmg = 10
+@export var type = Type.Zombie
+@export var state = State.Idle_back
+@export var health = 100
+@export var playerble = false
+@export var angry_distance = 50
+@export var wait_time = 0.1
+@export var regeneration_value = 1
+@export var regeneration_delta_time = 3
 
-onready var animation = $Animation
-onready var attack_zone = $AttackZone
+@onready var animation = $Animation
+@onready var attack_zone = $AttackZone
 
+signal attack_animation_finished
 func _ready():
 	randomize()
 	animation.play(animation_d[state])
+	animation.animation_finished.connect(last_animation)
 
 func choose_direction():
 	pass
@@ -79,8 +94,10 @@ func regenerate(delta):
 		health + min(regeneration_value, 100 - health)
 
 func last_animation():
-	state = last_state
-	block = false
+	if block:
+		print("called")
+		state = last_state
+		block = false
 	
 func rotate_attack_zone(angle):
 	attack_zone.rotation = angle - PI / 2
@@ -120,4 +137,4 @@ func _on_AttackZone_body_entered(body):
 
 func _on_AttackZone_body_exited(body):
 	if body != self:
-		entered_body.remove(entered_body.find(body))
+		entered_body.remove_at(entered_body.find(body))

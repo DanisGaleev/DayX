@@ -2,8 +2,8 @@ class_name ItemInfo
 
 var name: String
 var description: String
-var icon_inventory: Texture
-var icon_world: Texture
+var icon_inventory: Texture2D
+var icon_world: Texture2D
 var type: int
 var count: int
 var max_count: int

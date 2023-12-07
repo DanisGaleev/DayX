@@ -5,9 +5,9 @@ var slot_index := 0
 var item_struct: IItem
 var stack_amount := 0
 
-onready var inv_comp = get_node("../../../").inv_comp
-onready var ui_stackamount: Label = get_node("Background/Overlay/StackAmount")
-onready var ui_image: TextureRect = get_node("Background/Overlay/Image")
+@onready var inv_comp = get_node("../../../").inv_comp
+@onready var ui_stackamount: Label = get_node("Background/Overlay/StackAmount")
+@onready var ui_image: TextureRect = get_node("Background/Overlay/Image")
 
 
 func _ready():
@@ -42,7 +42,7 @@ func refresh_slot():
 func _on_gui_input_signal(event):
 	if event is InputEventMouseButton:
 		# not event.pressed means released
-		if event.button_index == BUTTON_RIGHT and not event.pressed:
+		if event.button_index == MOUSE_BUTTON_RIGHT and not event.pressed:
 			if is_instance_valid(inv_comp.inv_struct_list[slot_index]):
 				var interactor_inv_comp = inv_comp.interactor.get_node("InventoryComponent")
 				

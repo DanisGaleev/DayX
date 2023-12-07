@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=2 format=2]
 
-[ext_resource path="res://assets/images/map/ground_lvl1_tilemap.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/map/ground_lvl1_tilemap.png" type="Texture2D" id=1]
 
 [resource]
 0/name = "ground_lvl1_tilemap.png 0"

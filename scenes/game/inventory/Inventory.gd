@@ -3,8 +3,8 @@ class_name Inventory
 var inventory = []
 var equip = []
 
-onready var grid_inventory = $Inventory/InventoryGrid
-onready var grid_equip = $Equip/EquipGrid
+@onready var grid_inventory = $Inventory/InventoryGrid
+@onready var grid_equip = $Equip/EquipGrid
 var player
 
 func _ready():
@@ -18,7 +18,7 @@ func _input(event):
 	if event.is_action_pressed("inventory"):
 		visible = not visible
 		
-func add_item(item: ItemInfo, item_container: Sprite):
+func add_item(item: ItemInfo, item_container: Sprite2D):
 	for slot in inventory:
 		if item.count > 0:
 			if slot.item != null and slot.item.name == item.name:

@@ -2,16 +2,14 @@ extends Character
 
 class_name Player
 
-onready var fire_position = $AttackZone/FirePosition
+@onready var fire_position = $AttackZone/FirePosition
 var inventory: Inventory
 
 var noise_level = 0.0
 func _ready():
-	._ready()
+	super._ready()
 	inventory = get_parent().get_parent().get_node("GUI/CanvasLayer/Inv")
 	inventory.player = self
-	self.weapon_fire_2 = WeaponFire.new()
-	self.weapon_fire_2.create(preload("res://assets/item_patterns/ak74_weapon_fire.tres"), 1, 0)
 
 func _input(event):
 	if event.is_action_pressed("near_weapon"):
@@ -22,6 +20,7 @@ func _input(event):
 		type_of_weapon = WeaponType.FIRE_WEAPON_2
 
 	if event.is_action_pressed("attack"):
+		print(type_of_weapon)
 		match(type_of_weapon):
 			WeaponType.NEAR_WEAPON:
 				if near_weapon == null:
@@ -29,7 +28,7 @@ func _input(event):
 						delta_time_near = 0.0
 						attack()
 						noise_level = 5.0
-						yield(get_tree().create_timer(0.1), "timeout")
+						await get_tree().create_timer(0.1).timeout
 						noise_level = 0.0
 				else:
 					near_weapon.hit([self])
@@ -45,26 +44,27 @@ func _input(event):
 				inventory.add_item(item.item_info, item)
 
 func attack():
-	last_state  = state
-	var min_dst = 9999
-	var angle = int(rad2deg(attack_zone.rotation) + 90)
-	if angle < -45 and angle > -135:
-		state = State.Near_attack_forward
-	elif (angle >= -180 and angle < -135) or (angle <= 180 and angle > 135):
-		state = State.Near_attack_left
-	elif (angle >= 0 and angle <= 45) or (angle >= -45 and angle <= 0):
-		state = State.Near_attack_right
-	else:
-		state = State.Near_attack_back
-	block = true
-	animation.play(animation_d[state])
+	if state < Character.State.Run_forward or state > Character.State.Run_right:
+		last_state  = state
+		var min_dst = 9999
+		var angle = int(rad_to_deg(attack_zone.rotation) + 90)
+		if angle < -45 and angle > -135:
+			state = State.Near_attack_forward
+		elif (angle >= -180 and angle < -135) or (angle <= 180 and angle > 135):
+			state = State.Near_attack_left
+		elif (angle >= 0 and angle <= 45) or (angle >= -45 and angle <= 0):
+			state = State.Near_attack_right
+		else:
+			state = State.Near_attack_back
+		block = true
+		animation.play(animation_d[state])
 
-	yield(animation, "animation_finished")
-	last_animation()
+	#await animation.animation_finished
+	#last_animation()
 	
 	for body in entered_body:
 		if body is Character:
-			body.health -= attack
+			body.health -= dmg
 
 func choose_direction():
 	var is_action = false
@@ -91,7 +91,7 @@ func choose_direction():
 		noise_level = 10.0
 		
 	if not is_action:
-		var angle = round(rad2deg(last_direction.angle()))
+		var angle = round(rad_to_deg(last_direction.angle()))
 		if angle < -45 and angle > -135:
 			state = State.Idle_forward
 		elif (angle >= -180 and angle < -135) or (angle <= 180 and angle > 135):
@@ -115,4 +115,5 @@ func upd(delta):
 				
 func _physics_process(delta):
 	choose_direction()
-	move_and_slide(movement)
+	set_velocity(movement)
+	move_and_slide()

@@ -7,7 +7,7 @@ var damage: int
 var delta_time_between
 
 func create(item_pattern, count=1, destroying=0):
-	.create(item_pattern, count, destroying)
+	super.create(item_pattern, count, destroying)
 	self.time_between_hit = item_pattern.time_between_hit
 	self.damage = item_pattern.damage
 
@@ -21,7 +21,7 @@ func hit(args): #hit
 		args[0].attack()
 		destroy()
 		args[2].get_node("Player").noise_level = 3.0
-		yield(args[2].get_tree().create_timer(0.1), "timeout")
+		await args[2].get_tree().create_timer(0.1).timeout
 		args[2].get_node("Player").noise_level = 0.0
 	
 func update(delta):

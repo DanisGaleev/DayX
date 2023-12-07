@@ -1,160 +1,124 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://cfv8eejpfgyq"]
 
-[ext_resource path="res://scenes/game/inventory/slot.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/game/inventory/inventory.gd" type="Script" id=2]
-[ext_resource path="res://assets/images/gui_inventory-sheet0.png" type="Texture" id=3]
+[ext_resource type="PackedScene" path="res://scenes/game/inventory/slot.tscn" id="1"]
+[ext_resource type="Script" path="res://scenes/game/inventory/inventory.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://c8ok1hbkdo12y" path="res://assets/images/gui_inventory-sheet0.png" id="3"]
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 3 )
-region = Rect2( 240, 96, 28, 25 )
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("3")
+region = Rect2(240, 96, 28, 25)
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 3 )
-region = Rect2( 240, 94, 26, 25 )
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("3")
+region = Rect2(240, 94, 26, 25)
 
 [node name="Inv" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -512.0
-margin_bottom = -300.0
-script = ExtResource( 2 )
+offset_right = -512.0
+offset_bottom = -300.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2")
 
 [node name="Inventory" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 196.0
-margin_top = 57.0
-margin_right = 464.0
-margin_bottom = 257.0
+offset_left = 196.0
+offset_top = 57.0
+offset_right = 464.0
+offset_bottom = 257.0
+grow_horizontal = 0
+grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture = SubResource( 2 )
-expand = true
+texture = SubResource("2")
+expand_mode = 1
 
 [node name="InventoryGrid" type="GridContainer" parent="Inventory"]
-margin_right = 268.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 268, 200 )
-custom_constants/vseparation = 4
-custom_constants/hseparation = 4
+custom_minimum_size = Vector2(268, 200)
+layout_mode = 0
+offset_right = 268.0
+offset_bottom = 200.0
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
 columns = 4
 
-[node name="Slot" parent="Inventory/InventoryGrid" instance=ExtResource( 1 )]
-margin_right = 64.0
-margin_bottom = 64.0
+[node name="Slot" parent="Inventory/InventoryGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot2" parent="Inventory/InventoryGrid" instance=ExtResource( 1 )]
-margin_left = 68.0
-margin_right = 132.0
-margin_bottom = 64.0
+[node name="Slot2" parent="Inventory/InventoryGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot3" parent="Inventory/InventoryGrid" instance=ExtResource( 1 )]
-margin_left = 136.0
-margin_right = 200.0
-margin_bottom = 64.0
+[node name="Slot3" parent="Inventory/InventoryGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot4" parent="Inventory/InventoryGrid" instance=ExtResource( 1 )]
-margin_left = 204.0
-margin_right = 268.0
-margin_bottom = 64.0
+[node name="Slot4" parent="Inventory/InventoryGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot5" parent="Inventory/InventoryGrid" instance=ExtResource( 1 )]
-margin_top = 68.0
-margin_right = 64.0
-margin_bottom = 132.0
+[node name="Slot5" parent="Inventory/InventoryGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot6" parent="Inventory/InventoryGrid" instance=ExtResource( 1 )]
-margin_left = 68.0
-margin_top = 68.0
-margin_right = 132.0
-margin_bottom = 132.0
+[node name="Slot6" parent="Inventory/InventoryGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot7" parent="Inventory/InventoryGrid" instance=ExtResource( 1 )]
-margin_left = 136.0
-margin_top = 68.0
-margin_right = 200.0
-margin_bottom = 132.0
+[node name="Slot7" parent="Inventory/InventoryGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot8" parent="Inventory/InventoryGrid" instance=ExtResource( 1 )]
-margin_left = 204.0
-margin_top = 68.0
-margin_right = 268.0
-margin_bottom = 132.0
+[node name="Slot8" parent="Inventory/InventoryGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot9" parent="Inventory/InventoryGrid" instance=ExtResource( 1 )]
-margin_top = 136.0
-margin_right = 64.0
-margin_bottom = 200.0
+[node name="Slot9" parent="Inventory/InventoryGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot10" parent="Inventory/InventoryGrid" instance=ExtResource( 1 )]
-margin_left = 68.0
-margin_top = 136.0
-margin_right = 132.0
-margin_bottom = 200.0
+[node name="Slot10" parent="Inventory/InventoryGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot11" parent="Inventory/InventoryGrid" instance=ExtResource( 1 )]
-margin_left = 136.0
-margin_top = 136.0
-margin_right = 200.0
-margin_bottom = 200.0
+[node name="Slot11" parent="Inventory/InventoryGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot12" parent="Inventory/InventoryGrid" instance=ExtResource( 1 )]
-margin_left = 204.0
-margin_top = 136.0
-margin_right = 268.0
-margin_bottom = 200.0
+[node name="Slot12" parent="Inventory/InventoryGrid" instance=ExtResource("1")]
+layout_mode = 2
 
 [node name="Equip" type="TextureRect" parent="."]
-margin_right = 132.0
-margin_bottom = 268.0
-texture = SubResource( 3 )
-expand = true
+layout_mode = 0
+offset_right = 132.0
+offset_bottom = 268.0
+texture = SubResource("3")
+expand_mode = 1
 
 [node name="EquipGrid" type="GridContainer" parent="Equip"]
-margin_right = 132.0
-margin_bottom = 268.0
+layout_mode = 0
+offset_right = 132.0
+offset_bottom = 268.0
 columns = 2
 
-[node name="Slot" parent="Equip/EquipGrid" instance=ExtResource( 1 )]
-margin_right = 64.0
-margin_bottom = 64.0
+[node name="Slot" parent="Equip/EquipGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot2" parent="Equip/EquipGrid" instance=ExtResource( 1 )]
-margin_left = 68.0
-margin_right = 132.0
-margin_bottom = 64.0
+[node name="Slot2" parent="Equip/EquipGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot3" parent="Equip/EquipGrid" instance=ExtResource( 1 )]
-margin_top = 68.0
-margin_right = 64.0
-margin_bottom = 132.0
+[node name="Slot3" parent="Equip/EquipGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot4" parent="Equip/EquipGrid" instance=ExtResource( 1 )]
-margin_left = 68.0
-margin_top = 68.0
-margin_right = 132.0
-margin_bottom = 132.0
+[node name="Slot4" parent="Equip/EquipGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot5" parent="Equip/EquipGrid" instance=ExtResource( 1 )]
-margin_top = 136.0
-margin_right = 64.0
-margin_bottom = 200.0
+[node name="Slot5" parent="Equip/EquipGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot6" parent="Equip/EquipGrid" instance=ExtResource( 1 )]
-margin_left = 68.0
-margin_top = 136.0
-margin_right = 132.0
-margin_bottom = 200.0
+[node name="Slot6" parent="Equip/EquipGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot7" parent="Equip/EquipGrid" instance=ExtResource( 1 )]
-margin_top = 204.0
-margin_right = 64.0
-margin_bottom = 268.0
+[node name="Slot7" parent="Equip/EquipGrid" instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="Slot8" parent="Equip/EquipGrid" instance=ExtResource( 1 )]
-margin_left = 68.0
-margin_top = 204.0
-margin_right = 132.0
-margin_bottom = 268.0
+[node name="Slot8" parent="Equip/EquipGrid" instance=ExtResource("1")]
+layout_mode = 2

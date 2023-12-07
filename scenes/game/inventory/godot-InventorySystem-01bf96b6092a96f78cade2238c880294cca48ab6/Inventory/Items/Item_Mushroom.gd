@@ -10,4 +10,4 @@ func _init():
 
 func i_use(player):
 	player.health -= 10
-	.i_use(player)
+	super.i_use(player)

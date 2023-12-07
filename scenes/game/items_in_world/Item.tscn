@@ -2,5 +2,5 @@
 
 [ext_resource path="res://scenes/game/items_in_world/item.gd" type="Script" id=1]
 
-[node name="Item" type="Sprite" groups=["item_world"]]
+[node name="Item" type="Sprite2D" groups=["item_world"]]
 script = ExtResource( 1 )

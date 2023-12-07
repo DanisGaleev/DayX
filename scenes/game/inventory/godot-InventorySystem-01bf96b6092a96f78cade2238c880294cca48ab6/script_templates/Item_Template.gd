@@ -12,4 +12,4 @@ func _init():
 
 func i_use(player):
 	# Add what happens when using the item.
-	.i_use(player)
+	super.i_use(player)

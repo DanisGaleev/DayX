@@ -2,11 +2,11 @@ class_name Inventory_Component
 extends Node
 
 
-export(String) var inv_name = "Name"
-export(int) var inv_slots = 5
-export(Array, Script) var start_items
-export(Array, int) var start_items_amount
-export(PackedScene) var window_scene
+@export var inv_name: String = "Name"
+@export var inv_slots: int = 5
+@export var start_items # (Array, Script)
+@export var start_items_amount # (Array, int)
+@export var window_scene: PackedScene
 
 var inv_struct_list := Array()
 var inv_amount_list := Array()
@@ -126,7 +126,7 @@ func refresh_slot_at_index(index: int):
 func toggle_window(player):
 	if not is_instance_valid(window_ref):
 		interactor = player
-		var new_window = window_scene.instance()
+		var new_window = window_scene.instantiate()
 		new_window.inv_comp = self
 		interactor.gui.add_child(new_window)
 		window_ref = new_window

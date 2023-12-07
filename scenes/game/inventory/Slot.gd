@@ -1,9 +1,10 @@
 class_name Slot
 extends TextureRect
 
-onready var count_label = $Count
-onready var description = $Description
-onready var icon = $Icon
+@onready var count_label = $Count
+@onready var description = $Description
+@onready var icon = $Icon
+@onready var destroying_label = $Destroying
 
 var inventory: Array
 var equip: Array
@@ -32,7 +33,7 @@ func _ready():
 
 func get_id_by_position(inventory_or_equip_zone=true) -> int:
 	#var position = rect_position + rect_size / 2
-	var position = rect_global_position + rect_size / 2
+	var position = global_position + size / 2
 	if inventory_or_equip_zone: #inventory zone
 		position -= Vector2(196, 57)
 		return int(position.x) / 68 + int(position.y / 68) * 4
@@ -43,10 +44,15 @@ func upd():
 	if item != null and item.count > 0:
 		icon.texture = item.icon_inventory
 		count_label.text = str(item.count)
+		if item.destrouble:
+			destroying_label.text = "{dest} / 100".format({"dest" : item.destroying * 100})
+		else:
+			destroying_label.text = ''
 	else:
 		item = null
 		icon.texture = null
 		count_label.text = ""
+		destroying_label.text = ''
 
 func _input(event):
 	if event.is_action_pressed("print_inv_and_equip"):
@@ -85,7 +91,7 @@ func _process(delta):
 		one_time = false
 	elif get_parent().get_parent().visible and not one_time:
 		one_time = true
-		var middle = rect_global_position + rect_size / 2
+		var middle = global_position + size / 2
 		if middle.x <= 464 and middle.x >= 196 and middle.y <= 257 and middle.y >= 57: #check if now in inventory
 			var swap_id = get_id_by_position()
 			if prev_pos.x <= 132 and prev_pos.x >= 0 and prev_pos.y <= 268 and prev_pos.y >= 0: #check if was in equip
@@ -141,7 +147,7 @@ func _process(delta):
 					set_position_by_id()
 		elif middle.x <= 132 and middle.x >= 0 and middle.y <= 268 and middle.y >= 0: #check if now in equip
 			if prev_pos.x <= 464 and prev_pos.x >= 196 and prev_pos.y <= 257 and prev_pos.y >= 57: #check if was in inventory
-				print(rect_position)
+				print(position)
 				var swap_id = get_id_by_position(false)
 				if equip[swap_id].item != null:
 					var swap_item = equip[swap_id].item
@@ -175,7 +181,7 @@ func _process(delta):
 			else: #if prev position was not in inventory
 				set_position_by_id(false)
 		else: #if swap in enmpy space -> remove from inv
-			var new_item_on_ground = load("res://scenes/game/items_in_world/item.tscn").instance()
+			var new_item_on_ground = load("res://scenes/game/items_in_world/item.tscn").instantiate()
 			new_item_on_ground.position = player.position + Vector2(0, 10)
 			new_item_on_ground.item_info = self.item
 			get_node("../../../../../../World").add_child(new_item_on_ground)
@@ -186,8 +192,8 @@ func _process(delta):
 			else:
 				set_position_by_id(false)
 		player.near_weapon = equip[2].item
-		player.weapon_fire_1 = equip[0]
-		player.weapon_fire_2 = equip[1]
+		player.weapon_fire_1 = equip[0].item
+		player.weapon_fire_2 = equip[1].item
 
 
 func _on_Slot_mouse_entered():
@@ -198,29 +204,15 @@ func _on_Slot_mouse_exited():
 
 
 func _on_Slot_gui_input(event: InputEvent):
-#	if item != null and event is InputEventMouseButton:
-#		if event.button_index == BUTTON_LEFT and event.pressed:
-#			click_count += 1
-#			if click_count == 2 and OS.get_ticks_msec() - last_click_time < 250:
-#				if item.type > 1:
-#					var change_slot_item = equip[item.type - 1].item
-#					print(change_slot_item)
-#					equip[item.type - 1].item = self.item
-#					equip[item.type - 1].upd()
-#					print(change_slot_item)
-#					self.item = change_slot_item
-#					upd()
-#				click_count = 0
-#			last_click_time = OS.get_ticks_msec()
 	if event.is_action_pressed("left_click") and item:
 		if get_global_rect().has_point(event.global_position):
 			dragging = true
-			prev_pos = rect_global_position + rect_size / 2
+			prev_pos = global_position + size / 2
 			drag_offset = event.global_position - get_global_rect().position
 
 	if event.is_action_released("left_click") and dragging and item:
 		dragging = false
 	elif event.is_action("right_click") and item and not(item is WeaponFire or item is HandWeapon):
-		item.use([player])
+		item.use([player, self])
 	elif event.is_action("right_click") and item and (item is WeaponFire or item is HandWeapon):
-		item.equip([player])
+		item.equip([player, self])

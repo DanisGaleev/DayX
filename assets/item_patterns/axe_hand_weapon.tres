@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=6 format=2]
 
-[ext_resource path="res://assets/images/axe_red-sheet0.png" type="Texture" id=1]
-[ext_resource path="res://assets/images/gui_melee-sheet0.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/axe_red-sheet0.png" type="Texture2D" id=1]
+[ext_resource path="res://assets/images/gui_melee-sheet0.png" type="Texture2D" id=2]
 [ext_resource path="res://scenes/game/inventory/items/patterns/hand_weapon_pattern.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=1]

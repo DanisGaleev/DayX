@@ -1,17 +1,19 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://rimysbs738as"]
 
-[ext_resource path="res://scenes/game/maps/buildings/building.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://scenes/game/maps/buildings/building.gd" id="1"]
 
 [node name="Building" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="In" type="Sprite" parent="."]
+[node name="Navigation" type="Polygon2D" parent="."]
 
-[node name="Out" type="Sprite" parent="."]
+[node name="Body" type="StaticBody2D" parent="."]
 
-[node name="Door" type="Sprite" parent="."]
+[node name="In" type="Sprite2D" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Out" type="Sprite2D" parent="."]
+
+[node name="Door" type="Sprite2D" parent="."]
 
 [node name="InTrigger" type="Area2D" parent="."]
 

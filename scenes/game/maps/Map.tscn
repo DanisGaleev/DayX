@@ -1,16 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://dc15g1nkqoyjo"]
 
-[ext_resource path="res://assets/images/map/MapTileSet.tres" type="TileSet" id=1]
+[ext_resource type="TileSet" path="res://assets/images/map/MapTileSet.tres" id="1"]
 
 [node name="Map" type="Node2D"]
 
 [node name="Ground" type="TileMap" parent="."]
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 30, 30 )
-format = 1
+tile_set = ExtResource("1")
+format = 2
 
-[node name="Obtacles" type="Node2D" parent="."]
+[node name="NavigationMap" type="NavigationRegion2D" parent="."]
 
-[node name="Buildings" type="Node2D" parent="."]
+[node name="Buildings" type="Node2D" parent="NavigationMap"]
 
-[node name="Navigation" type="NavigationPolygonInstance" parent="."]
+[node name="Obtacles" type="Node2D" parent="NavigationMap"]

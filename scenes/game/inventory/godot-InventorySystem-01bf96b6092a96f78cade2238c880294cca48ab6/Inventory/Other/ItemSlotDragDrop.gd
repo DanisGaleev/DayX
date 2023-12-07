@@ -7,22 +7,22 @@ extends ColorRect
 # Ctrl Click the functions for more information
 
 
-onready var slot = get_parent()
+@onready var slot = get_parent()
 
 
-func get_drag_data(_pos):
+func _get_drag_data(_pos):
 	if is_instance_valid(slot.item_struct):
 		var preview = TextureRect.new()
 		preview.texture = slot.item_struct.i_image
 		preview.expand = true
-		preview.rect_size = Vector2(80, 80)
+		preview.size = Vector2(80, 80)
 		set_drag_preview(preview)
 		return slot
 	else:
 		return null
 
 
-func can_drop_data(_pos, data) -> bool:
+func _can_drop_data(_pos, data) -> bool:
 	if data != null:
 		if data.item_struct is IItem:
 			return true
@@ -32,7 +32,7 @@ func can_drop_data(_pos, data) -> bool:
 		return false
 
 
-func drop_data(_pos, data):
+func _drop_data(_pos, data):
 	if is_instance_valid(slot.item_struct) and slot.item_struct.i_name == data.item_struct.i_name:
 		if not slot.item_struct.i_stackable or not data.item_struct.i_stackable:
 			slot.inv_comp.inv_amount_list[slot.slot_index] = data.stack_amount

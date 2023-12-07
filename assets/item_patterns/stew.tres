@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://scenes/game/inventory/items/patterns/food_pattern.gd" type="Script" id=1]
-[ext_resource path="res://assets/images/gui_slot-sheet0.png" type="Texture" id=2]
-[ext_resource path="res://assets/images/tactical_bacon-sheet0.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/gui_slot-sheet0.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/images/tactical_bacon-sheet0.png" type="Texture2D" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )

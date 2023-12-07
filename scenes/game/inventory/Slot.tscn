@@ -3,13 +3,13 @@
 [ext_resource path="res://scenes/game/inventory/slot.gd" type="Script" id=1]
 
 [node name="Slot" type="TextureRect"]
-rect_min_size = Vector2( 64, 64 )
+custom_minimum_size = Vector2( 64, 64 )
 script = ExtResource( 1 )
 
 [node name="Icon" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 64, 64 )
+offset_right = 40.0
+offset_bottom = 40.0
+custom_minimum_size = Vector2( 64, 64 )
 expand = true
 
 [node name="Count" type="Label" parent="."]
@@ -17,10 +17,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -32.0
-margin_top = -14.0
-margin_right = 32.0
-rect_min_size = Vector2( 64, 0 )
+offset_left = -32.0
+offset_top = -14.0
+offset_right = 32.0
+custom_minimum_size = Vector2( 64, 0 )
 align = 1
 valign = 1
 
@@ -28,7 +28,13 @@ valign = 1
 visible = false
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -40.0
-margin_bottom = 14.0
+offset_left = -40.0
+offset_bottom = 14.0
+
+[node name="Destroying" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -14.0
+offset_right = 40.0
 
 [connection signal="gui_input" from="." to="." method="_on_Slot_gui_input"]

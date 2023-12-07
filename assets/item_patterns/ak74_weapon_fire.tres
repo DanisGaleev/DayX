@@ -1,23 +1,27 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" script_class="WeaponFirePattern" load_steps=6 format=3 uid="uid://f7vl02wp4064"]
 
-[ext_resource path="res://scenes/game/inventory/items/patterns/weapon_fire_pattern.gd" type="Script" id=1]
-[ext_resource path="res://assets/images/ak74_rifle-sheet2.png" type="Texture" id=2]
-[ext_resource path="res://assets/images/gui_firearm-sheet0.png" type="Texture" id=3]
+[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/weapon_fire_pattern.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bod4uf2wchtis" path="res://assets/images/ak74_rifle-sheet2.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://d274o3h8hc7v2" path="res://assets/images/gui_firearm-sheet0.png" id="3"]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 3 )
-region = Rect2( 184.754, 65.0392, 182.751, 51.1635 )
+[sub_resource type="AtlasTexture" id="1"]
+atlas = ExtResource("3")
+region = Rect2(184.754, 65.0392, 182.751, 51.1635)
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 2 )
-region = Rect2( 64.0647, 95.8017, 22.0216, 9.13396 )
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("2")
+region = Rect2(64.0647, 95.8017, 22.0216, 9.13396)
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
+time_between_shot = 0.01
+recharge_time = 10.0
+magazine = 30
+accuracy = 4.0
 name = "ak74"
 description = "ak74"
-icon_inventory = SubResource( 1 )
-icon_world = SubResource( 2 )
+icon_inventory = SubResource("1")
+icon_world = SubResource("2")
 type = 2
 count = 0
 max_count = 1
@@ -25,7 +29,3 @@ stackable = false
 destrouble = true
 destroying_value = 0.1
 destroying = 0.0
-time_between_shot = 1.0
-recharge_time = 10.0
-magazine = 30
-accuracy = 4.0

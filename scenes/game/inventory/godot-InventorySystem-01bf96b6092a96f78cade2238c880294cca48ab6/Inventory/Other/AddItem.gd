@@ -3,15 +3,15 @@ extends Control
 
 signal interacted(sender, item, amount)
 
-export(Script) var directory
-export(int) var amount = 1
+@export var directory: Script
+@export var amount: int = 1
 
 var item
 
 
 func _ready():
 	var player = get_tree().get_nodes_in_group("Player")[0]
-	var _succ = connect("interacted", player, "_on_item_interacted")
+	var _succ = connect("interacted", Callable(player, "_on_item_interacted"))
 	
 	if is_instance_valid(directory):
 		item = directory.new()

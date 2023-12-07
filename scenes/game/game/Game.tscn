@@ -1,58 +1,84 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://bjdwxtar2f3xx"]
 
-[ext_resource path="res://scenes/game/character/player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/game/items_in_world/item.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/game/inventory/inventory.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/game/small_scenes/player_health_bar.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/game/maps/map_1.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/game/game/world.gd" type="Script" id=7]
-[ext_resource path="res://scenes/game/game/gui.gd" type="Script" id=8]
+[ext_resource type="PackedScene" uid="uid://dbgyub1mc86fq" path="res://scenes/game/character/player.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/game/items_in_world/item.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://cfv8eejpfgyq" path="res://scenes/game/inventory/inventory.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/game/small_scenes/player_health_bar.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dbbmmiyxsjlsj" path="res://scenes/game/character/zombie.tscn" id="5_f527r"]
+[ext_resource type="PackedScene" uid="uid://s77kho4hi6fn" path="res://scenes/game/maps/map_1.tscn" id="6"]
+[ext_resource type="Script" path="res://scenes/game/game/world.gd" id="7"]
+[ext_resource type="Script" path="res://scenes/game/game/gui.gd" id="8"]
 
 [node name="Game" type="Node"]
 
 [node name="World" type="Node2D" parent="."]
-script = ExtResource( 7 )
+script = ExtResource("7")
 nav_node_path = NodePath("Map1")
 
-[node name="Map1" parent="World" instance=ExtResource( 6 )]
+[node name="Map1" parent="World" instance=ExtResource("6")]
 
-[node name="Player" parent="World" instance=ExtResource( 2 )]
-position = Vector2( 1, -177 )
+[node name="Player" parent="World" instance=ExtResource("2")]
+position = Vector2(35, 87)
+motion_mode = 0
+platform_floor_layers = 4294967295
 
 [node name="ZombieSpawnerTimer" type="Timer" parent="World"]
 wait_time = 10.0
 
-[node name="Item" parent="World" instance=ExtResource( 3 )]
-position = Vector2( 47, -172 )
+[node name="Item" parent="World" instance=ExtResource("3")]
+position = Vector2(47, -172)
 
-[node name="Item2" parent="World" instance=ExtResource( 3 )]
-position = Vector2( 134, -173 )
+[node name="Item2" parent="World" instance=ExtResource("3")]
+position = Vector2(134, -173)
 
-[node name="Item3" parent="World" instance=ExtResource( 3 )]
-position = Vector2( 48, -165 )
+[node name="Item3" parent="World" instance=ExtResource("3")]
+position = Vector2(48, -165)
 
-[node name="Item5" parent="World" instance=ExtResource( 3 )]
-position = Vector2( 48, -165 )
+[node name="Item4" parent="World" instance=ExtResource("3")]
+position = Vector2(48, -165)
+
+[node name="Item6" parent="World" instance=ExtResource("3")]
+position = Vector2(48, -165)
+
+[node name="Item7" parent="World" instance=ExtResource("3")]
+position = Vector2(48, -165)
+
+[node name="Item5" parent="World" instance=ExtResource("3")]
+position = Vector2(48, -165)
 
 [node name="TileMap" type="TileMap" parent="World"]
-format = 1
+format = 2
+
+[node name="Zombie" parent="World" instance=ExtResource("5_f527r")]
+position = Vector2(113, 120)
+motion_mode = 0
+platform_floor_layers = 4294967295
+navmap_path = NodePath("../Map1")
 
 [node name="GUI" type="Control" parent="."]
-script = ExtResource( 8 )
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="GUI"]
 
-[node name="Inv" parent="GUI/CanvasLayer" instance=ExtResource( 4 )]
+[node name="Inv" parent="GUI/CanvasLayer" instance=ExtResource("4")]
 visible = false
+offset_right = 0.0
+offset_bottom = 0.0
 
-[node name="HealthBar" parent="GUI/CanvasLayer" instance=ExtResource( 5 )]
+[node name="HealthBar" parent="GUI/CanvasLayer" instance=ExtResource("5")]
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -14.0
-margin_bottom = 0.0
+offset_top = -27.0
+offset_bottom = 0.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
 
 [node name="AmmoCount" type="Label" parent="GUI/CanvasLayer"]
-margin_right = 40.0
-margin_bottom = 14.0
+offset_right = 40.0
+offset_bottom = 14.0
 
 [connection signal="timeout" from="World/ZombieSpawnerTimer" to="World" method="_on_ZombieSpawnerTimer_timeout"]

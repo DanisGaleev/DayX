@@ -22,7 +22,7 @@ var can_shot = false
 var recharging: bool
 
 func create(item_pattern, count=1, destroying=0, ammo_in_magazine=0):
-	.create(item_pattern, count, destroying)
+	super.create(item_pattern, count, destroying)
 	self.ammo_in_magazine = ammo_in_magazine
 	self.time_between_shot = item_pattern.time_between_shot
 	self.recharge_time = item_pattern.recharge_time
@@ -31,18 +31,31 @@ func create(item_pattern, count=1, destroying=0, ammo_in_magazine=0):
 
 func equip(args): #equip
 	if args[0].weapon_fire_1 == null:
-		args[0].weapon_fire_1 == self
-	else:
-		args[0].weapon_fire_2 == self
+		args[0].weapon_fire_1 = self
+		print(self)
+		print(args[0].weapon_fire_1)
+		args[0].inventory.equip[0].item = self
+		args[0].inventory.equip[0].upd()
+		args[1].item = null
+		args[1].upd()
+		print("1")
+	elif args[0].weapon_fire_2 == null:
+		print("2")
+		args[0].weapon_fire_2 = self
+		args[0].inventory.equip[1].item = self
+		args[0].inventory.equip[1].upd()
+		args[1].item = null
+		args[1].upd()
 	
 func fire(args): #fire
+	print(str(can_shot) + " " + str(ammo_in_magazine) + " " + str(delta_time_between))
 	if can_shot and ammo_in_magazine > 0 and delta_time_between >= time_between_shot:
 		self.destroy()
 		print("fire")
-		var bullet_b = bullet.instance()
+		var bullet_b = bullet.instantiate()
 		ammo_in_magazine -= 1
 		bullet_b.speed = speed
-		bullet_b.damage = damage + rand_range(-damage_deviation, damage_deviation)
+		bullet_b.damage = damage + randf_range(-damage_deviation, damage_deviation)
 		bullet_b.distance = distance
 		bullet_b.direction = args[0]
 		bullet_b.global_position = args[1]
@@ -50,7 +63,7 @@ func fire(args): #fire
 		delta_time_between = 0
 		
 		args[2].get_node("Player").noise_level = 20.0
-		yield(args[2].get_tree().create_timer(0.1), "timeout")
+		await args[2].get_tree().create_timer(0.1).timeout
 		args[2].get_node("Player").noise_level = 0.0
 	
 func update(delta):
@@ -69,7 +82,7 @@ func recharge(inventory):
 	print("recharge")
 	for i in inventory.inventory:
 		if i.item != null and (i.item is Ammo) and (self.name in i.item.name_of_weapon):
-			i.item.use([self])
+			i.item.use([inventory.player, i])
 			i.upd()
 			recharging = true
 			break

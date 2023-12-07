@@ -1,6 +1,6 @@
 extends Node2D
 
-export var nav_node_path: NodePath
+@export var nav_node_path: NodePath
 var zombie = preload("res://scenes/game/character/Zombie.tscn")
 
 func _ready():
@@ -9,7 +9,7 @@ func _ready():
 
 
 func _on_ZombieSpawnerTimer_timeout():
-	var zombie_node = zombie.instance()
+	var zombie_node = zombie.instantiate()
 	zombie_node.navmap_path = nav_node_path
-	zombie_node.position = Vector2(rand_range(0, 100), rand_range(0, 100))
+	zombie_node.position = Vector2(randf_range(0, 100), randf_range(0, 100))
 	add_child(zombie_node)

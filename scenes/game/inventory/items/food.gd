@@ -6,7 +6,7 @@ var thirst: int
 var health: int
 
 func create(item_pattern, count=1, destroying=0):
-	.create(item_pattern, count, 0)
+	super.create(item_pattern, count, 0)
 	self.hunger = item_pattern.hunger
 	self.thirst = item_pattern.thirst
 	self.health = item_pattern.health
