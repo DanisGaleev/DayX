@@ -28,9 +28,14 @@ func create(item_pattern, _count=1, _destroying=0):
 func use(args) -> void:
 	pass
 
-func destroy() -> void:
-	if destroying:
+func destroy(args) -> void:
+	if destrouble:
 		destroying += destroying_value
+	if destroying >= 1:
+		if args[1] == 1:
+			args[0].weapon_fire_1 = null
+		else:
+			args[0].weapon_fire_2 = null
 
 #func upd(delta, delta_time):
 #	if destroying >= 1:

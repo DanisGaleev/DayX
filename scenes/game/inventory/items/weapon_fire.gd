@@ -50,7 +50,7 @@ func equip(args): #equip
 func fire(args): #fire
 	print(str(can_shot) + " " + str(ammo_in_magazine) + " " + str(delta_time_between))
 	if can_shot and ammo_in_magazine > 0 and delta_time_between >= time_between_shot:
-		self.destroy()
+		self.destroy([args[2].get_node("Player"), args[3], args[2]])
 		print("fire")
 		var bullet_b = bullet.instantiate()
 		ammo_in_magazine -= 1
@@ -61,6 +61,7 @@ func fire(args): #fire
 		bullet_b.global_position = args[1]
 		args[2].add_child(bullet_b)
 		delta_time_between = 0
+		prints("weapon", destroying)
 		
 		args[2].get_node("Player").noise_level = 20.0
 		await args[2].get_tree().create_timer(0.1).timeout
@@ -86,3 +87,11 @@ func recharge(inventory):
 			i.upd()
 			recharging = true
 			break
+#func destroy(args):
+	#if destroying + destroying_value >= 1 and ammo_in_magazine > 0:
+		#var item = preload("res://scenes/game/items_in_world/item.tscn").instantiate()
+		#args[2].add_child(item)
+		#item.position = args[0].position
+		#item.texture = 
+		#
+	#super.destroy(args)

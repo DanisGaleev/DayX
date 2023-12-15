@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buxbvntxdfck4"
-path="res://.godot/imported/tactical_bacon-sheet0.png-6a0d4d899458523c75ac06810076137d.ctex"
+uid="uid://bnptxmviih04p"
+path="res://.godot/imported/balaklava-sheet1.png-ab45af5369d7cd14445434fc52f98387.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/tactical_bacon-sheet0.png"
-dest_files=["res://.godot/imported/tactical_bacon-sheet0.png-6a0d4d899458523c75ac06810076137d.ctex"]
+source_file="res://assets/images/items/balaklava-sheet1.png"
+dest_files=["res://.godot/imported/balaklava-sheet1.png-ab45af5369d7cd14445434fc52f98387.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

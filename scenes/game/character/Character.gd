@@ -35,7 +35,11 @@ enum State {
 	Near_attack_forward,
 	Near_attack_back,
 	Near_attack_left,
-	Near_attack_right
+	Near_attack_right,
+	Fire_attack_forward,
+	Fire_attack_back,
+	Fire_attack_left,
+	Fire_attack_right,
 }
 var animation_d = {
 	State.Idle_forward : "idle_forward",
@@ -49,7 +53,11 @@ var animation_d = {
 	State.Near_attack_back : "near_attack_back",
 	State.Near_attack_left : "near_attack_left",
 	State.Near_attack_right : "near_attack_right",
-	State.Near_attack_forward : "near_attack_forward"
+	State.Near_attack_forward : "near_attack_forward",
+	State.Fire_attack_back : "fire_attack_back",
+	State.Fire_attack_left : "fire_attack_left",
+	State.Fire_attack_right : "fire_attack_right",
+	State.Fire_attack_forward : "fire_attack_forward",
 }
 
 var movement = Vector2()
@@ -95,7 +103,6 @@ func regenerate(delta):
 
 func last_animation():
 	if block:
-		print("called")
 		state = last_state
 		block = false
 	

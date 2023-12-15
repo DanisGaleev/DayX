@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-@onready var queue_free_timer = $QueueFreeTimer
+@onready var alive_timer = $AliveTimer
 
 @export var speed:float
 @export var damage: int
@@ -8,18 +8,16 @@ extends RigidBody2D
 @export var direction: Vector2
 
 func _ready():
-	queue_free_timer.wait_time = distance / speed
-	queue_free_timer.start()
+	alive_timer.wait_time = distance / speed
+	alive_timer.start()
 	
 	rotation = direction.angle()
 	apply_central_impulse(direction * speed)
 	
-	await queue_free_timer.timeout
+	await alive_timer.timeout
 	queue_free()
 
 func _on_Bullet_body_entered(body):
 	if body.is_in_group("zombie"):
-		print(body.health)
 		body.health -= damage
-		print(body.health)
 	queue_free()

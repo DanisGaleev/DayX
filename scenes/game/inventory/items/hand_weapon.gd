@@ -19,7 +19,7 @@ func hit(args): #hit
 		delta_time_between = 0
 		print("hit")
 		args[0].attack()
-		destroy()
+		destroy([])
 		args[2].get_node("Player").noise_level = 3.0
 		await args[2].get_tree().create_timer(0.1).timeout
 		args[2].get_node("Player").noise_level = 0.0

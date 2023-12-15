@@ -272,6 +272,8 @@ radius = 4.0
 height = 14.0
 
 [node name="Zombie" groups=["zombie"] instance=ExtResource("1")]
+collision_layer = 4
+collision_mask = 9
 script = ExtResource("2")
 navmap_path = NodePath("")
 speed = 50
@@ -279,7 +281,7 @@ wait_time = 1.0
 
 [node name="Animation" parent="." index="0"]
 sprite_frames = SubResource("1")
-animation = &"near_attack_back"
+animation = &"idle_back"
 
 [node name="Shape2D" parent="." index="1"]
 shape = SubResource("CircleShape2D_apylh")
@@ -290,12 +292,16 @@ visible = false
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="ViewAngryZone" index="0"]
 polygon = PackedVector2Array(0, 0, 200, 120, 224, 0, 200, -120)
 
+[node name="AttackZone" parent="." index="3"]
+collision_layer = 4
+collision_mask = 2
+
 [node name="CollisionShape2D" parent="AttackZone" index="0"]
 position = Vector2(0, 11)
 shape = SubResource("24")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="4"]
-target_desired_distance = 13.0
+target_desired_distance = 15.0
 avoidance_enabled = true
 radius = 13.0
 

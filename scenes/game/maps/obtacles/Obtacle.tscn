@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cfunwgy3oe1gk"]
 
 [node name="Obtacle" type="StaticBody2D"]
+collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://undt1a20qo02"
-path="res://.godot/imported/axe_red-sheet0.png-be2d8b400af31ce53b632aef78a189da.ctex"
+uid="uid://buxbvntxdfck4"
+path="res://.godot/imported/tactical_bacon-sheet0.png-6fc61e6a94472986cb0fd6666eca4af1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/axe_red-sheet0.png"
-dest_files=["res://.godot/imported/axe_red-sheet0.png-be2d8b400af31ce53b632aef78a189da.ctex"]
+source_file="res://assets/images/items/tactical_bacon-sheet0.png"
+dest_files=["res://.godot/imported/tactical_bacon-sheet0.png-6fc61e6a94472986cb0fd6666eca4af1.ctex"]
 
 [params]
 

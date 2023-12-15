@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d274o3h8hc7v2"
-path="res://.godot/imported/gui_firearm-sheet0.png-6a95b44ab6e4189dbbc5c1df814022f8.ctex"
+uid="uid://undt1a20qo02"
+path="res://.godot/imported/axe_red-sheet0.png-a207f50ec06ff09dbe6cb98051c6fc2b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/gui_firearm-sheet0.png"
-dest_files=["res://.godot/imported/gui_firearm-sheet0.png-6a95b44ab6e4189dbbc5c1df814022f8.ctex"]
+source_file="res://assets/images/items/axe_red-sheet0.png"
+dest_files=["res://.godot/imported/axe_red-sheet0.png-a207f50ec06ff09dbe6cb98051c6fc2b.ctex"]
 
 [params]
 

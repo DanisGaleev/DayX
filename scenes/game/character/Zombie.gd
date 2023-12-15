@@ -37,7 +37,6 @@ func attack():
 	animation.play(animation_d[state])
 
 
-	print("hit")
 	#attack_animation_finished.emit()
 
 	for body in entered_body:
@@ -82,7 +81,6 @@ func choose_direction():
 		last_direction = movement
 	else:
 		var angle = round(rad_to_deg(last_direction.angle()))
-		print(angle)
 		if angle < -45 and angle > -135:
 			state = State.Idle_forward
 		elif (angle >= -180 and angle < -135) or (angle <= 180 and angle > 135):
@@ -109,9 +107,10 @@ func _physics_process(delta):
 	var result = []
 	var is_player_found = false
 	for i in range(0, 20):
-		var raycast_angle = -PI / 6 + i * PI / 3 / 16
-		var to_vector2 = global_position + Vector2(cos(raycast_angle),sin(raycast_angle)) * 220
-		result.append(space_state.intersect_ray(PhysicsRayQueryParameters2D.create(global_position, to_vector2)))
+		var raycast_angle = movement.angle() + -PI / 6 + i * PI / 3 / 20
+		var from_vector2 = Vector2(global_position)
+		var to_vector2 = from_vector2 + Vector2(cos(raycast_angle),sin(raycast_angle)) * 220
+		result.append(space_state.intersect_ray(PhysicsRayQueryParameters2D.create(from_vector2, to_vector2)))
 		if result[i] != null and result[i].get("collider") != null:
 			if result[i].get("collider").name == "Player":
 				how_triggered = Triggered.VIEW
@@ -122,10 +121,12 @@ func _physics_process(delta):
 		movement = Vector2(0, 0)
 
 func _draw():
+	draw_circle(Vector2(0, 0), 10, Color.CHARTREUSE)
 	for i in range(0, 20):
-		var raycast_angle = -PI / 6 + i * PI / 3 / 16
-		var to_vector2 = global_position + Vector2(cos(raycast_angle),sin(raycast_angle)) * 220
-		draw_line(global_position, to_vector2, Color.GREEN, 2)
+		var raycast_angle = movement.angle() + -PI / 6 + i * PI / 3 / 20
+		var from_vector2 = Vector2(global_position)
+		var to_vector2 = from_vector2 + Vector2(cos(raycast_angle),sin(raycast_angle)) * 220
+		draw_line(from_vector2, to_vector2, Color.GREEN, 2)
 func _on_PathFind_timeout():
 	if how_triggered == Triggered.VIEW:
 		nav.target_position = player.position

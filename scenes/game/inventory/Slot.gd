@@ -30,24 +30,35 @@ func _ready():
 	inventory = get_parent().get_parent().get_parent().inventory
 	equip = get_node("../../../").equip
 	id = 0 if self.name.substr(4) == "" else int(self.name.substr(4)) - 1
+	print(get_global_rect().position)
 
 func get_id_by_position(inventory_or_equip_zone=true) -> int:
 	#var position = rect_position + rect_size / 2
 	var position = global_position + size / 2
 	if inventory_or_equip_zone: #inventory zone
-		position -= Vector2(196, 57)
+		position -= Vector2(372, 50)
 		return int(position.x) / 68 + int(position.y / 68) * 4
 	else: #equip zone
+		position -= Vector2(0, 50)
 		return int(position.x) / 68 + int(position.y / 68) * 2
 
+func in_inventory(pos: Vector2) -> bool:
+	return pos.x <= 372 + 238 and pos.x >= 372 and pos.y <= 200 + 50 and pos.y >= 50
+		
+func in_equip(pos: Vector2) -> bool:
+	return pos.x <= 132 and pos.x >= 0 and pos.y <= 268 + 50 and pos.y >= 0
+
 func upd():
-	if item != null and item.count > 0:
+	if item != null and item.count > 0 and item.destroying < 1:
 		icon.texture = item.icon_inventory
-		count_label.text = str(item.count)
 		if item.destrouble:
+			destroying_label.visible = true
 			destroying_label.text = "{dest} / 100".format({"dest" : item.destroying * 100})
+			count_label.visible = false
 		else:
-			destroying_label.text = ''
+			destroying_label.visible = false
+			count_label.visible = true
+			count_label.text = str(item.count)
 	else:
 		item = null
 		icon.texture = null
@@ -81,20 +92,22 @@ func _input(event):
 
 func set_position_by_id(inventory_or_equip_zone=true):
 	if inventory_or_equip_zone: #if in inventory zone
-		set_global_position(Vector2(196 + self.id % 4 * 68, 57 + self.id / 4 * 68))
+		set_global_position(Vector2(372 + self.id % 4 * 68, 50 + self.id / 4 * 68))
 	else: #in in equip zone
-		set_global_position(Vector2(0 + self.id % 2 * 68, 0 + self.id / 2 * 68))
+		set_global_position(Vector2(0 + self.id % 2 * 68, 50 + self.id / 2 * 68))
 
 func _process(delta):
 	if dragging:
-		set_global_position(get_viewport().get_mouse_position() - drag_offset)
+		#set_global_position(get_viewport().get_mouse_position() - drag_offset)
+		set_global_position(get_global_mouse_position() - drag_offset)
 		one_time = false
 	elif get_parent().get_parent().visible and not one_time:
 		one_time = true
-		var middle = global_position + size / 2
-		if middle.x <= 464 and middle.x >= 196 and middle.y <= 257 and middle.y >= 57: #check if now in inventory
+		print(get_global_rect().position, "efefe")
+		var middle = get_global_rect().position + size / 2
+		if in_inventory(middle): #check if now in inventory
 			var swap_id = get_id_by_position()
-			if prev_pos.x <= 132 and prev_pos.x >= 0 and prev_pos.y <= 268 and prev_pos.y >= 0: #check if was in equip
+			if in_equip(prev_pos): #check if was in equip
 				if inventory[swap_id].item == null:
 					print("spawp id", swap_id)
 					inventory[swap_id].item = self.item
@@ -107,7 +120,7 @@ func _process(delta):
 				else:
 					upd()
 					set_position_by_id(false)
-			elif prev_pos.x <= 464 and prev_pos.x >= 196 and prev_pos.y <= 257 and prev_pos.y >= 57: #check if was in inventory
+			elif in_inventory(prev_pos): #check if was in inventory
 				if inventory[swap_id].item != null:
 					var swap_item = inventory[swap_id].item
 					if swap_item.name == self.item.name and self.item.stackable: #check if can stack
@@ -145,8 +158,8 @@ func _process(delta):
 					self.item = null
 					upd()
 					set_position_by_id()
-		elif middle.x <= 132 and middle.x >= 0 and middle.y <= 268 and middle.y >= 0: #check if now in equip
-			if prev_pos.x <= 464 and prev_pos.x >= 196 and prev_pos.y <= 257 and prev_pos.y >= 57: #check if was in inventory
+		elif in_equip(middle): #check if now in equip
+			if in_inventory(prev_pos): #check if was in inventory
 				print(position)
 				var swap_id = get_id_by_position(false)
 				if equip[swap_id].item != null:
@@ -182,9 +195,10 @@ func _process(delta):
 				set_position_by_id(false)
 		else: #if swap in enmpy space -> remove from inv
 			var new_item_on_ground = load("res://scenes/game/items_in_world/item.tscn").instantiate()
+			get_node("../../../../../../World").add_child(new_item_on_ground)
 			new_item_on_ground.position = player.position + Vector2(0, 10)
 			new_item_on_ground.item_info = self.item
-			get_node("../../../../../../World").add_child(new_item_on_ground)
+			new_item_on_ground.texture = item.icon_world
 			item = null
 			upd()
 			if self in inventory:
@@ -205,10 +219,14 @@ func _on_Slot_mouse_exited():
 
 func _on_Slot_gui_input(event: InputEvent):
 	if event.is_action_pressed("left_click") and item:
-		if get_global_rect().has_point(event.global_position):
+		#prints(get_viewport_rect(), DisplayServer.window_get_size().x, event.global_position, event.global_position * (640 / DisplayServer.window_get_size().x))
+		#if get_global_rect().has_point(event.global_position):
+		if get_global_rect().has_point(get_global_mouse_position()):
+			print("swap")
 			dragging = true
 			prev_pos = global_position + size / 2
-			drag_offset = event.global_position - get_global_rect().position
+			print(get_global_rect().position)
+			drag_offset = get_global_mouse_position() - get_global_rect().position
 
 	if event.is_action_released("left_click") and dragging and item:
 		dragging = false
