@@ -189,6 +189,10 @@ info={
 
 [layer_names]
 
+2d_render/layer_1="ground"
+2d_render/layer_2="obtacles"
+2d_render/layer_3="character"
+2d_render/layer_4="building"
 2d_physics/layer_1="world"
 2d_physics/layer_2="player"
 2d_physics/layer_3="zombie"

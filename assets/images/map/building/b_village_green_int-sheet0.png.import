@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkhbb6g0gooql"
-path="res://.godot/imported/zed_army_skin1-sheet1.png-c4496f748e1bbf6ab3af4ed82f0331c7.ctex"
+uid="uid://nd7p17xehyad"
+path="res://.godot/imported/b_village_green_int-sheet0.png-b4b54ec785e387ea53aa995790d9b40c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/game/animation/zed_army_skin1-sheet1.png"
-dest_files=["res://.godot/imported/zed_army_skin1-sheet1.png-c4496f748e1bbf6ab3af4ed82f0331c7.ctex"]
+source_file="res://assets/images/map/building/b_village_green_int-sheet0.png"
+dest_files=["res://.godot/imported/b_village_green_int-sheet0.png-b4b54ec785e387ea53aa995790d9b40c.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8cnvl8mvef76"
-path="res://.godot/imported/zed_army_skin1-sheet2.png-8eaaacbf96134b8c279b2e1c2c30659a.ctex"
+uid="uid://ffbq22k6eh1o"
+path="res://.godot/imported/zed_army_skin1-sheet0.png-83c74e57cdc9b7564d85790d2cb3e6e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/game/animation/zed_army_skin1-sheet2.png"
-dest_files=["res://.godot/imported/zed_army_skin1-sheet2.png-8eaaacbf96134b8c279b2e1c2c30659a.ctex"]
+source_file="res://assets/images/game/animation/character/zed_army_skin1-sheet0.png"
+dest_files=["res://.godot/imported/zed_army_skin1-sheet0.png-83c74e57cdc9b7564d85790d2cb3e6e5.ctex"]
 
 [params]
 

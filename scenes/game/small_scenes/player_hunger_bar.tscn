@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl1xi2a2hp2ae"]
+[gd_scene load_steps=3 format=3 uid="uid://xkn36x4g1uxr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aku7a"]
-bg_color = Color(1, 0, 0, 1)
+bg_color = Color(0.105882, 0.627451, 0.435294, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8s374"]
-bg_color = Color(0.862745, 0.101961, 0.00784314, 1)
+bg_color = Color(0.358562, 0.591818, 0.49416, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -27,5 +27,5 @@ size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_aku7a")
 theme_override_styles/fill = SubResource("StyleBoxFlat_8s374")
 step = 1.0
-value = 80.0
+value = 20.0
 show_percentage = false

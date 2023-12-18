@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cy0qbll4oi6ad"
-path="res://.godot/imported/b_village_brown-sheet0.png-781104c13b0a9ce2edaeec02936294f0.ctex"
+path="res://.godot/imported/b_village_brown-sheet0.png-aaf83a74d23b195148a9a845df2fed94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/map/b_village_brown-sheet0.png"
-dest_files=["res://.godot/imported/b_village_brown-sheet0.png-781104c13b0a9ce2edaeec02936294f0.ctex"]
+source_file="res://assets/images/map/building/b_village_brown-sheet0.png"
+dest_files=["res://.godot/imported/b_village_brown-sheet0.png-aaf83a74d23b195148a9a845df2fed94.ctex"]
 
 [params]
 

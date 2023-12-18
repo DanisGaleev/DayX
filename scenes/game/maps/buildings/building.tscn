@@ -5,7 +5,15 @@
 [node name="Building" type="Node2D"]
 script = ExtResource("1")
 
+[node name="ItemsSpawnPositions" type="Node2D" parent="."]
+
+[node name="InTrigger" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InTrigger"]
+
 [node name="Navigation" type="Polygon2D" parent="."]
+color = Color(0.290196, 0.733333, 0.470588, 0.87451)
 
 [node name="Body" type="StaticBody2D" parent="."]
 collision_mask = 0
@@ -13,14 +21,9 @@ collision_mask = 0
 [node name="In" type="Sprite2D" parent="."]
 
 [node name="Out" type="Sprite2D" parent="."]
+z_index = 3
 
 [node name="Door" type="Sprite2D" parent="."]
 
-[node name="InTrigger" type="Area2D" parent="."]
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InTrigger"]
-
-[node name="ItemsSpawnPositions" type="Node2D" parent="."]
-
-[connection signal="body_entered" from="InTrigger" to="." method="_on_InTrigger_body_entered"]
+[connection signal="body_entered" from="InTrigger" to="." method="_on_in_trigger_body_entered"]
+[connection signal="body_exited" from="InTrigger" to="." method="_on_in_trigger_body_exited"]

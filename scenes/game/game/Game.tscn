@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjdwxtar2f3xx"]
+[gd_scene load_steps=11 format=3 uid="uid://bjdwxtar2f3xx"]
 
 [ext_resource type="PackedScene" uid="uid://dbgyub1mc86fq" path="res://scenes/game/character/player.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://ddfq5qkpurhns" path="res://scenes/game/items_in_world/item.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cfv8eejpfgyq" path="res://scenes/game/inventory/inventory.tscn" id="4"]
-[ext_resource type="PackedScene" path="res://scenes/game/small_scenes/player_health_bar.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dl1xi2a2hp2ae" path="res://scenes/game/small_scenes/player_health_bar.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://dbbmmiyxsjlsj" path="res://scenes/game/character/zombie.tscn" id="5_f527r"]
 [ext_resource type="PackedScene" uid="uid://s77kho4hi6fn" path="res://scenes/game/maps/map_1.tscn" id="6"]
 [ext_resource type="Script" path="res://scenes/game/game/world.gd" id="7"]
 [ext_resource type="Script" path="res://scenes/game/game/gui.gd" id="8"]
+[ext_resource type="PackedScene" uid="uid://xkn36x4g1uxr" path="res://scenes/game/small_scenes/player_hunger_bar.tscn" id="8_jqs2x"]
+[ext_resource type="PackedScene" uid="uid://ca6r65opgpt8p" path="res://scenes/game/small_scenes/player_thrist_bar.tscn" id="9_i4i5o"]
 
 [node name="Game" type="Node"]
 
@@ -18,15 +20,12 @@ nav_node_path = NodePath("Map1")
 [node name="Map1" parent="World" instance=ExtResource("6")]
 
 [node name="Player" parent="World" instance=ExtResource("2")]
-position = Vector2(32, -164)
+z_index = 1
+position = Vector2(492, 339)
 platform_floor_layers = 4294967295
 
 [node name="ZombieSpawnerTimer" type="Timer" parent="World"]
 wait_time = 10.0
-
-[node name="Item" parent="World" instance=ExtResource("3")]
-position = Vector2(47, -172)
-arr = Array[String](["ak74_weapon_fire;0.9;WeaponFire", "m4_weapon_fire;0.1;WeaponFire"])
 
 [node name="TileMap" type="TileMap" parent="World"]
 format = 2
@@ -35,6 +34,9 @@ format = 2
 position = Vector2(113, 120)
 platform_floor_layers = 4294967295
 navmap_path = NodePath("../Map1")
+
+[node name="Item" parent="World" instance=ExtResource("3")]
+arr = Array[String](["ak74_weapon_fire;0.2;WeaponFire", "m4_weapon_fire;0.3;WeaponFire", "5_45x39_ammo;0.5;Ammo"])
 
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3
@@ -50,13 +52,24 @@ script = ExtResource("8")
 [node name="Inv" parent="GUI/CanvasLayer" instance=ExtResource("4")]
 visible = false
 
-[node name="HealthBar" parent="GUI/CanvasLayer" instance=ExtResource("5")]
+[node name="Bars" type="VBoxContainer" parent="GUI/CanvasLayer"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -27.0
-offset_bottom = 0.0
+offset_top = -62.0
+offset_right = 100.0
 grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="HungerBar" parent="GUI/CanvasLayer/Bars" instance=ExtResource("8_jqs2x")]
+layout_mode = 2
+
+[node name="ThirstBar" parent="GUI/CanvasLayer/Bars" instance=ExtResource("9_i4i5o")]
+layout_mode = 2
+
+[node name="HealthBar" parent="GUI/CanvasLayer/Bars" instance=ExtResource("5")]
+layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 

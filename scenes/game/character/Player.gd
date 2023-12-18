@@ -3,7 +3,7 @@ extends Character
 class_name Player
 
 @onready var fire_position = $AttackZone/FirePosition
-var near_weapon_animation: AnimatedSprite2D
+@onready var near_weapon_animation = $AnimatedSprite2D
 var fire_weapon_1_animation: AnimatedSprite2D
 var inventory: Inventory
 

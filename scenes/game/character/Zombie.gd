@@ -17,6 +17,7 @@ var how_triggered = Triggered.NULL
 
 @onready var nav = $NavigationAgent2D
 @onready var view_angry_zone = $ViewAngryZone
+@onready var raycasts = $RayCasts
 
 @export_node_path() var navmap_path: NodePath
 
@@ -97,7 +98,7 @@ func upd(delta):
 		attack()
 
 func _ready():
-	get_tree().set_debug_collisions_hint(true) 
+	#get_tree().set_debug_collisions_hint(true) 
 	super._ready()
 	nav.set_navigation_map(get_node(navmap_path).get_node("NavigationMap"))
 func _physics_process(delta):
@@ -106,27 +107,32 @@ func _physics_process(delta):
 	var space_state = get_world_2d().direct_space_state
 	var result = []
 	var is_player_found = false
-	for i in range(0, 20):
-		var raycast_angle = movement.angle() + -PI / 6 + i * PI / 3 / 20
-		var from_vector2 = Vector2(global_position)
-		var to_vector2 = from_vector2 + Vector2(cos(raycast_angle),sin(raycast_angle)) * 220
-		result.append(space_state.intersect_ray(PhysicsRayQueryParameters2D.create(from_vector2, to_vector2)))
-		if result[i] != null and result[i].get("collider") != null:
-			if result[i].get("collider").name == "Player":
-				how_triggered = Triggered.VIEW
-				is_player_found = true
+	raycasts.rotation = last_direction.angle() - PI / 2
+	for i in raycasts.get_children():
+		if i.get_collider() and i.get_collider().name == "Player":
+			how_triggered = Triggered.VIEW
+			is_player_found = true
+	#for i in range(0, 20):
+		#var raycast_angle = movement.angle() + -PI / 6 + i * PI / 3 / 20
+		#var from_vector2 = Vector2(global_position)
+		#var to_vector2 = from_vector2 + Vector2(cos(raycast_angle),sin(raycast_angle)) * 220
+		#result.append(space_state.intersect_ray(PhysicsRayQueryParameters2D.create(from_vector2, to_vector2)))
+		#if result[i] != null and result[i].get("collider") != null:
+			#if result[i].get("collider").name == "Player":
+				#how_triggered = Triggered.VIEW
+				#is_player_found = true
 	if not is_player_found:
 		how_triggered = Triggered.NULL
 		last_direction = movement
 		movement = Vector2(0, 0)
-
-func _draw():
-	draw_circle(Vector2(0, 0), 10, Color.CHARTREUSE)
-	for i in range(0, 20):
-		var raycast_angle = movement.angle() + -PI / 6 + i * PI / 3 / 20
-		var from_vector2 = Vector2(global_position)
-		var to_vector2 = from_vector2 + Vector2(cos(raycast_angle),sin(raycast_angle)) * 220
-		draw_line(from_vector2, to_vector2, Color.GREEN, 2)
+#
+#func _draw():
+	#draw_circle(Vector2(0, 0), 10, Color.CHARTREUSE)
+	#for i in range(0, 20):
+		#var raycast_angle = movement.angle() + -PI / 6 + i * PI / 3 / 20
+		#var from_vector2 = Vector2(global_position)
+		#var to_vector2 = from_vector2 + Vector2(cos(raycast_angle),sin(raycast_angle)) * 220
+		#draw_line(from_vector2, to_vector2, Color.GREEN, 2)
 func _on_PathFind_timeout():
 	if how_triggered == Triggered.VIEW:
 		nav.target_position = player.position

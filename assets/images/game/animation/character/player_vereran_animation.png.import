@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5em8u2grj62e"
-path="res://.godot/imported/player_skin_veteran-sheet1.png-ed5b44f31416d8ccd2e66525f92fac26.ctex"
+uid="uid://tnwjuxnm1ful"
+path="res://.godot/imported/player_vereran_animation.png-76111a728463a66f55b63eccc7550951.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/game/animation/player_skin_veteran-sheet1.png"
-dest_files=["res://.godot/imported/player_skin_veteran-sheet1.png-ed5b44f31416d8ccd2e66525f92fac26.ctex"]
+source_file="res://assets/images/game/animation/character/player_vereran_animation.png"
+dest_files=["res://.godot/imported/player_vereran_animation.png-76111a728463a66f55b63eccc7550951.ctex"]
 
 [params]
 

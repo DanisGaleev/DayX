@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4ugxe88lf0sn"
-path="res://.godot/imported/player_skin_veteran-sheet0.png-fc3ab15949475c9e0da30670a8724113.ctex"
+uid="uid://dn0yy758us4ri"
+path="res://.godot/imported/city_1_in.png-9f9837a2fd47c0008d4d206977133b8c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/game/animation/player_skin_veteran-sheet0.png"
-dest_files=["res://.godot/imported/player_skin_veteran-sheet0.png-fc3ab15949475c9e0da30670a8724113.ctex"]
+source_file="res://assets/images/map/building/city_1_in.png"
+dest_files=["res://.godot/imported/city_1_in.png-9f9837a2fd47c0008d4d206977133b8c.ctex"]
 
 [params]
 
@@ -25,7 +25,7 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
