@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="WeaponFirePattern" load_steps=6 format=3 uid="uid://b1oklxa6cy7vk"]
+
+[ext_resource type="Texture2D" uid="uid://d274o3h8hc7v2" path="res://assets/images/game/animation/items/gui_firearm-sheet0.png" id="1_4tcuk"]
+[ext_resource type="Texture2D" uid="uid://jk86cqj2sg1g" path="res://assets/images/game/animation/items/aug_weapon_fire_animation.png" id="2_d3wd2"]
+[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/weapon_fire_pattern.gd" id="3_pwxyn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00s6e"]
+atlas = ExtResource("1_4tcuk")
+region = Rect2(338, 175, 160, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh01e"]
+atlas = ExtResource("2_d3wd2")
+region = Rect2(320, 64, 22, 11)
+
+[resource]
+script = ExtResource("3_pwxyn")
+time_between_shot = 0.0
+recharge_time = 0.0
+magazine = 0
+accuracy = 0.0
+name = "aug"
+description = null
+type = 2
+stackable = false
+count = 0
+max_count = 0
+destroying = 0.0
+destrouble = true
+destroying_value = 0.0
+icon_inventory = SubResource("AtlasTexture_00s6e")
+icon_world = SubResource("AtlasTexture_yh01e")

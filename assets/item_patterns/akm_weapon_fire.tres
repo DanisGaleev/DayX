@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="WeaponFirePattern" load_steps=6 format=3 uid="uid://bo6tbxmjitksi"]
+
+[ext_resource type="Texture2D" uid="uid://d274o3h8hc7v2" path="res://assets/images/game/animation/items/gui_firearm-sheet0.png" id="1_ciymd"]
+[ext_resource type="Texture2D" uid="uid://cns42osfffxat" path="res://assets/images/game/animation/items/akm_weapon_fire_animation.png" id="2_xgafo"]
+[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/weapon_fire_pattern.gd" id="3_fopfw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_og2i2"]
+atlas = ExtResource("1_ciymd")
+region = Rect2(2, 179, 173, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdipi"]
+atlas = ExtResource("2_xgafo")
+region = Rect2(320, 64, 21, 9)
+
+[resource]
+script = ExtResource("3_fopfw")
+time_between_shot = 0.1
+recharge_time = 5.0
+magazine = 30
+accuracy = 4.0
+name = "akm"
+description = "bul-bul"
+type = 2
+stackable = false
+count = 0
+max_count = 0
+destroying = 0.0
+destrouble = true
+destroying_value = 0.2
+icon_inventory = SubResource("AtlasTexture_og2i2")
+icon_world = SubResource("AtlasTexture_fdipi")

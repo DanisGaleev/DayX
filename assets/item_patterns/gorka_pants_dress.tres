@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="DressPattern" load_steps=7 format=3 uid="uid://8b4l4471b2b2"]
+
+[ext_resource type="Texture2D" uid="uid://ciha34lwkp113" path="res://assets/images/game/animation/items/pants/gui_item_pants-sheet0.png" id="1_00l6b"]
+[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/dress_pattern.gd" id="1_topwu"]
+[ext_resource type="Texture2D" uid="uid://m0gp4is3sddq" path="res://assets/images/game/animation/items/pants/gorka_pants_animation.png" id="2_e00qq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sim23"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4gap"]
+atlas = ExtResource("1_00l6b")
+region = Rect2(36, 35, 23, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seene"]
+atlas = ExtResource("2_e00qq")
+region = Rect2(256, 32, 15, 10)
+
+[resource]
+script = ExtResource("1_topwu")
+drees_type = 0
+slot_count = 3
+cold_resistance = 4
+armor = 3
+name = "gorka_pants"
+description = null
+type = 4
+stackable = false
+count = 0
+max_count = 0
+destroying = 0.0
+destrouble = true
+destroying_value = 0.0
+icon_inventory = SubResource("AtlasTexture_t4gap")
+icon_world = SubResource("AtlasTexture_seene")
+animation = SubResource("SpriteFrames_sim23")

@@ -14,5 +14,21 @@ script = ExtResource("1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackZone"]
 
+[node name="Animations" type="Node2D" parent="."]
+
+[node name="WeaponFire1Animation" type="AnimatedSprite2D" parent="Animations"]
+
+[node name="WeaponFire2Animation" type="AnimatedSprite2D" parent="Animations"]
+
+[node name="WeaponNearAnimation" type="AnimatedSprite2D" parent="Animations"]
+
+[node name="PantsAnimation" type="AnimatedSprite2D" parent="Animations"]
+
+[node name="ShirtAnimation" type="AnimatedSprite2D" parent="Animations"]
+
+[node name="ArmorAnimation" type="AnimatedSprite2D" parent="Animations"]
+
+[node name="BackpackAnimation" type="AnimatedSprite2D" parent="Animations"]
+
 [connection signal="body_entered" from="AttackZone" to="." method="_on_AttackZone_body_entered"]
 [connection signal="body_exited" from="AttackZone" to="." method="_on_AttackZone_body_exited"]

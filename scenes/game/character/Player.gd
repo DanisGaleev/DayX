@@ -3,8 +3,8 @@ extends Character
 class_name Player
 
 @onready var fire_position = $AttackZone/FirePosition
-@onready var near_weapon_animation = $AnimatedSprite2D
-var fire_weapon_1_animation: AnimatedSprite2D
+#@onready var near_weapon_animation = $AnimatedSprite2D
+#var fire_weapon_1_animation: AnimatedSprite2D
 var inventory: Inventory
 
 var noise_level = 0.0
@@ -185,8 +185,9 @@ func upd(delta):
 	rotate_attack_zone(self.position.direction_to(get_global_mouse_position()).angle())
 	if Input.is_action_just_pressed("info"):
 		print(animation_d[state])
-	if near_weapon_animation:
-		near_weapon_animation.play(animation_d[state])
+	for anm in animations_dictionary:
+			if anm:
+				animations_dictionary[anm].play(animation_d[state])
 func _physics_process(delta):
 	choose_direction()
 	set_velocity(movement)

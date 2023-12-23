@@ -88,8 +88,14 @@ var type_of_weapon = WeaponType.NEAR_WEAPON
 @onready var animation = $Animation
 @onready var attack_zone = $AttackZone
 
+@onready var animations = $Animations
+
+var animations_dictionary:Dictionary
+
 signal attack_animation_finished
 func _ready():
+	for anm in animations.get_children():
+		animations_dictionary[anm.name] = anm
 	randomize()
 	animation.play(animation_d[state])
 	animation.animation_finished.connect(last_animation)

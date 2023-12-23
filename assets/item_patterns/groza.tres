@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="WeaponFirePattern" load_steps=6 format=3 uid="uid://42yf7k44xing"]
+
+[ext_resource type="Texture2D" uid="uid://d274o3h8hc7v2" path="res://assets/images/game/animation/items/gui_firearm-sheet0.png" id="1_78plc"]
+[ext_resource type="Texture2D" uid="uid://b1puxcif0d74c" path="res://assets/images/game/animation/items/groza_weapon_fire_animation.png" id="2_sbes4"]
+[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/weapon_fire_pattern.gd" id="3_ljey7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wa24"]
+atlas = ExtResource("1_78plc")
+region = Rect2(375, 61, 116, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j88ag"]
+atlas = ExtResource("2_sbes4")
+region = Rect2(352, 32, 19, 13)
+
+[resource]
+script = ExtResource("3_ljey7")
+time_between_shot = 0.0
+recharge_time = 0.0
+magazine = 0
+accuracy = 0.0
+name = "groza"
+description = "<null>"
+type = 2
+stackable = false
+count = 0
+max_count = 0
+destroying = 0.0
+destrouble = true
+destroying_value = 0.0
+icon_inventory = SubResource("AtlasTexture_7wa24")
+icon_world = SubResource("AtlasTexture_j88ag")

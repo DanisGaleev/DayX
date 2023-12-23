@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/weapon_fire_pattern.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bod4uf2wchtis" path="res://assets/images/items/ak74_rifle-sheet2.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://d274o3h8hc7v2" path="res://assets/images/items/gui_firearm-sheet0.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://d274o3h8hc7v2" path="res://assets/images/game/animation/items/gui_firearm-sheet0.png" id="3"]
 
 [sub_resource type="AtlasTexture" id="1"]
 atlas = ExtResource("3")
