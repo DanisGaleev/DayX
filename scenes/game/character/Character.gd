@@ -67,7 +67,7 @@ var delta_time_near = 0
 var block = false
 var last_state
 var regeneration_time = 0
-var near_weapon
+var hand_weapon
 var weapon_fire_1
 var weapon_fire_2
 var type_of_weapon = WeaponType.NEAR_WEAPON

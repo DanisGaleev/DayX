@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://hbvcikanrquu"]
+
+[ext_resource type="Script" path="res://scenes/game/small_scenes/anim.gd" id="1_i08g4"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_i08g4")
+texture_path = "res://assets/images/game/animation/items/weapon_fire/akm_weapon_fire_animation.png"
+type = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(318, 147)

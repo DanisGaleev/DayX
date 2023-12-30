@@ -205,7 +205,7 @@ func _process(delta):
 				set_position_by_id()
 			else:
 				set_position_by_id(false)
-		player.near_weapon = equip[2].item
+		player.hand_weapon = equip[2].item
 		player.weapon_fire_1 = equip[0].item
 		player.weapon_fire_2 = equip[1].item
 

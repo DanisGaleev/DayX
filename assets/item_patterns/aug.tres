@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponFirePattern" load_steps=6 format=3 uid="uid://b1oklxa6cy7vk"]
 
-[ext_resource type="Texture2D" uid="uid://d274o3h8hc7v2" path="res://assets/images/game/animation/items/gui_firearm-sheet0.png" id="1_4tcuk"]
-[ext_resource type="Texture2D" uid="uid://jk86cqj2sg1g" path="res://assets/images/game/animation/items/aug_weapon_fire_animation.png" id="2_d3wd2"]
+[ext_resource type="Texture2D" uid="uid://d274o3h8hc7v2" path="res://assets/images/game/animation/items/weapon_fire/weapon_fire_inventory0.png" id="1_4tcuk"]
+[ext_resource type="Texture2D" uid="uid://jk86cqj2sg1g" path="res://assets/images/game/animation/items/weapon_fire/aug_weapon_fire_animation.png" id="2_d3wd2"]
 [ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/weapon_fire_pattern.gd" id="3_pwxyn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00s6e"]

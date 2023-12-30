@@ -2,7 +2,7 @@ extends Node2D
 
 func _ready():
 	for spawn in $ItemsSpawnPositions.get_children():
-		var item = preload("res://scenes/game/items_in_world/item.tscn").instantiate()
+		var item = preload("res://scenes/game/item_in_world/item.tscn").instantiate()
 		item.position = spawn.position
 		print(item.is_in_group("item_world"))
 		add_child(item)

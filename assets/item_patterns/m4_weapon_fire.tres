@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponFirePattern" load_steps=6 format=3 uid="uid://cetu4on3wfakk"]
 
-[ext_resource type="Texture2D" uid="uid://d274o3h8hc7v2" path="res://assets/images/game/animation/items/gui_firearm-sheet0.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://d1iym8tey1fda" path="res://assets/images/items/m4_rifle-sheet2.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://d274o3h8hc7v2" path="res://assets/images/game/animation/items/weapon_fire/weapon_fire_inventory0.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bbinnqerrcqcr" path="res://assets/images/game/animation/items/weapon_fire/m4_weapon_fire_animation.png" id="2_icpyl"]
 [ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/weapon_fire_pattern.gd" id="3"]
 
 [sub_resource type="AtlasTexture" id="1"]
@@ -9,8 +9,8 @@ atlas = ExtResource("1")
 region = Rect2(167, 120, 163, 54)
 
 [sub_resource type="AtlasTexture" id="2"]
-atlas = ExtResource("2")
-region = Rect2(64, 96, 22, 12)
+atlas = ExtResource("2_icpyl")
+region = Rect2(320, 96, 22, 12)
 
 [resource]
 script = ExtResource("3")
@@ -20,12 +20,12 @@ magazine = 30
 accuracy = 0.0
 name = "m4"
 description = "m4"
-icon_inventory = SubResource("1")
-icon_world = SubResource("2")
 type = 2
+stackable = false
 count = 1
 max_count = 1
-stackable = false
+destroying = 0.0
 destrouble = true
 destroying_value = 0.1
-destroying = 0.0
+icon_inventory = SubResource("1")
+icon_world = SubResource("2")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddfq5qkpurhns"]
+
+[ext_resource type="Script" path="res://scenes/game/item_in_world/item.gd" id="1"]
+
+[node name="Item" type="Sprite2D" groups=["item_world"]]
+script = ExtResource("1")
+arr = Array[String](["ak74_weapon_fire;1;WeaponFire"])

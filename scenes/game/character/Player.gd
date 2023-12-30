@@ -3,8 +3,6 @@ extends Character
 class_name Player
 
 @onready var fire_position = $AttackZone/FirePosition
-#@onready var near_weapon_animation = $AnimatedSprite2D
-#var fire_weapon_1_animation: AnimatedSprite2D
 var inventory: Inventory
 
 var noise_level = 0.0
@@ -14,10 +12,10 @@ func _ready():
 	inventory.player = self
 
 func _input(event):
-	if event.is_action_pressed("near_weapon"):
+	if event.is_action_pressed("hand_weapon"):
 		type_of_weapon = WeaponType.NEAR_WEAPON
-		if near_weapon:
-			delta_time_near = near_weapon.wait_time
+		if hand_weapon:
+			delta_time_near = hand_weapon.wait_time
 		if state <= State.Idle_right or State.Near_attack_forward <= state:
 			var angle = round(rad_to_deg(last_direction.angle()))
 			if angle < -45 and angle > -135:
@@ -58,7 +56,7 @@ func _input(event):
 	if event.is_action_pressed("attack"):
 		match(type_of_weapon):
 			WeaponType.NEAR_WEAPON:
-				if near_weapon == null:
+				if hand_weapon == null:
 					if delta_time_near >= wait_time:
 						delta_time_near = 0.0
 						attack()
@@ -66,7 +64,7 @@ func _input(event):
 						await get_tree().create_timer(0.1).timeout
 						noise_level = 0.0
 				else:
-					near_weapon.hit([self])
+					hand_weapon.hit([self])
 			WeaponType.FIRE_WEAPON_1:
 				if weapon_fire_1 != null:
 					self.weapon_fire_1.fire([self.position.direction_to(get_global_mouse_position()), fire_position.global_position, get_parent(), 1])
@@ -152,10 +150,10 @@ func upd(delta):
 						state = State.Idle_right
 					else:
 						state = State.Idle_back
-				if near_weapon == null:
+				if hand_weapon == null:
 					delta_time_near += delta
 				else:
-					near_weapon.update(delta)
+					hand_weapon.update(delta)
 			WeaponType.FIRE_WEAPON_1:
 				if  state < State.Run_forward  or State.Run_right < state :
 					var angle = round(rad_to_deg(last_direction.angle()))

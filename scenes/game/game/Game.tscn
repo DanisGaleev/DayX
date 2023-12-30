@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bjdwxtar2f3xx"]
 
 [ext_resource type="PackedScene" uid="uid://dbgyub1mc86fq" path="res://scenes/game/character/player.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://ddfq5qkpurhns" path="res://scenes/game/items_in_world/item.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://ddfq5qkpurhns" path="res://scenes/game/item_in_world/item.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cfv8eejpfgyq" path="res://scenes/game/inventory/inventory.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://dl1xi2a2hp2ae" path="res://scenes/game/small_scenes/player_health_bar.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://dbbmmiyxsjlsj" path="res://scenes/game/character/zombie.tscn" id="5_f527r"]

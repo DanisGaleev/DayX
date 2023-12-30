@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="HandWeaponPattern" load_steps=35 format=3 uid="uid://c0g6jjfu7w3u8"]
 
-[ext_resource type="Texture2D" uid="uid://undt1a20qo02" path="res://assets/images/items/axe_red-sheet0.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://bpkavgp8605om" path="res://assets/images/gui_melee-sheet0.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://undt1a20qo02" path="res://assets/images/game/animation/items/weapon_hand/axe_red-sheet0.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bpkavgp8605om" path="res://assets/images/game/animation/items/weapon_hand/weapon_hand_inventory0.png" id="2"]
 [ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/hand_weapon_pattern.gd" id="3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7oeq7"]
