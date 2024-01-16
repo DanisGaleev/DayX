@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="AmmoPattern" load_steps=6 format=3 uid="uid://c4iqs35kg0wc4"]
+
+[ext_resource type="Texture2D" uid="uid://dt4fji2r6j5o1" path="res://assets/images/game/animation/items/items_inventory0.png" id="1_px4t0"]
+[ext_resource type="Texture2D" uid="uid://cbgoq6rthephj" path="res://assets/images/game/animation/items/ammo/45_acp_ammo.png" id="2_4lcx1"]
+[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/ammo_pattern.gd" id="3_0xpym"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5skx"]
+atlas = ExtResource("1_px4t0")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuhd2"]
+atlas = ExtResource("2_4lcx1")
+region = Rect2(0, 1, 10, 7)
+
+[resource]
+script = ExtResource("3_0xpym")
+damage = 0.0
+speed = 0.0
+damage_diviation = 0.0
+distance = 0.0
+name_of_weapon = Array[String](["fnx", "colt", "colt rare", "upm-45"])
+name = ".45acp ammo"
+description = "eg"
+type = 1
+stackable = true
+count = 45
+max_count = 45
+destroying = 0.0
+destrouble = false
+destroying_value = 0.0
+icon_inventory = SubResource("AtlasTexture_x5skx")
+icon_world = SubResource("AtlasTexture_vuhd2")

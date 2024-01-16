@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="AmmoPattern" load_steps=6 format=3 uid="uid://dqone0etdl8fx"]
+
+[ext_resource type="Texture2D" uid="uid://cbpj75m4ytocr" path="res://assets/images/game/animation/items/items_inventory1.png" id="1_rgjfy"]
+[ext_resource type="Texture2D" uid="uid://cfgtcxajnbbu4" path="res://assets/images/game/animation/items/ammo/9x18_ammo.png" id="2_4lle6"]
+[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/ammo_pattern.gd" id="3_020xv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhi3j"]
+atlas = ExtResource("1_rgjfy")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyv3w"]
+atlas = ExtResource("2_4lle6")
+region = Rect2(0, 1, 11, 7)
+
+[resource]
+script = ExtResource("3_020xv")
+damage = 0.0
+speed = 0.0
+damage_diviation = 0.0
+distance = 0.0
+name_of_weapon = Array[String](["pm", "pb", "bizon"])
+name = "9x18 ammo"
+description = "ef"
+type = 1
+stackable = true
+count = 45
+max_count = 45
+destroying = 0.0
+destrouble = false
+destroying_value = 0.0
+icon_inventory = SubResource("AtlasTexture_hhi3j")
+icon_world = SubResource("AtlasTexture_gyv3w")

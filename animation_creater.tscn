@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://hbvcikanrquu"]
+
+[ext_resource type="Script" path="res://scenes/game/small_scenes/anim.gd" id="1_bwbyn"]
+
+[node name="AnimationCreater" type="Node2D"]
+script = ExtResource("1_bwbyn")
+texture_path = "res://assets/images/game/animation/items/backpack/tortilla_backpack.png"
+type = 6
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(318, 147)

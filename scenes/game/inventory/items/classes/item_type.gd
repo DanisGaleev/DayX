@@ -9,9 +9,9 @@ enum ItemType{
 }
 
 enum DressType{
-	PANTS,
-	SHIRT,
-	ARMOR,
 	HEADDRESS,
+	ARMOR,
+	SHIRT,
+	PANTS,
 	BACKPACK
 }

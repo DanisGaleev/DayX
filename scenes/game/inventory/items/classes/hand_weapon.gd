@@ -6,13 +6,18 @@ var damage: int
 
 var delta_time_between
 
-func create(item_pattern, count=1, destroying=0):
-	super.create(item_pattern, count, destroying)
-	self.time_between_hit = item_pattern.time_between_hit
-	self.damage = item_pattern.damage
+func _init(item_pattern=null, count=1, destroying=0):
+	if item_pattern:
+		super._init(item_pattern, count, destroying)
+		self.time_between_hit = item_pattern.time_between_hit
+		self.damage = item_pattern.damage
 
 func equip(args): #equip on player (not equip zone)
 	args[0].hand_weapon == self
+	args[0].inventory.equip[2].item = self
+	args[0].inventory.equip[2].upd()
+	args[1].item = null
+	args[1].upd()
 	
 func hit(args): #hit
 	if delta_time_between >= time_between_hit:

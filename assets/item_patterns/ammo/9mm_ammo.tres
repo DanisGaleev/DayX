@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="AmmoPattern" load_steps=6 format=3 uid="uid://cb1qynpqpu60q"]
+
+[ext_resource type="Texture2D" uid="uid://cbpj75m4ytocr" path="res://assets/images/game/animation/items/items_inventory1.png" id="1_d2v6i"]
+[ext_resource type="Texture2D" uid="uid://bcs8rgwos40vw" path="res://assets/images/game/animation/items/ammo/9mm_ammo.png" id="2_gnw74"]
+[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/ammo_pattern.gd" id="3_rlqqi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_873jj"]
+atlas = ExtResource("1_d2v6i")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brk41"]
+atlas = ExtResource("2_gnw74")
+region = Rect2(0, 0, 10, 7)
+
+[resource]
+script = ExtResource("3_rlqqi")
+damage = 0.0
+speed = 0.0
+damage_diviation = 0.0
+distance = 0.0
+name_of_weapon = Array[String](["mp5k", "glock", "mac-10"])
+name = "9mm ammo"
+description = "wfwf"
+type = 1
+stackable = true
+count = 50
+max_count = 50
+destroying = 0.0
+destrouble = false
+destroying_value = 0.0
+icon_inventory = SubResource("AtlasTexture_873jj")
+icon_world = SubResource("AtlasTexture_brk41")

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="DressPattern" load_steps=7 format=3 uid="uid://dtc8tu3p2lwlg"]
+
+[ext_resource type="SpriteFrames" uid="uid://b53bl44ygtvwg" path="res://animation.tres" id="1_yhyab"]
+[ext_resource type="Texture2D" uid="uid://12ch074dr7h3" path="res://assets/images/game/animation/items/jacket/shirt_inventory0.png" id="2_jmy6t"]
+[ext_resource type="Texture2D" uid="uid://bnd5bgf6rgqfh" path="res://assets/images/game/animation/items/jacket/gorka_shirt_animation.png" id="3_qt70h"]
+[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/dress_pattern.gd" id="4_ef8bn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hoc3m"]
+atlas = ExtResource("2_jmy6t")
+region = Rect2(35, 67, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35f5f"]
+atlas = ExtResource("3_qt70h")
+region = Rect2(352, 32, 15, 9)
+
+[resource]
+script = ExtResource("4_ef8bn")
+dress_type = 2
+slot_count = 0
+cold_resistance = 0
+armor = 0
+name = "gorka jacket"
+description = "err"
+type = 4
+stackable = false
+count = 0
+max_count = 0
+destroying = 0.0
+destrouble = true
+destroying_value = 0.0
+icon_inventory = SubResource("AtlasTexture_hoc3m")
+icon_world = SubResource("AtlasTexture_35f5f")
+animation = ExtResource("1_yhyab")

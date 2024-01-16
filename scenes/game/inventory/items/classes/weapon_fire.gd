@@ -21,26 +21,31 @@ var can_shot = false
 
 var recharging: bool
 
-func create(item_pattern, count=1, destroying=0, ammo_in_magazine=0):
-	super.create(item_pattern, count, destroying)
-	self.ammo_in_magazine = ammo_in_magazine
-	self.time_between_shot = item_pattern.time_between_shot
-	self.recharge_time = item_pattern.recharge_time
-	self.magazine = item_pattern.magazine
-	self.accuracy = item_pattern.accuracy
+func _init(item_pattern=null, count=1, destroying=0, ammo_in_magazine=0):
+	if item_pattern:
+		super._init(item_pattern, count, destroying)
+		self.ammo_in_magazine = ammo_in_magazine
+		if ammo_in_magazine > 0:
+			can_shot = true
+		self.time_between_shot = item_pattern.time_between_shot
+		self.recharge_time = item_pattern.recharge_time
+		self.magazine = item_pattern.magazine
+		self.accuracy = item_pattern.accuracy
+#func create(item_pattern, count=1, destroying=0, ammo_in_magazine=0):
+	#super.create(item_pattern, count, destroying)
+	#
 
 func equip(args): #equip
-	if args[0].weapon_fire_1 == null:
-		args[0].weapon_fire_1 = self
-		print(self)
-		print(args[0].weapon_fire_1)
-		args[0].inventory.equip[0].item = self
-		args[0].inventory.equip[0].upd()
-		args[1].item = null
-		args[1].upd()
-		print("1")
+	var player = args[0]
+	var slot = args[1]
+	if player.weapon_fire_1 == null:
+		player.weapon_fire_1 = self
+		player.inventory.equip[0].item = self
+		player.inventory.equip[0].upd()
+		slot.item = null
+		print(player.weapon_fire_1.name)
+		slot.upd()
 	elif args[0].weapon_fire_2 == null:
-		print("2")
 		args[0].weapon_fire_2 = self
 		args[0].inventory.equip[1].item = self
 		args[0].inventory.equip[1].upd()

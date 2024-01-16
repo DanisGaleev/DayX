@@ -23,10 +23,9 @@ func add_item(item: ItemInfo, item_container: Sprite2D):
 		if item.count > 0:
 			if slot.item != null and slot.item.name == item.name:
 				var diff = min(slot.item.max_count - slot.item.count, item.count)
-				print(str(slot.item.max_count) + " " + str(slot.item.count) + " " + str(item.count))
 				slot.item.count += diff
 				item.count -= diff
-				print(item.count)
+				item.weight = item.count * item.weight_per_one
 				slot.upd()
 	if item.count > 0:
 		for slot in inventory:
@@ -36,7 +35,9 @@ func add_item(item: ItemInfo, item_container: Sprite2D):
 					slot_item = item_info_copy(item.type, item)
 					var diff = min(item.count, item.max_count)
 					slot_item.count = diff
+					slot_item.weight = slot_item.count * slot_item.weight_per_one
 					item.count -= diff
+					item.weight = item.count * item.weight_per_one
 					slot.item = slot_item
 #					for i in slot.item.get_property_list():
 #						print(i)
@@ -70,6 +71,7 @@ func item_info_copy(type: int, copy: ItemInfo) -> ItemInfo:
 		new_iteminfo.magazine = copy.magazine
 		new_iteminfo.ammo_in_magazine = copy.ammo_in_magazine
 		new_iteminfo.accuracy = copy.accuracy
+		new_iteminfo.animation = copy.animation.duplicate()
 	if type == Enums.ItemType.HAND_WEAPON:
 		new_iteminfo = HandWeapon.new()
 		new_iteminfo.time_between_hit = copy.time_between_hit
@@ -80,6 +82,13 @@ func item_info_copy(type: int, copy: ItemInfo) -> ItemInfo:
 		new_iteminfo.hunger = copy.hunger
 		new_iteminfo.thirst = copy.thirst
 		new_iteminfo.health = copy.health
+	if type == Enums.ItemType.DRESS:
+		new_iteminfo = Dress.new()
+		new_iteminfo.dress_type = copy.dress_type
+		new_iteminfo.slot_count = copy.slot_count
+		new_iteminfo.cold_resistance = copy.cold_resistance
+		new_iteminfo.armor = copy.armor
+		new_iteminfo.animation = copy.animation.duplicate()
 	new_iteminfo.name = copy.name
 	new_iteminfo.description = copy.description
 	new_iteminfo.icon_inventory = copy.icon_inventory.duplicate()
@@ -87,9 +96,11 @@ func item_info_copy(type: int, copy: ItemInfo) -> ItemInfo:
 	new_iteminfo.type = copy.type
 	new_iteminfo.count = copy.count
 	new_iteminfo.max_count = copy.max_count
+	new_iteminfo.weight = copy.weight
+	new_iteminfo.weight_per_one = copy.weight_per_one
 	new_iteminfo.stackable = copy.stackable
 	new_iteminfo.destrouble = copy.destrouble
 	new_iteminfo.destroying_value = copy.destroying_value
 	new_iteminfo.destroying = copy.destroying
-	
+
 	return new_iteminfo

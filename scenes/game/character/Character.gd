@@ -79,6 +79,8 @@ var type_of_weapon = WeaponType.NEAR_WEAPON
 @export var health = 100
 @export var hunger = 20
 @export var thirst = 20
+@export var armor = 0
+@export var cold_resistance = 0
 @export var playerble = false
 @export var angry_distance = 50
 @export var wait_time = 0.1
@@ -125,9 +127,11 @@ func attack():
 func recharge(inventory):
 	match(type_of_weapon):
 			WeaponType.FIRE_WEAPON_1:
-				weapon_fire_1.recharge(inventory)
+				if weapon_fire_1:
+					weapon_fire_1.recharge(inventory)
 			WeaponType.FIRE_WEAPON_2:
-				weapon_fire_2.recharge(inventory)
+				if weapon_fire_2:
+					weapon_fire_2.recharge(inventory)
 
 func upd(delta):
 	pass

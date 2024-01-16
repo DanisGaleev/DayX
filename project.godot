@@ -34,6 +34,12 @@ project/assembly_name="DayX"
 
 enabled=PackedStringArray()
 
+[file_customization]
+
+folder_colors={
+"res://assets/item_patterns/": "green"
+}
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

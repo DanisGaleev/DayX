@@ -26,7 +26,7 @@ func _input(event):
 				state = State.Idle_right
 			else:
 				state = State.Idle_back
-		print(animation_d[state])
+		#print(animation_d[state])
 	elif event.is_action_pressed("fire_weapon_1"):
 		type_of_weapon = WeaponType.FIRE_WEAPON_1
 		if state <= State.Idle_right or State.Near_attack_forward <= state:
@@ -39,7 +39,7 @@ func _input(event):
 				state = State.Fire_attack_right
 			else:
 				state = State.Fire_attack_back
-		print(animation_d[state])
+		#print(animation_d[state])
 	elif event.is_action_pressed("fire_weapon_2"):
 		type_of_weapon = WeaponType.FIRE_WEAPON_2
 		if state <= State.Idle_right or State.Near_attack_forward <= state:
@@ -52,7 +52,7 @@ func _input(event):
 				state = State.Fire_attack_right
 			else:
 				state = State.Fire_attack_back
-		print(animation_d[state])
+		#print(animation_d[state])
 	if event.is_action_pressed("attack"):
 		match(type_of_weapon):
 			WeaponType.NEAR_WEAPON:
@@ -98,7 +98,7 @@ func attack():
 
 	#await animation.animation_finished
 	#last_animation()
-	print(entered_body)
+	#print(entered_body)
 	for body in entered_body:
 		if body is Character:
 			body.health -= dmg
@@ -184,7 +184,7 @@ func upd(delta):
 	if Input.is_action_just_pressed("info"):
 		print(animation_d[state])
 	for anm in animations_dictionary:
-			if anm:
+			if animations_dictionary[anm].sprite_frames:
 				animations_dictionary[anm].play(animation_d[state])
 func _physics_process(delta):
 	choose_direction()

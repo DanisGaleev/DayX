@@ -30,7 +30,7 @@ func _ready():
 	inventory = get_parent().get_parent().get_parent().inventory
 	equip = get_node("../../../").equip
 	id = 0 if self.name.substr(4) == "" else int(self.name.substr(4)) - 1
-	print(get_global_rect().position)
+	#print(get_global_rect().position)
 
 func get_id_by_position(inventory_or_equip_zone=true) -> int:
 	#var position = rect_position + rect_size / 2
@@ -51,6 +51,7 @@ func in_equip(pos: Vector2) -> bool:
 func upd():
 	if item != null and item.count > 0 and item.destroying < 1:
 		icon.texture = item.icon_inventory
+		item.weight = item.weight_per_one * item.count
 		if item.destrouble:
 			destroying_label.visible = true
 			destroying_label.text = "{dest} / 100".format({"dest" : item.destroying * 100})
@@ -113,7 +114,6 @@ func _process(delta):
 					inventory[swap_id].item = self.item
 					inventory[swap_id].upd()
 					
-
 					self.item = null
 					upd()
 					set_position_by_id(false)
@@ -208,7 +208,14 @@ func _process(delta):
 		player.hand_weapon = equip[2].item
 		player.weapon_fire_1 = equip[0].item
 		player.weapon_fire_2 = equip[1].item
-
+		player.armor = 0
+		player.cold_resistance = 0
+		player.max_weight = 0
+		for i in range(3, 8):
+			if equip[i]:
+				player.armor += equip[i].armor
+				player.cold_resistance += equip[i].cold_resistance
+				player.max_weight += equip[i].weight
 
 func _on_Slot_mouse_entered():
 	description.visible = true
@@ -230,7 +237,10 @@ func _on_Slot_gui_input(event: InputEvent):
 
 	if event.is_action_released("left_click") and dragging and item:
 		dragging = false
-	elif event.is_action("right_click") and item and not(item is WeaponFire or item is HandWeapon):
+	#elif event.is_action("right_click") and item and not(item is WeaponFire or item is HandWeapon):
+		#item.use([player, self])
+	elif item and event.is_action("right_click") and item.type != Enums.ItemType.AMMO :#and (item is WeaponFire or item is HandWeapon):
+		self.item.equip([player, self])
+	elif item and event.is_action("right_click") and item.type == Enums.ItemType.AMMO :#and (item is WeaponFire or item is HandWeapon):
 		item.use([player, self])
-	elif event.is_action("right_click") and item and (item is WeaponFire or item is HandWeapon):
-		item.equip([player, self])
+
