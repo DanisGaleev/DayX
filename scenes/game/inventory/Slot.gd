@@ -194,11 +194,12 @@ func _process(delta):
 			else: #if prev position was not in inventory
 				set_position_by_id(false)
 		else: #if swap in enmpy space -> remove from inv
-			var new_item_on_ground = load("res://scenes/game/items_in_world/item.tscn").instantiate()
+			var new_item_on_ground = load("res://scenes/game/item_in_world/item.tscn").instantiate()
 			get_node("../../../../../../World").add_child(new_item_on_ground)
 			new_item_on_ground.position = player.position + Vector2(0, 10)
 			new_item_on_ground.item_info = self.item
 			new_item_on_ground.texture = item.icon_world
+			player.weight -= item.count * item.weight_per_one
 			item = null
 			upd()
 			if self in inventory:
@@ -210,12 +211,12 @@ func _process(delta):
 		player.weapon_fire_2 = equip[1].item
 		player.armor = 0
 		player.cold_resistance = 0
-		player.max_weight = 0
+		player.max_weight = 50
 		for i in range(3, 8):
-			if equip[i]:
-				player.armor += equip[i].armor
-				player.cold_resistance += equip[i].cold_resistance
-				player.max_weight += equip[i].weight
+			if item in equip and equip[i].item!=null:
+				player.armor += equip[i].item.armor
+				player.cold_resistance += equip[i].item.cold_resistance
+				player.max_weight += equip[i].item.carry_weight
 
 func _on_Slot_mouse_entered():
 	description.visible = true

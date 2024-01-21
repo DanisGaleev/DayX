@@ -38,7 +38,6 @@ func _init(item_pattern=null, _count=1, _destroying=0):
 	
 func use(args) -> void:
 	pass
-
 func destroy(args) -> void:
 	if destrouble:
 		destroying += destroying_value

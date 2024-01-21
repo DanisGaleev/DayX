@@ -325,6 +325,7 @@ speed = 80
 dmg = 200
 wait_time = 1.0
 regeneration_delta_time = 1
+max_weight = 50
 
 [node name="Animation" parent="." index="0"]
 sprite_frames = SubResource("35")

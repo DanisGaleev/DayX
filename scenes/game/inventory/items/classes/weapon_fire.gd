@@ -43,7 +43,6 @@ func equip(args): #equip
 		player.inventory.equip[0].item = self
 		player.inventory.equip[0].upd()
 		slot.item = null
-		print(player.weapon_fire_1.name)
 		slot.upd()
 	elif args[0].weapon_fire_2 == null:
 		args[0].weapon_fire_2 = self
@@ -55,10 +54,8 @@ func equip(args): #equip
 		#args[0].animations_dictionary.frames =  
 	
 func fire(args): #fire
-	print(str(can_shot) + " " + str(ammo_in_magazine) + " " + str(delta_time_between))
 	if can_shot and ammo_in_magazine > 0 and delta_time_between >= time_between_shot:
 		self.destroy([args[2].get_node("Player"), args[3], args[2]])
-		print("fire")
 		var bullet_b = bullet.instantiate()
 		ammo_in_magazine -= 1
 		bullet_b.speed = speed
@@ -87,7 +84,7 @@ func update(delta):
 		delta_time_between += delta
 
 func recharge(inventory):
-	print("recharge")
+	#print("recharge")
 	for i in inventory.inventory:
 		if i.item != null and (i.item is Ammo) and (self.name in i.item.name_of_weapon):
 			i.item.use([inventory.player, i])

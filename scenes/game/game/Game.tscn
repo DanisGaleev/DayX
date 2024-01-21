@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjdwxtar2f3xx"]
+[gd_scene load_steps=11 format=3 uid="uid://bjdwxtar2f3xx"]
 
 [ext_resource type="PackedScene" uid="uid://dbgyub1mc86fq" path="res://scenes/game/character/player.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://cfv8eejpfgyq" path="res://scenes/game/inventory/inventory.tscn" id="4"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scenes/game/game/gui.gd" id="8"]
 [ext_resource type="PackedScene" uid="uid://xkn36x4g1uxr" path="res://scenes/game/small_scenes/player_hunger_bar.tscn" id="8_jqs2x"]
 [ext_resource type="PackedScene" uid="uid://ca6r65opgpt8p" path="res://scenes/game/small_scenes/player_thrist_bar.tscn" id="9_i4i5o"]
+[ext_resource type="Script" path="res://scenes/game/game/weight.gd" id="10_r53h8"]
 
 [node name="Game" type="Node"]
 
@@ -68,5 +69,10 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
+
+[node name="Weight" type="Label" parent="GUI/CanvasLayer"]
+offset_right = 231.0
+offset_bottom = 76.0
+script = ExtResource("10_r53h8")
 
 [connection signal="timeout" from="World/ZombieSpawnerTimer" to="World" method="_on_ZombieSpawnerTimer_timeout"]

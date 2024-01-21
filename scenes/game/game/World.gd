@@ -5,7 +5,6 @@ extends Node2D
 var zombie = preload("res://scenes/game/character/Zombie.tscn")
 
 func _ready():
-	#get_tree().set_debug_collisions_hint(true) 
 	randomize()
 
 

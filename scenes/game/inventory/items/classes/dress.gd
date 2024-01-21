@@ -17,7 +17,7 @@ func _init(item_pattern=null, count=1, destroying=0):
 		self.carry_weight = item_pattern.carry_weight
 	
 func equip(args): #equip
-	if args[dress_type + 1].item == null:
+	if args[0].inventory.equip[dress_type + 1].item == null:
 		match dress_type:
 			Enums.DressType.HEADDRESS:
 				args[0].animations_dictionary["HeaddressAnimation"].sprite_frames = animation 

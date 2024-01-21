@@ -8,20 +8,6 @@ enum WeaponType{
 	FIRE_WEAPON_1,
 	FIRE_WEAPON_2
 }
-#enum State {
-	#Idle_forward,
-	#Run_forward,
-	#Idle_back,
-	#Run_back,
-	#Idle_left,
-	#Run_left,
-	#Idle_right,
-	#Run_right,
-	#Near_attack_right,
-	#Near_attack_forward,
-	#Near_attack_left,
-	#Near_attack_back
-#}
 
 enum State {
 	Idle_forward,
@@ -71,6 +57,7 @@ var hand_weapon
 var weapon_fire_1
 var weapon_fire_2
 var type_of_weapon = WeaponType.NEAR_WEAPON
+var weight: float = 0.0
 
 @export var speed = 10
 @export var dmg = 10
@@ -86,6 +73,7 @@ var type_of_weapon = WeaponType.NEAR_WEAPON
 @export var wait_time = 0.1
 @export var regeneration_value = 1
 @export var regeneration_delta_time = 3
+@export var max_weight = 100
 
 @onready var animation = $Animation
 @onready var attack_zone = $AttackZone

@@ -11,4 +11,4 @@ var i_maxstack := 5
 
 
 func i_use(_player):
-	print("I was used ", self.i_name)
+	pass

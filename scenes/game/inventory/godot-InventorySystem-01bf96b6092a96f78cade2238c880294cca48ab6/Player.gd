@@ -13,9 +13,9 @@ func _input(event):
 	# Query test by hitting 'Esc' for Apple
 	if event.is_action_pressed("ui_cancel"):
 		if $InventoryComponent.inv_query("Apple", 2):
-			print("it has 2 apples or more")
+			pass
 		else:
-			print("doesn't have 2 apples")
+			pass
 
 
 func _on_item_interacted(sender, item, amount):

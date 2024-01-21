@@ -22,27 +22,34 @@ func add_item(item: ItemInfo, item_container: Sprite2D):
 	for slot in inventory:
 		if item.count > 0:
 			if slot.item != null and slot.item.name == item.name:
-				var diff = min(slot.item.max_count - slot.item.count, item.count)
-				slot.item.count += diff
-				item.count -= diff
+				var diff = min(slot.item.max_count - slot.item.count, item.count) # минимальное количество по кол-ву айтемов
+				var weight_diff = int(min(player.max_weight - player.weight, diff * item.weight_per_one) / item.weight_per_one)# минимальное кол-во по весу
+				var total_min_cnt = min(diff, weight_diff)
+				slot.item.count += total_min_cnt
+				item.count -= total_min_cnt
 				item.weight = item.count * item.weight_per_one
 				slot.upd()
+				player.weight += total_min_cnt * item.weight_per_one
 	if item.count > 0:
 		for slot in inventory:
 			var slot_item = slot.item
 			if item.count > 0:
 				if slot_item == null:
 					slot_item = item_info_copy(item.type, item)
-					var diff = min(item.count, item.max_count)
-					slot_item.count = diff
+					var diff = min(item.count, item.max_count)# минимальное количество по кол-ву айтемов
+					var weight_diff = int(min(player.max_weight - player.weight, diff * item.weight_per_one) / item.weight_per_one)# минимальное кол-во по весу
+					var total_min_cnt = min(diff, weight_diff)
+					prints(player.max_weight, player.weight, diff, item.weight_per_one, total_min_cnt)
+					slot_item.count = total_min_cnt
 					slot_item.weight = slot_item.count * slot_item.weight_per_one
-					item.count -= diff
+					item.count -= total_min_cnt
 					item.weight = item.count * item.weight_per_one
 					slot.item = slot_item
 #					for i in slot.item.get_property_list():
 #						print(i)
 #						print(i, slot.item.get(i))
 					slot.upd()
+					player.weight += total_min_cnt * item.weight_per_one
 	if item.count <= 0:
 		item_container.queue_free()
 
@@ -89,6 +96,7 @@ func item_info_copy(type: int, copy: ItemInfo) -> ItemInfo:
 		new_iteminfo.cold_resistance = copy.cold_resistance
 		new_iteminfo.armor = copy.armor
 		new_iteminfo.animation = copy.animation.duplicate()
+		new_iteminfo.carry_weight = copy.carry_weight
 	new_iteminfo.name = copy.name
 	new_iteminfo.description = copy.description
 	new_iteminfo.icon_inventory = copy.icon_inventory.duplicate()

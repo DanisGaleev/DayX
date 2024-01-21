@@ -4,8 +4,7 @@ func _ready():
 	for spawn in $ItemsSpawnPositions.get_children():
 		var item = preload("res://scenes/game/item_in_world/item.tscn").instantiate()
 		item.position = spawn.position
-		item.arr.append_array(["school_backpack;1;Dress;backpack"])
-		#print(item.is_in_group("item_world"))
+		item.arr.append_array(["ak74;0.5;WeaponFire", "gorka_pants;0.5;Dress;pants"])
 		add_child(item)
 
 func _on_in_trigger_body_entered(body):
