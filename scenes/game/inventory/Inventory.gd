@@ -45,9 +45,6 @@ func add_item(item: ItemInfo, item_container: Sprite2D):
 					item.count -= total_min_cnt
 					item.weight = item.count * item.weight_per_one
 					slot.item = slot_item
-#					for i in slot.item.get_property_list():
-#						print(i)
-#						print(i, slot.item.get(i))
 					slot.upd()
 					player.weight += total_min_cnt * item.weight_per_one
 	if item.count <= 0:

@@ -30,7 +30,6 @@ func _ready():
 	inventory = get_parent().get_parent().get_parent().inventory
 	equip = get_node("../../../").equip
 	id = 0 if self.name.substr(4) == "" else int(self.name.substr(4)) - 1
-	#print(get_global_rect().position)
 
 func get_id_by_position(inventory_or_equip_zone=true) -> int:
 	#var position = rect_position + rect_size / 2
@@ -104,13 +103,11 @@ func _process(delta):
 		one_time = false
 	elif get_parent().get_parent().visible and not one_time:
 		one_time = true
-		print(get_global_rect().position, "efefe")
 		var middle = get_global_rect().position + size / 2
 		if in_inventory(middle): #check if now in inventory
 			var swap_id = get_id_by_position()
 			if in_equip(prev_pos): #check if was in equip
 				if inventory[swap_id].item == null:
-					print("spawp id", swap_id)
 					inventory[swap_id].item = self.item
 					inventory[swap_id].upd()
 					
@@ -160,7 +157,6 @@ func _process(delta):
 					set_position_by_id()
 		elif in_equip(middle): #check if now in equip
 			if in_inventory(prev_pos): #check if was in inventory
-				print(position)
 				var swap_id = get_id_by_position(false)
 				if equip[swap_id].item != null:
 					var swap_item = equip[swap_id].item
@@ -179,15 +175,21 @@ func _process(delta):
 						upd()
 						set_position_by_id()
 				else: #if swap-item is null
-					print("was in inventory", swap_id)
-					if self.item.type > Enums.ItemType.AMMO and (self.item.type - 1 == equip[swap_id].id) or (self.item.type == Enums.ItemType.WEAPON_FIRE and (equip[swap_id].id == 0 or equip[swap_id].id == 1)):
+					if self.item.type > Enums.ItemType.AMMO and self.item.type == equip[swap_id].id or (self.item.type == Enums.ItemType.WEAPON_FIRE and (equip[swap_id].id == 0 or equip[swap_id].id == 1)):
 						equip[swap_id].item = self.item
 						equip[swap_id].upd()
 						equip[swap_id].set_position_by_id(false)
-
 						self.item = null
 						upd()
 						set_position_by_id()
+					#if self.item.type > Enums.ItemType.AMMO and (self.item.type - 1 == equip[swap_id].id) or (self.item.type == Enums.ItemType.WEAPON_FIRE and (equip[swap_id].id == 0 or equip[swap_id].id == 1)):
+						#equip[swap_id].item = self.item
+						#equip[swap_id].upd()
+						#equip[swap_id].set_position_by_id(false)
+						#print("eq")
+						#self.item = null
+						#upd()
+						#set_position_by_id()
 					else:
 						upd()
 						set_position_by_id()
@@ -212,10 +214,11 @@ func _process(delta):
 		player.armor = 0
 		player.cold_resistance = 0
 		player.max_weight = 50
-		for i in range(3, 8):
-			if item in equip and equip[i].item!=null:
+		for i in range(3, 8):# item in equip and 
+			if equip[i].item!=null:
 				player.armor += equip[i].item.armor
 				player.cold_resistance += equip[i].item.cold_resistance
+				prints(id, equip[i].item.carry_weight)
 				player.max_weight += equip[i].item.carry_weight
 
 func _on_Slot_mouse_entered():
@@ -227,13 +230,9 @@ func _on_Slot_mouse_exited():
 
 func _on_Slot_gui_input(event: InputEvent):
 	if event.is_action_pressed("left_click") and item:
-		#prints(get_viewport_rect(), DisplayServer.window_get_size().x, event.global_position, event.global_position * (640 / DisplayServer.window_get_size().x))
-		#if get_global_rect().has_point(event.global_position):
 		if get_global_rect().has_point(get_global_mouse_position()):
-			print("swap")
 			dragging = true
 			prev_pos = global_position + size / 2
-			print(get_global_rect().position)
 			drag_offset = get_global_mouse_position() - get_global_rect().position
 
 	if event.is_action_released("left_click") and dragging and item:
