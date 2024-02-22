@@ -25,6 +25,7 @@ type = 1
 stackable = true
 count = 30
 max_count = 30
+weight_per_one = 0.0
 destroying = 0.0
 destrouble = false
 destroying_value = 0.0

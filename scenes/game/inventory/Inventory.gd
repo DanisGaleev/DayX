@@ -23,7 +23,9 @@ func add_item(item: ItemInfo, item_container: Sprite2D):
 		if item.count > 0:
 			if slot.item != null and slot.item.name == item.name:
 				var diff = min(slot.item.max_count - slot.item.count, item.count) # минимальное количество по кол-ву айтемов
-				var weight_diff = int(min(player.max_weight - player.weight, diff * item.weight_per_one) / item.weight_per_one)# минимальное кол-во по весу
+				var weight_diff: int = diff
+				if item.weight_per_one != 0:
+					weight_diff = int(min(player.max_weight - player.weight, diff * item.weight_per_one) / item.weight_per_one)# минимальное кол-во по весу
 				var total_min_cnt = min(diff, weight_diff)
 				slot.item.count += total_min_cnt
 				item.count -= total_min_cnt
@@ -37,12 +39,13 @@ func add_item(item: ItemInfo, item_container: Sprite2D):
 				if slot_item == null:
 					slot_item = item_info_copy(item.type, item)
 					var diff = min(item.count, item.max_count)# минимальное количество по кол-ву айтемов
-					var weight_diff = int(min(player.max_weight - player.weight, diff * item.weight_per_one) / item.weight_per_one)# минимальное кол-во по весу
+					var weight_diff = diff
+					if item.weight_per_one != 0:
+						weight_diff = int(min(player.max_weight - player.weight, diff * item.weight_per_one) / item.weight_per_one)# минимальное кол-во по весу
 					var total_min_cnt = min(diff, weight_diff)
-					prints(player.max_weight, player.weight, diff, item.weight_per_one, total_min_cnt)
 					slot_item.count = total_min_cnt
 					slot_item.weight = slot_item.count * slot_item.weight_per_one
-					item.count -= total_min_cnt
+					item.count = item.count - total_min_cnt
 					item.weight = item.count * item.weight_per_one
 					slot.item = slot_item
 					slot.upd()

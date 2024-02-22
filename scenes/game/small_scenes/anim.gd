@@ -35,7 +35,6 @@ func _ready():
 	var a_type = animations_dictionary[type]
 	texture = load(texture_path)
 	for key in a_type:
-		prints(key, a_type[key])
 		add_frames(key, a_type[key])
 	#add_frames("idle_back", [12, 13, 14, 15])
 	ResourceSaver.save(sprite_frame, "animation.tres")

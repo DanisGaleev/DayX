@@ -119,6 +119,8 @@ func choose_direction():
 		movement.x = speed
 		state = State.Run_right
 		is_action = true
+	if self.weight > self.max_weight:
+		movement = Vector2.ZERO
 	if is_action:
 		last_direction = movement
 		noise_level = 10.0
@@ -177,8 +179,6 @@ func upd(delta):
 				if weapon_fire_2 != null:
 					weapon_fire_2.update(delta)
 	rotate_attack_zone(self.position.direction_to(get_global_mouse_position()).angle())
-	if Input.is_action_just_pressed("info"):
-		print(max_weight, weight)
 	for anm in animations_dictionary:
 			if animations_dictionary[anm].sprite_frames:
 				animations_dictionary[anm].play(animation_d[state])

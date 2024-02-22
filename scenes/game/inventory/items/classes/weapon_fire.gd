@@ -84,7 +84,6 @@ func update(delta):
 		delta_time_between += delta
 
 func recharge(inventory):
-	#print("recharge")
 	for i in inventory.inventory:
 		if i.item != null and (i.item is Ammo) and (self.name in i.item.name_of_weapon):
 			i.item.use([inventory.player, i])
