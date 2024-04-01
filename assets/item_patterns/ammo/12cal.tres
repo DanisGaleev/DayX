@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AmmoPattern" load_steps=6 format=3 uid="uid://dlgy3ichkmq7h"]
 
 [ext_resource type="Texture2D" uid="uid://dt4fji2r6j5o1" path="res://assets/images/game/animation/items/items_inventory0.png" id="1_e2unp"]
-[ext_resource type="Texture2D" uid="uid://bro0di8f1qyv3" path="res://assets/images/game/animation/items/ammo/12cal_ammo.png" id="2_afwpx"]
+[ext_resource type="Texture2D" uid="uid://bro0di8f1qyv3" path="res://assets/images/game/animation/items/ammo/12cal.png" id="2_afwpx"]
 [ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/ammo_pattern.gd" id="3_76ahv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7q3n3"]

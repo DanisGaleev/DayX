@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AmmoPattern" load_steps=6 format=3 uid="uid://dykm2dqh0ltic"]
 
 [ext_resource type="Texture2D" uid="uid://dt4fji2r6j5o1" path="res://assets/images/game/animation/items/items_inventory0.png" id="1_k277n"]
-[ext_resource type="Texture2D" uid="uid://bppa2o6jejlug" path="res://assets/images/game/animation/items/ammo/7_62x54rammo.png" id="2_8h17i"]
+[ext_resource type="Texture2D" uid="uid://bppa2o6jejlug" path="res://assets/images/game/animation/items/ammo/7.62x54r.png" id="2_vlvyo"]
 [ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/ammo_pattern.gd" id="3_8lxlc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23gca"]
@@ -9,23 +9,23 @@ atlas = ExtResource("1_k277n")
 region = Rect2(128, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_75x4r"]
-atlas = ExtResource("2_8h17i")
+atlas = ExtResource("2_vlvyo")
 region = Rect2(0, 0, 10, 8)
 
 [resource]
 script = ExtResource("3_8lxlc")
-damage = 2.0
-speed = 0.0
-damage_diviation = 0.0
-distance = 0.0
+damage = 40.0
+speed = 700.0
+damage_diviation = 5.0
+distance = 680.0
 name_of_weapon = Array[String](["mosin sawn-off", "mosin rifle", "madsen", "svd", "sv-98"])
 name = "7.62x54r ammo"
-description = "hfh"
+description = "Powerful ammos"
 type = 1
 stackable = true
 count = 15
 max_count = 15
-weight_per_one = 0.0
+weight_per_one = 0.003
 destroying = 0.0
 destrouble = false
 destroying_value = 0.0

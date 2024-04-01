@@ -64,6 +64,7 @@ func upd():
 		icon.texture = null
 		count_label.text = ""
 		destroying_label.text = ''
+		description.text = ''
 
 func _input(event):
 	if event.is_action_pressed("print_inv_and_equip"):
@@ -97,6 +98,10 @@ func set_position_by_id(inventory_or_equip_zone=true):
 		set_global_position(Vector2(0 + self.id % 2 * 68, 50 + self.id / 2 * 68))
 
 func _process(delta):
+	if item != null:
+		$Info.visible = true
+	else:
+		$Info.visible = false
 	if dragging:
 		#set_global_position(get_viewport().get_mouse_position() - drag_offset)
 		set_global_position(get_global_mouse_position() - drag_offset)
@@ -211,22 +216,15 @@ func _process(delta):
 		player.hand_weapon = equip[2].item
 		player.weapon_fire_1 = equip[0].item
 		player.weapon_fire_2 = equip[1].item
-		player.armor = 0
+		player.armoring = 0
 		player.cold_resistance = 0
 		player.max_weight = 50
 		for i in range(3, 8):# item in equip and 
 			if equip[i].item!=null:
-				player.armor += equip[i].item.armor
+				player.armoring += equip[i].item.armoring
 				player.cold_resistance += equip[i].item.cold_resistance
-				prints(id, equip[i].item.carry_weight)
-				player.max_weight += equip[i].item.carry_weight
-
-func _on_Slot_mouse_entered():
-	description.visible = true
-
-func _on_Slot_mouse_exited():
-	description.visible = false
-
+				prints(id, equip[i].item.max_carry_weight)
+				player.max_weight += equip[i].item.max_carry_weight
 
 func _on_Slot_gui_input(event: InputEvent):
 	if event.is_action_pressed("left_click") and item:
@@ -244,3 +242,31 @@ func _on_Slot_gui_input(event: InputEvent):
 	elif item and event.is_action("right_click") and item.type == Enums.ItemType.AMMO :#and (item is WeaponFire or item is HandWeapon):
 		item.use([player, self])
 
+func _on_info_mouse_entered():
+	if item != null:
+		var desc = item.get_info()
+		#var desc = "Name: %s\nDescription: %s\nStackable: %s\nCount: %s\n"
+		#desc += "Max count: %s\nWeight per one: %s\nWeight: %s\nDestrouble: %s\nDestroying: %s\nDestroying value: %s\n"
+		#desc = desc % [item.name, item.description, item.stackable, item.count, 
+			#item.max_count, item.weight_per_one, item.weight_per_one * item.count, item.destrouble, item.destroying, item.destroying_value]
+		#match item.type:
+			#Enums.ItemType.AMMO:
+				#desc += "Damage: %s\nSpeed: %s\nDamage diviation: %s\nDistance: %s\n"
+				#desc = desc % [item.damage, item.speed, item.damage_diviation,
+				 #item.distance]
+				#desc += "Supported weapon:\n"
+				#for nm in (item as Ammo).name_of_weapon:
+					#desc += "	" + nm + "\n"
+			#Enums.ItemType.DRESS:
+				#desc += "Number of slots: %s\nCold resistance: %s\nArmoring: %s\nCarry weight: %s\n"
+				#desc = desc % [item.slots_count, item.cold_resistance, item.armoring,
+					#item.max_carry_weight]
+		description.text = desc
+		description.visible = true
+	else:
+		description.text = ''
+
+
+func _on_info_mouse_exited():
+	description.visible = false
+	upd()

@@ -58,6 +58,8 @@ var weapon_fire_1
 var weapon_fire_2
 var type_of_weapon = WeaponType.NEAR_WEAPON
 var weight: float = 0.0
+var current_stamina = 0.0
+var is_using_stamina = false
 
 @export var speed = 10
 @export var dmg = 10
@@ -66,7 +68,11 @@ var weight: float = 0.0
 @export var health = 100
 @export var hunger = 20
 @export var thirst = 20
-@export var armor = 0
+@export var max_stamina = 100
+@export var stamina_cost_per_second = 20
+@export var stamina_regen_per_second = 5
+@export var strint_speed_boost = 5
+@export var armoring = 0
 @export var cold_resistance = 0
 @export var playerble = false
 @export var angry_distance = 50
@@ -84,6 +90,7 @@ var animations_dictionary:Dictionary
 
 signal attack_animation_finished
 func _ready():
+	current_stamina = max_stamina
 	for anm in animations.get_children():
 		animations_dictionary[anm.name] = anm
 	randomize()
@@ -132,6 +139,13 @@ func _process(delta):
 		queue_free()
 	regenerate(delta)
 	upd(delta)
+	if is_using_stamina:
+		current_stamina = max(0, current_stamina - stamina_cost_per_second * delta)
+		if current_stamina <= 0:
+			is_using_stamina = false
+			current_stamina = 0
+	else:
+		current_stamina = min(current_stamina + stamina_regen_per_second * delta, max_stamina)
 	delta_time_near += delta
 	if animation.animation != animation_d[state] and not block:
 		animation.play(animation_d[state])

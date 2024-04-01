@@ -74,7 +74,7 @@ func item_info_copy(type: int, copy: ItemInfo) -> ItemInfo:
 		new_iteminfo.can_shot = copy.can_shot
 		new_iteminfo.recharging = copy.recharging
 		new_iteminfo.time_between_shot = copy.time_between_shot
-		new_iteminfo.recharge_time = copy.recharge_time
+		new_iteminfo.reload_time = copy.reload_time
 		new_iteminfo.magazine = copy.magazine
 		new_iteminfo.ammo_in_magazine = copy.ammo_in_magazine
 		new_iteminfo.accuracy = copy.accuracy
@@ -92,11 +92,11 @@ func item_info_copy(type: int, copy: ItemInfo) -> ItemInfo:
 	if type == Enums.ItemType.DRESS:
 		new_iteminfo = Dress.new()
 		new_iteminfo.dress_type = copy.dress_type
-		new_iteminfo.slot_count = copy.slot_count
+		new_iteminfo.slots_count = copy.slots_count
 		new_iteminfo.cold_resistance = copy.cold_resistance
-		new_iteminfo.armor = copy.armor
+		new_iteminfo.armoring = copy.armoring
 		new_iteminfo.animation = copy.animation.duplicate()
-		new_iteminfo.carry_weight = copy.carry_weight
+		new_iteminfo.max_carry_weight = copy.max_carry_weight
 	new_iteminfo.name = copy.name
 	new_iteminfo.description = copy.description
 	new_iteminfo.icon_inventory = copy.icon_inventory.duplicate()

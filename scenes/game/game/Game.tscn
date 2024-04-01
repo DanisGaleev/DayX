@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjdwxtar2f3xx"]
+[gd_scene load_steps=12 format=3 uid="uid://bjdwxtar2f3xx"]
 
 [ext_resource type="PackedScene" uid="uid://dbgyub1mc86fq" path="res://scenes/game/character/player.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://cfv8eejpfgyq" path="res://scenes/game/inventory/inventory.tscn" id="4"]
@@ -8,8 +8,12 @@
 [ext_resource type="Script" path="res://scenes/game/game/world.gd" id="7"]
 [ext_resource type="Script" path="res://scenes/game/game/gui.gd" id="8"]
 [ext_resource type="PackedScene" uid="uid://xkn36x4g1uxr" path="res://scenes/game/small_scenes/player_hunger_bar.tscn" id="8_jqs2x"]
+[ext_resource type="PackedScene" uid="uid://ciipdego3a0j" path="res://scenes/game/small_scenes/player_stamina_bar.tscn" id="9_7dc33"]
 [ext_resource type="PackedScene" uid="uid://ca6r65opgpt8p" path="res://scenes/game/small_scenes/player_thrist_bar.tscn" id="9_i4i5o"]
-[ext_resource type="Script" path="res://scenes/game/game/weight.gd" id="10_r53h8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fsv3d"]
+line_spacing = -4.0
+font_size = 12
 
 [node name="Game" type="Node"]
 
@@ -46,33 +50,87 @@ script = ExtResource("8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="GUI"]
 
+[node name="MarginContainer" type="MarginContainer" parent="GUI/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Bars" type="VBoxContainer" parent="GUI/CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="HungerBar" parent="GUI/CanvasLayer/MarginContainer/Bars" instance=ExtResource("8_jqs2x")]
+layout_mode = 2
+
+[node name="ThirstBar" parent="GUI/CanvasLayer/MarginContainer/Bars" instance=ExtResource("9_i4i5o")]
+layout_mode = 2
+
+[node name="HealthBar" parent="GUI/CanvasLayer/MarginContainer/Bars" instance=ExtResource("5")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="StaminaBar" parent="GUI/CanvasLayer/MarginContainer/Bars" instance=ExtResource("9_7dc33")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="Weight" type="Label" parent="GUI/CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "0/50"
+label_settings = SubResource("LabelSettings_fsv3d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Ammo1" type="Label" parent="GUI/CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "0/0"
+label_settings = SubResource("LabelSettings_fsv3d")
+vertical_alignment = 1
+
+[node name="Ammo2" type="Label" parent="GUI/CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "0/0
+"
+label_settings = SubResource("LabelSettings_fsv3d")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+alignment = 2
+
 [node name="Inv" parent="GUI/CanvasLayer" instance=ExtResource("4")]
 visible = false
-
-[node name="Bars" type="VBoxContainer" parent="GUI/CanvasLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -62.0
-offset_right = 100.0
-grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="HungerBar" parent="GUI/CanvasLayer/Bars" instance=ExtResource("8_jqs2x")]
-layout_mode = 2
-
-[node name="ThirstBar" parent="GUI/CanvasLayer/Bars" instance=ExtResource("9_i4i5o")]
-layout_mode = 2
-
-[node name="HealthBar" parent="GUI/CanvasLayer/Bars" instance=ExtResource("5")]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="Weight" type="Label" parent="GUI/CanvasLayer"]
-offset_right = 231.0
-offset_bottom = 76.0
-script = ExtResource("10_r53h8")
 
 [connection signal="timeout" from="World/ZombieSpawnerTimer" to="World" method="_on_ZombieSpawnerTimer_timeout"]

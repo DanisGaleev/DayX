@@ -17,3 +17,7 @@ func use(args): #eat o drink
 	player.hunger += self.hunger
 	player.thirst += self.thirst
 	player.health += self.health
+
+func get_info():
+	var desc = "Hunger reduction: %s\nThirst reduction: %s\nHealth increase: %s"
+	return super.get_info() + desc % [hunger, thirst, health]

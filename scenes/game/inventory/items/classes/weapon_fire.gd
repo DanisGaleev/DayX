@@ -5,7 +5,7 @@ class_name WeaponFire
 var bullet = preload("res://scenes/game/small_scenes/Bullet.tscn")
 
 var time_between_shot: float
-var recharge_time: float
+var reload_time: float
 var magazine: int
 var ammo_in_magazine: int
 var accuracy: float
@@ -28,7 +28,7 @@ func _init(item_pattern=null, count=1, destroying=0, ammo_in_magazine=0):
 		if ammo_in_magazine > 0:
 			can_shot = true
 		self.time_between_shot = item_pattern.time_between_shot
-		self.recharge_time = item_pattern.recharge_time
+		self.reload_time = item_pattern.reload_time
 		self.magazine = item_pattern.magazine
 		self.accuracy = item_pattern.accuracy
 #func create(item_pattern, count=1, destroying=0, ammo_in_magazine=0):
@@ -50,8 +50,10 @@ func equip(args): #equip
 		args[0].inventory.equip[1].upd()
 		args[1].item = null
 		args[1].upd()
-	#if args[0].weapon_fire_1:
-		#args[0].animations_dictionary.frames =  
+	if player.weapon_fire_1:
+		player.animations_dictionary["WeaponFire1Animation"].sprite_frames = animation
+	if player.weapon_fire_2:
+		player.animations_dictionary["WeaponFire2Animation"].sprite_frames = animation
 	
 func fire(args): #fire
 	if can_shot and ammo_in_magazine > 0 and delta_time_between >= time_between_shot:
@@ -76,7 +78,7 @@ func update(delta):
 		can_shot = false
 	if recharging:
 		delta_time_recharge += delta
-		if delta_time_recharge >= recharge_time:
+		if delta_time_recharge >= reload_time:
 			can_shot = true
 			recharging = false
 			delta_time_recharge = 0
@@ -98,3 +100,7 @@ func recharge(inventory):
 		#item.texture = 
 		#
 	#super.destroy(args)
+func get_info():
+	var desc = "Fire rate: %s\nReload time: %s\nMagazine: %s\nAccuracy: %s"
+	desc = desc % [time_between_shot, reload_time, magazine, accuracy]
+	return super.get_info() + desc

@@ -281,7 +281,7 @@ wait_time = 1.0
 
 [node name="Animation" parent="." index="0"]
 sprite_frames = SubResource("1")
-animation = &"idle_back"
+animation = &"near_attack_forward"
 
 [node name="Shape2D" parent="." index="1"]
 shape = SubResource("CircleShape2D_apylh")

@@ -4,7 +4,7 @@ extends ItemInfo
 var time_between_hit: float
 var damage: int
 
-var delta_time_between
+var delta_time_between = 0
 
 func _init(item_pattern=null, count=1, destroying=0):
 	if item_pattern:
@@ -13,12 +13,18 @@ func _init(item_pattern=null, count=1, destroying=0):
 		self.damage = item_pattern.damage
 
 func equip(args): #equip on player (not equip zone)
-	args[0].hand_weapon == self
-	args[0].inventory.equip[2].item = self
-	args[0].inventory.equip[2].upd()
+	var player = args[0]
+	
+	player.hand_weapon = self
+	player.inventory.equip[2].item = self
+	player.inventory.equip[2].upd()
 	args[1].item = null
 	args[1].upd()
-	args[0].weight += self.weight
+	player.weight += self.weight
+	
+	if player.hand_weapon:
+		print("axe")
+		player.animations_dictionary["WeaponHandAnimation"].sprite_frames = animation
 	
 func hit(args): #hit
 	if delta_time_between >= time_between_hit:
@@ -32,3 +38,7 @@ func hit(args): #hit
 	
 func update(delta):
 	delta_time_between += delta
+
+func get_info():
+	var desc = "Cooldown time: %s\nDamage: %s" % [time_between_hit, damage]
+	return super.get_info() + desc

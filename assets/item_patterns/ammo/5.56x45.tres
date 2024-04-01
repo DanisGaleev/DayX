@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AmmoPattern" load_steps=6 format=3 uid="uid://w57mktixr2hw"]
 
 [ext_resource type="Texture2D" uid="uid://dt4fji2r6j5o1" path="res://assets/images/game/animation/items/items_inventory0.png" id="1_ywm5o"]
-[ext_resource type="Texture2D" uid="uid://5pqpm4fvmuhu" path="res://assets/images/game/animation/items/ammo/5_56x45_ammo.png" id="2_sw701"]
+[ext_resource type="Texture2D" uid="uid://5pqpm4fvmuhu" path="res://assets/images/game/animation/items/ammo/5.56x45.png" id="2_ruyc8"]
 [ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/ammo_pattern.gd" id="3_fjvq0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fyyvy"]
@@ -9,23 +9,23 @@ atlas = ExtResource("1_ywm5o")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_unfji"]
-atlas = ExtResource("2_sw701")
+atlas = ExtResource("2_ruyc8")
 region = Rect2(0, 0, 9, 8)
 
 [resource]
 script = ExtResource("3_fjvq0")
-damage = 20.0
-speed = 0.0
-damage_diviation = 2.0
-distance = 300.0
+damage = 27.0
+speed = 600.0
+damage_diviation = 6.0
+distance = 600.0
 name_of_weapon = Array[String](["m4", "l85", "fn cal", "aug"])
 name = "5.56x45 ammo"
-description = "koo"
+description = "Ammo for West weapon"
 type = 1
 stackable = true
 count = 40
 max_count = 40
-weight_per_one = 0.0
+weight_per_one = 0.001
 destroying = 0.0
 destrouble = false
 destroying_value = 0.0

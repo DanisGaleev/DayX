@@ -1,26 +1,26 @@
 [gd_resource type="Resource" script_class="AmmoPattern" load_steps=6 format=3 uid="uid://cb1qynpqpu60q"]
 
-[ext_resource type="Texture2D" uid="uid://cbpj75m4ytocr" path="res://assets/images/game/animation/items/items_inventory1.png" id="1_d2v6i"]
-[ext_resource type="Texture2D" uid="uid://bcs8rgwos40vw" path="res://assets/images/game/animation/items/ammo/9mm_ammo.png" id="2_gnw74"]
-[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/ammo_pattern.gd" id="3_rlqqi"]
+[ext_resource type="Texture2D" uid="uid://cbpj75m4ytocr" path="res://assets/images/game/animation/items/items_inventory1.png" id="1_ydwuc"]
+[ext_resource type="Texture2D" uid="uid://bcs8rgwos40vw" path="res://assets/images/game/animation/items/ammo/9mm.png" id="2_6llis"]
+[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/ammo_pattern.gd" id="3_t0mro"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_873jj"]
-atlas = ExtResource("1_d2v6i")
+atlas = ExtResource("1_ydwuc")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_brk41"]
-atlas = ExtResource("2_gnw74")
+atlas = ExtResource("2_6llis")
 region = Rect2(0, 0, 10, 7)
 
 [resource]
-script = ExtResource("3_rlqqi")
-damage = 0.0
-speed = 0.0
-damage_diviation = 0.0
-distance = 0.0
+script = ExtResource("3_t0mro")
+damage = 20.0
+speed = 400.0
+damage_diviation = 4.0
+distance = 480.0
 name_of_weapon = Array[String](["mp5k", "glock", "mac-10"])
 name = "9mm ammo"
-description = "wfwf"
+description = "Small ammos"
 type = 1
 stackable = true
 count = 50

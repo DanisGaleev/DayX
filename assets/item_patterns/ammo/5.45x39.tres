@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AmmoPattern" load_steps=6 format=3 uid="uid://eppxkm2qbcme"]
 
 [ext_resource type="Texture2D" uid="uid://dt4fji2r6j5o1" path="res://assets/images/game/animation/items/items_inventory0.png" id="1_mttjv"]
-[ext_resource type="Texture2D" uid="uid://bysulto0ge0nd" path="res://assets/images/game/animation/items/ammo/5_45x39_ammo.png" id="2_x53yh"]
+[ext_resource type="Texture2D" uid="uid://bysulto0ge0nd" path="res://assets/images/game/animation/items/ammo/5.45x39.png" id="2_x53yh"]
 [ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/ammo_pattern.gd" id="3_quk2s"]
 
 [sub_resource type="AtlasTexture" id="1"]
@@ -14,10 +14,10 @@ region = Rect2(0, 0, 9, 8)
 
 [resource]
 script = ExtResource("3_quk2s")
-damage = 34.0
+damage = 25.0
 speed = 600.0
 damage_diviation = 7.0
-distance = 410.714
+distance = 500.0
 name_of_weapon = Array[String](["ak74", "aks74u"])
 name = "5.45x39 ammo"
 description = "Ammo for kalash"
@@ -25,9 +25,9 @@ type = 1
 stackable = true
 count = 30
 max_count = 30
-weight_per_one = 0.0
+weight_per_one = 0.001
 destroying = 0.0
 destrouble = false
-destroying_value = 0.0
+destroying_value = 0.001
 icon_inventory = SubResource("1")
 icon_world = SubResource("AtlasTexture_g0qb8")

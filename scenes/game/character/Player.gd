@@ -76,6 +76,10 @@ func _input(event):
 		for item in get_tree().get_nodes_in_group("item_world"):
 			if item.global_position.distance_to(position) <= 50:
 				inventory.add_item(item.item_info, item)
+	if event.is_action_pressed("sprint_run"):
+		is_using_stamina = true
+	if event.is_action_released("sprint_run"):
+		is_using_stamina = false
 
 func attack():
 	if state < State.Run_forward or state > State.Run_right:
@@ -102,26 +106,26 @@ func attack():
 func choose_direction():
 	var is_action = false
 	movement = Vector2()
-
-	if Input.is_action_pressed("up"):
-		movement.y = -speed
-		state = State.Run_forward
-		is_action = true
-	if Input.is_action_pressed("down"):
-		movement.y = speed
-		state = State.Run_back
-		is_action = true
-	if Input.is_action_pressed("left"):
-		movement.x = -speed
-		state = State.Run_left
-		is_action = true
-	if Input.is_action_pressed("right"):
-		movement.x = speed
-		state = State.Run_right
-		is_action = true
-	if self.weight > self.max_weight:
-		movement = Vector2.ZERO
+	if self.weight <= self.max_weight:
+		if Input.is_action_pressed("up"):
+			movement.y = -speed
+			state = State.Run_forward
+			is_action = true
+		if Input.is_action_pressed("down"):
+			movement.y = speed
+			state = State.Run_back
+			is_action = true
+		if Input.is_action_pressed("left"):
+			movement.x = -speed
+			state = State.Run_left
+			is_action = true
+		if Input.is_action_pressed("right"):
+			movement.x = speed
+			state = State.Run_right
+			is_action = true
 	if is_action:
+		if is_using_stamina:
+			movement += movement.normalized() * strint_speed_boost
 		last_direction = movement
 		noise_level = 10.0
 		

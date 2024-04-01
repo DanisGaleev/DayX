@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cfgtcxajnbbu4"
-path="res://.godot/imported/9x18_ammo.png-1603a608dd0c2ed595be5fe7bd3c9ad1.ctex"
+path="res://.godot/imported/9x18.png-b1ecef4c321aa3bb7492a38af0a800be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/game/animation/items/ammo/9x18_ammo.png"
-dest_files=["res://.godot/imported/9x18_ammo.png-1603a608dd0c2ed595be5fe7bd3c9ad1.ctex"]
+source_file="res://assets/images/game/animation/items/ammo/9x18.png"
+dest_files=["res://.godot/imported/9x18.png-b1ecef4c321aa3bb7492a38af0a800be.ctex"]
 
 [params]
 

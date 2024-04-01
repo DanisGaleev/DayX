@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b43lhpdp5y0eq"
-path="res://.godot/imported/22lr_ammo.png-d122ff196fd27232e8f7722298648c9b.ctex"
+uid="uid://bppa2o6jejlug"
+path="res://.godot/imported/7.62x54r.png-f7c3ad87fe796d6d8716a3a1d0aeb9ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/game/animation/items/ammo/22lr_ammo.png"
-dest_files=["res://.godot/imported/22lr_ammo.png-d122ff196fd27232e8f7722298648c9b.ctex"]
+source_file="res://assets/images/game/animation/items/ammo/7.62x54r.png"
+dest_files=["res://.godot/imported/7.62x54r.png-f7c3ad87fe796d6d8716a3a1d0aeb9ec.ctex"]
 
 [params]
 

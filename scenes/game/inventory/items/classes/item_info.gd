@@ -54,3 +54,10 @@ func destroy(args) -> void:
 
 func update(delta):
 	pass
+	
+func get_info():
+	var desc = "Name: %s\nDescription: %s\nStackable: %s\nCount: %s\n"
+	desc += "Max count: %s\nWeight per one: %s\nWeight: %s\nDestrouble: %s\nDestroying: %s\nDestroying value: %s\n"
+	desc = desc % [name, description, stackable, count, 
+		max_count, weight_per_one, weight_per_one * count, destrouble, destroying, destroying_value]
+	return desc
