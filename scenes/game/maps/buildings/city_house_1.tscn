@@ -9,29 +9,32 @@
 size = Vector2(210, 112)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_j10je"]
-a = Vector2(-1, 41)
-b = Vector2(226, 41)
+a = Vector2(1, 41)
+b = Vector2(227, 41)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_lqiss"]
-a = Vector2(0, 41)
-b = Vector2(0, 169)
+a = Vector2(1, 41)
+b = Vector2(1, 170)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_esss7"]
-a = Vector2(173, 169)
-b = Vector2(0, 169)
+a = Vector2(174, 170)
+b = Vector2(1, 170)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_eukgg"]
-a = Vector2(204, 169)
-b = Vector2(226, 169)
+a = Vector2(205, 170)
+b = Vector2(227, 170)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_xxmvt"]
-a = Vector2(226, 41)
-b = Vector2(226, 169)
+a = Vector2(227, 41)
+b = Vector2(227, 170)
 
 [node name="CityHouse1" instance=ExtResource("1_u55jg")]
 
 [node name="Spawn" type="Marker2D" parent="ItemsSpawnPositions" index="0" groups=["spawn"]]
 position = Vector2(186, 107)
+
+[node name="InTrigger" parent="." index="1"]
+visible = false
 
 [node name="CollisionShape2D" parent="InTrigger" index="0"]
 position = Vector2(111, 105)
@@ -39,7 +42,7 @@ shape = SubResource("RectangleShape2D_43dve")
 
 [node name="Navigation" parent="." index="2"]
 position = Vector2(-1, 0)
-polygon = PackedVector2Array(0, 0, 226, 0, 226, 169, 0, 169)
+polygon = PackedVector2Array(2, 1, 228, 1, 228, 170, 2, 170)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body" index="0"]
 shape = SubResource("SegmentShape2D_j10je")
@@ -57,12 +60,11 @@ shape = SubResource("SegmentShape2D_eukgg")
 shape = SubResource("SegmentShape2D_xxmvt")
 
 [node name="In" parent="." index="4"]
-position = Vector2(-1, -1)
 texture = ExtResource("2_014w4")
 centered = false
 
 [node name="Out" parent="." index="5"]
-position = Vector2(-1, -120)
+position = Vector2(0, -120)
 texture = ExtResource("3_aau2f")
 centered = false
 

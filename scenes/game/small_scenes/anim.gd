@@ -30,13 +30,10 @@ func add_frames(animation_name: String, frames_id: Array):
 		sprite_frame.add_frame(animation_name, ImageTexture.create_from_image(frame), 1, idx)
 		idx+=1
 func _ready():
-	#texture = load("res://assets/images/game/animation/character/player_vereran_animation.png")
-	#sprite.texture= ImageTexture.create_from_image(texture.get_image().get_region(rect))
 	var a_type = animations_dictionary[type]
 	texture = load(texture_path)
 	for key in a_type:
 		add_frames(key, a_type[key])
-	#add_frames("idle_back", [12, 13, 14, 15])
 	ResourceSaver.save(sprite_frame, "animation.tres")
 	
 	

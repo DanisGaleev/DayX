@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="FoodPattern" load_steps=5 format=3 uid="uid://dkm84ttchisop"]
+[gd_resource type="Resource" script_class="FoodPattern" load_steps=6 format=3 uid="uid://dkm84ttchisop"]
 
 [ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/food_pattern.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dt4fji2r6j5o1" path="res://assets/images/game/animation/items/items_inventory0.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://buxbvntxdfck4" path="res://assets/images/game/animation/items/food/tactical_bacon-sheet0.png" id="3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_70yhi"]
 
 [sub_resource type="AtlasTexture" id="1"]
 atlas = ExtResource("2")
@@ -25,3 +27,4 @@ destrouble = false
 destroying_value = 0.0
 icon_inventory = SubResource("1")
 icon_world = ExtResource("3")
+animation = SubResource("SpriteFrames_70yhi")

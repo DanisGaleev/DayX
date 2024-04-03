@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsrsd1p16blsl"]
+
+[ext_resource type="PackedScene" uid="uid://cfunwgy3oe1gk" path="res://scenes/game/maps/obtacles/obtacle.tscn" id="1_j3bdi"]
+[ext_resource type="Texture2D" uid="uid://brdne3givnbom" path="res://assets/images/map/ground_enviroment_tilemap.png" id="2_yl5el"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_47y37"]
+
+[node name="Stump" instance=ExtResource("1_j3bdi")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_yl5el")
+region_enabled = true
+region_rect = Rect2(122, 66, 25, 23)
+
+[node name="Shape2D" parent="." index="1"]
+position = Vector2(-1, 2)
+shape = SubResource("CircleShape2D_47y37")

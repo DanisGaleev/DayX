@@ -27,6 +27,5 @@ rotation = -1.58145
 shape = SubResource("1")
 
 [node name="AliveTimer" type="Timer" parent="."]
-wait_time = 0.001
 
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
