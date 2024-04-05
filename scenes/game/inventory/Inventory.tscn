@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cfv8eejpfgyq"]
+[gd_scene load_steps=15 format=3 uid="uid://cfv8eejpfgyq"]
 
 [ext_resource type="PackedScene" uid="uid://c578g820aev18" path="res://scenes/game/inventory/slot.tscn" id="1"]
 [ext_resource type="Script" path="res://scenes/game/inventory/inventory.gd" id="2"]
@@ -13,43 +13,36 @@ region = Rect2(240, 96, 28, 25)
 atlas = ExtResource("3")
 region = Rect2(240, 94, 26, 25)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_njtqd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dciit"]
 atlas = ExtResource("6_ljb5r")
 region = Rect2(228, 197, 40, 45)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_el4mj"]
-bg_color = Color(0.6, 0.6, 0.6, 0.45098)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n3u6a"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_doa3q"]
 atlas = ExtResource("6_ljb5r")
 region = Rect2(128, 185, 39, 42)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivrfi"]
-bg_color = Color(0.6, 0.6, 0.6, 0.462745)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hcrfi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_quvr2"]
 atlas = ExtResource("6_ljb5r")
 region = Rect2(179, 134, 48, 46)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_monje"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cl13k"]
 atlas = ExtResource("6_ljb5r")
 region = Rect2(128, 134, 47, 47)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o2cuo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6w3j"]
 atlas = ExtResource("6_ljb5r")
 region = Rect2(227, 133, 43, 52)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pdd6k"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd12n"]
 atlas = ExtResource("6_ljb5r")
 region = Rect2(179, 184, 45, 47)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yo87n"]
-atlas = ExtResource("6_ljb5r")
-region = Rect2(178, 245, 45, 30)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6wklg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wub2"]
 atlas = ExtResource("6_ljb5r")
 region = Rect2(0, 231, 169, 57)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gasra"]
+bg_color = Color(0.588235, 0.545098, 0.458824, 1)
 
 [node name="Inv" type="Control"]
 layout_mode = 3
@@ -159,121 +152,130 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="EquipInv" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 0
-offset_left = -27.0
-offset_top = 105.0
-offset_right = 13.0
-offset_bottom = 145.0
+offset_left = 65.0
+offset_top = 40.0
+offset_right = 105.0
+offset_bottom = 80.0
 
-[node name="Helmet" type="TextureRect" parent="EquipInv"]
-layout_mode = 0
-offset_left = 136.0
-offset_top = -40.0
-offset_right = 193.0
-offset_bottom = 17.0
-texture = SubResource("AtlasTexture_njtqd")
-stretch_mode = 3
+[node name="Control" type="Control" parent="EquipInv"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Panel" type="Panel" parent="EquipInv/Helmet"]
+[node name="Helmet" parent="EquipInv/Control" instance=ExtResource("1")]
+custom_minimum_size = Vector2(57, 57)
 layout_mode = 0
 offset_right = 57.0
 offset_bottom = 57.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_el4mj")
+texture = SubResource("AtlasTexture_dciit")
+stretch_mode = 5
+icon_size = Vector2(57, 57)
 
-[node name="Vest" type="TextureRect" parent="EquipInv"]
+[node name="Vest" parent="EquipInv/Control" instance=ExtResource("1")]
+custom_minimum_size = Vector2(57, 57)
 layout_mode = 0
-offset_left = 79.0
-offset_top = 17.0
-offset_right = 136.0
-offset_bottom = 74.0
-texture = SubResource("AtlasTexture_n3u6a")
-stretch_mode = 3
+offset_left = -57.0
+offset_top = 57.0
+offset_right = 0.0
+offset_bottom = 114.0
+texture = SubResource("AtlasTexture_doa3q")
+stretch_mode = 5
+icon_size = Vector2(57, 57)
 
-[node name="Panel" type="Panel" parent="EquipInv/Vest"]
+[node name="Shirt" parent="EquipInv/Control" instance=ExtResource("1")]
+custom_minimum_size = Vector2(57, 57)
+layout_mode = 0
+offset_top = 57.0
 offset_right = 57.0
-offset_bottom = 57.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ivrfi")
+offset_bottom = 114.0
+texture = SubResource("AtlasTexture_quvr2")
+stretch_mode = 5
+icon_size = Vector2(57, 57)
 
-[node name="Shirt" type="TextureRect" parent="EquipInv"]
+[node name="Bag" parent="EquipInv/Control" instance=ExtResource("1")]
+custom_minimum_size = Vector2(57, 57)
 layout_mode = 0
-offset_left = 136.0
-offset_top = 17.0
-offset_right = 193.0
-offset_bottom = 74.0
-texture = SubResource("AtlasTexture_hcrfi")
-stretch_mode = 3
+offset_left = 57.0
+offset_top = 57.0
+offset_right = 114.0
+offset_bottom = 114.0
+texture = SubResource("AtlasTexture_cl13k")
+stretch_mode = 5
+icon_size = Vector2(57, 57)
 
-[node name="Panel" type="Panel" parent="EquipInv/Shirt"]
+[node name="HandWeapon" parent="EquipInv/Control" instance=ExtResource("1")]
+custom_minimum_size = Vector2(57, 57)
+layout_mode = 0
+offset_left = -57.0
+offset_top = 114.0
+offset_right = 0.0
+offset_bottom = 171.0
+texture = SubResource("AtlasTexture_m6w3j")
+stretch_mode = 5
+icon_size = Vector2(57, 57)
+
+[node name="Pants" parent="EquipInv/Control" instance=ExtResource("1")]
+custom_minimum_size = Vector2(57, 7)
+layout_mode = 0
+offset_top = 114.0
 offset_right = 57.0
-offset_bottom = 57.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ivrfi")
+offset_bottom = 171.0
+texture = SubResource("AtlasTexture_cd12n")
+stretch_mode = 5
+icon_size = Vector2(57, 57)
 
-[node name="Bag" type="TextureRect" parent="EquipInv"]
+[node name="Firearm1" parent="EquipInv/Control" instance=ExtResource("1")]
+custom_minimum_size = Vector2(57, 57)
 layout_mode = 0
-offset_left = 193.0
-offset_top = 17.0
-offset_right = 250.0
-offset_bottom = 74.0
-texture = SubResource("AtlasTexture_monje")
-stretch_mode = 3
+offset_left = -57.0
+offset_top = 171.0
+offset_right = 123.0
+offset_bottom = 228.0
+texture = SubResource("AtlasTexture_1wub2")
+stretch_mode = 5
+icon_size = Vector2(180, 57)
 
-[node name="Panel" type="Panel" parent="EquipInv/Bag"]
-offset_right = 57.0
-offset_bottom = 57.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ivrfi")
-
-[node name="HandWeapon" type="TextureRect" parent="EquipInv"]
+[node name="Firearm2" parent="EquipInv/Control" instance=ExtResource("1")]
+custom_minimum_size = Vector2(57, 57)
 layout_mode = 0
-offset_left = 79.0
-offset_top = 74.0
-offset_right = 136.0
-offset_bottom = 131.0
-texture = SubResource("AtlasTexture_o2cuo")
-stretch_mode = 3
+offset_left = -57.0
+offset_top = 228.0
+offset_right = 123.0
+offset_bottom = 285.0
+texture = SubResource("AtlasTexture_1wub2")
+stretch_mode = 5
+icon_size = Vector2(180, 57)
 
-[node name="Panel" type="Panel" parent="EquipInv/HandWeapon"]
-offset_right = 57.0
-offset_bottom = 57.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ivrfi")
+[node name="ItemOnGround" type="ItemList" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.353
+anchor_top = 0.136
+anchor_right = 0.353
+anchor_bottom = 0.136
+offset_left = 0.0799866
+offset_top = 0.0399971
+offset_right = 142.08
+offset_bottom = 291.04
+allow_search = false
+icon_mode = 0
 
-[node name="Trousers" type="TextureRect" parent="EquipInv"]
+[node name="ItemsList" type="ScrollContainer" parent="."]
+z_index = -10
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 0
-offset_left = 136.0
-offset_top = 74.0
-offset_right = 193.0
-offset_bottom = 131.0
-texture = SubResource("AtlasTexture_pdd6k")
-stretch_mode = 3
+offset_left = 187.0
+offset_top = 50.0
+offset_right = 372.0
+offset_bottom = 313.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gasra")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
 
-[node name="Panel" type="Panel" parent="EquipInv/Trousers"]
-offset_right = 57.0
-offset_bottom = 57.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ivrfi")
-
-[node name="Firearm1" type="TextureRect" parent="EquipInv"]
-layout_mode = 0
-offset_left = 193.0
-offset_top = 74.0
-offset_right = 250.0
-offset_bottom = 131.0
-texture = SubResource("AtlasTexture_yo87n")
-stretch_mode = 3
-
-[node name="Panel" type="Panel" parent="EquipInv/Firearm1"]
-offset_right = 57.0
-offset_bottom = 57.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ivrfi")
-
-[node name="Firearm2" type="TextureRect" parent="EquipInv"]
-layout_mode = 0
-offset_left = 79.0
-offset_top = 131.0
-offset_right = 250.0
-offset_bottom = 188.0
-texture = SubResource("AtlasTexture_6wklg")
-stretch_mode = 3
-
-[node name="Panel" type="Panel" parent="EquipInv/Firearm2"]
-offset_right = 171.0
-offset_bottom = 57.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ivrfi")
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemsList"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1

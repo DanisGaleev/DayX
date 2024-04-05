@@ -15,19 +15,3 @@ class_name ItemPattern
 @export var icon_inventory: AtlasTexture
 @export var icon_world: AtlasTexture
 @export var animation: SpriteFrames
-
-#func _init(name: String = "", description: String = "", type: Enums.ItemType = Enums.ItemType.AMMO, 
-#stackable: bool = false, count: int = 1, max_count: int = 1, destroying: float = 0, destrouble: bool = false,
-#destroying_value: float = 0, icon_inventory: AtlasTexture = null, icon_world: AtlasTexture = null, animation: SpriteFrames = null):
-	#self.name = name
-	#self.description = description
-	#self.type = type
-	#self.stackable = stackable
-	#self.count = count
-	#self.max_count = max_count
-	#self.destroying = destroying
-	#self.destrouble = destrouble
-	#self.destroying_value = destroying_value
-	#self.icon_inventory = icon_inventory
-	#self.icon_inventory = icon_inventory
-	#self.animation = animation

@@ -32,5 +32,11 @@ script = ExtResource("1")
 
 [node name="HeaddressAnimation" type="AnimatedSprite2D" parent="Animations"]
 
+[node name="ItemsTrigger" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemsTrigger"]
+
 [connection signal="body_entered" from="AttackZone" to="." method="_on_AttackZone_body_entered"]
 [connection signal="body_exited" from="AttackZone" to="." method="_on_AttackZone_body_exited"]
+[connection signal="area_entered" from="ItemsTrigger" to="." method="_on_items_trigger_area_entered"]
+[connection signal="area_exited" from="ItemsTrigger" to="." method="_on_items_trigger_area_exited"]

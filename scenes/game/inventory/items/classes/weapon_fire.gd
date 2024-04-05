@@ -21,19 +21,16 @@ var can_shot = false
 
 var recharging: bool
 
-func _init(item_pattern=null, count=1, destroying=0, ammo_in_magazine=0):
+func _init(item_pattern=null, count=1, destroying=0, _ammo_in_magazine=0):
 	if item_pattern:
-		super._init(item_pattern, count, destroying)
-		self.ammo_in_magazine = ammo_in_magazine
+		super(item_pattern, count, destroying)
+		ammo_in_magazine = _ammo_in_magazine
 		if ammo_in_magazine > 0:
 			can_shot = true
 		self.time_between_shot = item_pattern.time_between_shot
 		self.reload_time = item_pattern.reload_time
 		self.magazine = item_pattern.magazine
 		self.accuracy = item_pattern.accuracy
-#func create(item_pattern, count=1, destroying=0, ammo_in_magazine=0):
-	#super.create(item_pattern, count, destroying)
-	#
 
 func equip(args): #equip
 	var player = args[0]
@@ -73,7 +70,7 @@ func fire(args): #fire
 		await args[2].get_tree().create_timer(0.1).timeout
 		args[2].get_node("Player").noise_level = 0.0
 	
-func update(delta):
+func _update(delta):
 	if ammo_in_magazine <= 0:
 		can_shot = false
 	if recharging:
@@ -88,19 +85,12 @@ func update(delta):
 func recharge(inventory):
 	for i in inventory.inventory:
 		if i.item != null and (i.item is Ammo) and (self.name in i.item.name_of_weapon):
-			i.item.use([inventory.player, i])
+			i.item._use([inventory.player, i])
 			i.upd()
 			recharging = true
 			break
-#func destroy(args):
-	#if destroying + destroying_value >= 1 and ammo_in_magazine > 0:
-		#var item = preload("res://scenes/game/items_in_world/item.tscn").instantiate()
-		#args[2].add_child(item)
-		#item.position = args[0].position
-		#item.texture = 
-		#
-	#super.destroy(args)
-func get_info():
+			
+func _get_info():
 	var desc = "Fire rate: %s\nReload time: %s\nMagazine: %s\nAccuracy: %s"
 	desc = desc % [time_between_shot, reload_time, magazine, accuracy]
-	return super.get_info() + desc
+	return super() + desc

@@ -21,7 +21,7 @@ var how_triggered = Triggered.NULL
 
 @export_node_path() var navmap_path: NodePath
 
-func attack():
+func _attack():
 	delta_time_near = 0
 	last_state = state
 	var min_dst = 9999
@@ -37,36 +37,17 @@ func attack():
 	block = true
 	animation.play(animation_d[state])
 
-
-	#attack_animation_finished.emit()
-
 	for body in entered_body:
 		if body.name == "Player":
 			body.health -= dmg
-	#await animation.animation_finished
-	#last_animation()
 
 
 func choose_goal() -> float:
 	if player != null:
 		return self.position.direction_to(player.position).angle()
 	return 0.0
-func choose_direction():
+func _choose_direction():
 	movement = Vector2()
-#	if how_triggered == Triggered.HEAR and not nav.is_navigation_finished():
-#		movement = speed * global_position.direction_to(nav.get_next_location())
-#		var angle = round(rad2deg(movement.angle()))
-#		if angle < -45 and angle > -135:
-#			state = State.Run_forward
-#		elif (angle >= -180 and angle < -135) or (angle <= 180 and angle > 135):
-#			state = State.Run_left
-#		elif (angle >= 0 and angle <= 45) or (angle >= -45 and angle <= 0):
-#			state = State.Run_right
-#		else:
-#			state = State.Run_back
-#		view_angry_zone.rotation_degrees = angle
-#		last_direction = movement
-#	elif how_triggered == Triggered.VIEW and position.distance_to(player.position) > 27:
 	if not nav.is_navigation_finished():
 		movement = speed * global_position.direction_to(nav.get_next_path_position())#speed * position.direction_to(player.position)
 		var angle = round(rad_to_deg(movement.angle()))
@@ -91,15 +72,14 @@ func choose_direction():
 		else:
 			state = State.Idle_back
 
-func upd(delta):
-	choose_direction()
+func _upd(delta):
+	_choose_direction()
 	rotate_attack_zone(choose_goal())
 	if delta_time_near >= wait_time and len(entered_body) > 0:
-		attack()
+		_attack()
 
 func _ready():
-	#get_tree().set_debug_collisions_hint(true) 
-	super._ready()
+	super()
 	nav.set_navigation_map(get_node(navmap_path).get_node("NavigationMap"))
 func _physics_process(delta):
 	set_velocity(movement)
@@ -112,27 +92,11 @@ func _physics_process(delta):
 		if i.get_collider() and i.get_collider().name == "Player":
 			how_triggered = Triggered.VIEW
 			is_player_found = true
-	#for i in range(0, 20):
-		#var raycast_angle = movement.angle() + -PI / 6 + i * PI / 3 / 20
-		#var from_vector2 = Vector2(global_position)
-		#var to_vector2 = from_vector2 + Vector2(cos(raycast_angle),sin(raycast_angle)) * 220
-		#result.append(space_state.intersect_ray(PhysicsRayQueryParameters2D.create(from_vector2, to_vector2)))
-		#if result[i] != null and result[i].get("collider") != null:
-			#if result[i].get("collider").name == "Player":
-				#how_triggered = Triggered.VIEW
-				#is_player_found = true
 	if not is_player_found:
 		how_triggered = Triggered.NULL
 		last_direction = movement
 		movement = Vector2(0, 0)
-#
-#func _draw():
-	#draw_circle(Vector2(0, 0), 10, Color.CHARTREUSE)
-	#for i in range(0, 20):
-		#var raycast_angle = movement.angle() + -PI / 6 + i * PI / 3 / 20
-		#var from_vector2 = Vector2(global_position)
-		#var to_vector2 = from_vector2 + Vector2(cos(raycast_angle),sin(raycast_angle)) * 220
-		#draw_line(from_vector2, to_vector2, Color.GREEN, 2)
+
 func _on_PathFind_timeout():
 	if how_triggered == Triggered.VIEW:
 		nav.target_position = player.position

@@ -4,10 +4,12 @@ class_name Player
 
 @onready var fire_position = $AttackZone/FirePosition
 var inventory: Inventory
+var last_items_list = {}
+var first_time_update = false
 
 var noise_level = 0.0
 func _ready():
-	super._ready()
+	super()
 	inventory = get_parent().get_parent().get_node("GUI/CanvasLayer/Inv")
 	inventory.player = self
 
@@ -56,7 +58,7 @@ func _input(event):
 				if hand_weapon == null:
 					if delta_time_near >= wait_time:
 						delta_time_near = 0.0
-						attack()
+						_attack()
 						noise_level = 5.0
 						await get_tree().create_timer(0.1).timeout
 						noise_level = 0.0
@@ -81,7 +83,7 @@ func _input(event):
 	if event.is_action_released("sprint_run"):
 		is_using_stamina = false
 
-func attack():
+func _attack():
 	if state < State.Run_forward or state > State.Run_right:
 		last_state = state
 		var min_dst = 9999
@@ -97,8 +99,6 @@ func attack():
 		block = true
 		animation.play(animation_d[state])
 
-	#await animation.animation_finished
-	#last_animation()
 	for body in entered_body:
 		if body is Character:
 			body.health -= dmg
@@ -139,7 +139,42 @@ func choose_direction():
 			state = State.Idle_right
 		else:
 			state = State.Idle_back
-func upd(delta):
+func _upd(delta):
+	#if inventory.visible:
+		#while inventory.item_on_ground.get_child_count() > 0:
+			#var child = inventory.item_on_ground.get_child(0)
+			#inventory.item_on_ground.remove_child(child)
+			#child.queue_free()
+		#var current_items_list = {}
+		#
+		#for itm in get_tree().get_nodes_in_group("item_world"):
+			#if itm.global_position.distance_to(position) <= 50:
+				#current_items_list[itm] = true
+		#if current_items_list != last_items_list:
+			#last_items_list = current_items_list
+			#for itm in current_items_list:
+				#var txt = itm.item_info.name + " "
+				#if itm.item_info.destrouble:
+					#txt += str(itm.item_info.destroying * 100) + "%"
+				#else:
+					#txt += str(itm.item_info.count)
+				#var iii = load("res://scenes/game/inventory/list_item.tscn").instantiate()
+				#iii.texture = itm.item_info.icon_inventory
+				#iii.player = self
+				#iii.item_container = itm
+				#iii.get_child(0).text = txt
+				#inventory.item_on_ground.add_child(iii)
+				
+		#inventory.item_on_ground.clear()
+		#for itm in get_tree().get_nodes_in_group("item_world"):
+			#if itm.global_position.distance_to(position) <= 50:
+				#var txt = itm.item_info.name + " "
+				#if itm.item_info.destrouble:
+					#txt += str(itm.item_info.destroying * 100) + "%"
+				#else:
+					#txt += str(itm.item_info.count)
+				#inventory.item_on_ground.add_item(txt, itm.item_info.icon_inventory)
+				#inventory.item_on_ground.set_item_tooltip_enabled(inventory.item_on_ground.get_item_count() - 1, false)
 	match(type_of_weapon):
 			WeaponType.NEAR_WEAPON:
 				if  state < State.Run_forward  or State.Near_attack_right < state :
@@ -168,7 +203,7 @@ func upd(delta):
 					else:
 						state = State.Fire_attack_back
 				if weapon_fire_1 != null:
-					weapon_fire_1.update(delta)
+					weapon_fire_1._update(delta)
 			WeaponType.FIRE_WEAPON_2:
 				if  state < State.Run_forward  or State.Run_right < state :
 					var angle = round(rad_to_deg(last_direction.angle()))
@@ -190,3 +225,19 @@ func _physics_process(delta):
 	choose_direction()
 	set_velocity(movement)
 	move_and_slide()
+	
+func update_player_params():
+	var equip = inventory.equip
+	hand_weapon = equip[4].item
+	weapon_fire_1 = equip[6].item
+	weapon_fire_2 = equip[7].item
+	armoring = 0
+	cold_resistance = 0
+	max_weight = 50
+	for i in range(0, 8):# item in equip and has dress params
+		if equip[i].item!=null and equip[i].item is Dress:
+			armoring += equip[i].item.armoring
+			cold_resistance += equip[i].item.cold_resistance
+			max_weight += equip[i].item.max_carry_weight
+			weight += equip[i].item.weight_per_one
+

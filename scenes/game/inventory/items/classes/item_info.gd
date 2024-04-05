@@ -31,12 +31,7 @@ func _init(item_pattern=null, _count=1, _destroying=0):
 		self.destroying_value = item_pattern.destroying_value
 		self.destroying = _destroying
 		self.animation = item_pattern.animation
-#func create(item_pattern, _count=1, _destroying=0):
-#	print(item_pattern.name)
-	
-	#self.animation = load("res://assets/item_patterns/" + name + ".tres").animation
-	
-func use(args) -> void:
+func _use(_args) -> void:
 	pass
 func destroy(args) -> void:
 	if destrouble:
@@ -47,15 +42,10 @@ func destroy(args) -> void:
 		else:
 			args[0].weapon_fire_2 = null
 
-#func upd(delta, delta_time):
-#	if destroying >= 1:
-#		return null
-#	return delta + delta_time
-
-func update(delta):
+func _update(_delta):
 	pass
 	
-func get_info():
+func _get_info():
 	var desc = "Name: %s\nDescription: %s\nStackable: %s\nCount: %s\n"
 	desc += "Max count: %s\nWeight per one: %s\nWeight: %s\nDestrouble: %s\nDestroying: %s\nDestroying value: %s\n"
 	desc = desc % [name, description, stackable, count, 

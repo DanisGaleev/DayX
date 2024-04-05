@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dbgyub1mc86fq"]
+[gd_scene load_steps=40 format=3 uid="uid://dbgyub1mc86fq"]
 
 [ext_resource type="PackedScene" uid="uid://cgrt6py4me3gp" path="res://scenes/game/character/character.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://tnwjuxnm1ful" path="res://assets/images/game/animation/character/player_vereran_animation.png" id="4_loma0"]
@@ -318,6 +318,9 @@ radius = 12.0
 radius = 4.0
 height = 14.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wwums"]
+radius = 50.0
+
 [node name="Player" groups=["player"] instance=ExtResource("1")]
 collision_layer = 2
 script = ExtResource("5")
@@ -359,3 +362,6 @@ animation = &""
 
 [node name="HeaddressAnimation" parent="Animations" index="7"]
 animation = &""
+
+[node name="CollisionShape2D" parent="ItemsTrigger" index="0"]
+shape = SubResource("CircleShape2D_wwums")

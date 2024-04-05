@@ -1,27 +1,17 @@
-extends Control
-class_name Inventory
-var inventory = []
-var equip = []
+extends TextureRect
 
-@onready var grid_inventory = $Inventory/InventoryGrid
-@onready var grid_equip = $EquipInv/Control
-@onready var item_on_ground = $ItemsList/VBoxContainer
-var player
+var item
+
+@export var player: Player
+var inventory
+var equip
+var item_container
 
 func _ready():
-	for i in grid_inventory.get_children():
-		i.player = player
-		inventory.append(i)
-	for j in grid_equip.get_children():
-		j.player = player
-		equip.append(j)
-		prints(j.name, equip.size() - 1)
-	player.item_detected.connect(_on_update_items_menu)
-func _input(event):
-	if event.is_action_pressed("inventory"):
-		visible = not visible
-		
-func add_item(item: ItemInfo, item_container: Sprite2D):
+	inventory = player.inventory.inventory
+	equip = player.inventory.equip
+
+func add_item(item, item_container, count=item.count):
 	match item.type:
 		Enums.ItemType.DRESS:
 			match item.dress_type:
@@ -65,40 +55,52 @@ func add_item(item: ItemInfo, item_container: Sprite2D):
 					item.count = 0
 					equip[4].upd()
 		_:
+			var was_count = count
 			for slot in inventory:
-				if item.count > 0:
+				if count > 0:
 					if slot.item != null and slot.item.name == item.name:
-						var diff = min(slot.item.max_count - slot.item.count, item.count) # минимальное количество по кол-ву айтемов
+						var diff = min(slot.item.max_count - slot.item.count, count) # минимальное количество по кол-ву айтемов
 						var weight_diff: int = diff
 						if item.weight_per_one != 0:
 							weight_diff = int(min(player.max_weight - player.weight, diff * item.weight_per_one) / item.weight_per_one)# минимальное кол-во по весу
 						var total_min_cnt = min(diff, weight_diff)
 						slot.item.count += total_min_cnt
-						item.count -= total_min_cnt
-						item.weight = item.count * item.weight_per_one
+						count -= total_min_cnt
+						item.weight = count * item.weight_per_one
 						slot.upd()
 						player.weight += total_min_cnt * item.weight_per_one
-			if item.count > 0:
+			if count > 0:
 				for slot in inventory:
 					var slot_item = slot.item
-					if item.count > 0:
+					if count > 0:
 						if slot_item == null:
 							slot_item = item_info_copy(item.type, item)
-							var diff = min(item.count, item.max_count)# минимальное количество по кол-ву айтемов
+							var diff = min(count, item.max_count)# минимальное количество по кол-ву айтемов
 							var weight_diff = diff
 							if item.weight_per_one != 0:
 								weight_diff = int(min(player.max_weight - player.weight, diff * item.weight_per_one) / item.weight_per_one)# минимальное кол-во по весу
 							var total_min_cnt = min(diff, weight_diff)
 							slot_item.count = total_min_cnt
 							slot_item.weight = slot_item.count * slot_item.weight_per_one
-							item.count = item.count - total_min_cnt
-							item.weight = item.count * item.weight_per_one
+							count = count - total_min_cnt
+							item.weight = count * item.weight_per_one
 							slot.item = slot_item
 							slot.upd()
 							player.weight += total_min_cnt * item.weight_per_one
+			item.count -= (was_count - count)
 	if item.count <= 0:
 		item_container.queue_free()
+		queue_free()
+	player.update_player_params()
 
+func _on_add_one_pressed():
+	add_item(item_container.item_info, item_container, 1)
+	player.item_detected.emit(player.item_near)
+
+
+func _on_add_all_pressed():
+	add_item(item_container.item_info ,item_container)
+	player.item_detected.emit(player.item_near)
 
 func item_info_copy(type: int, copy: ItemInfo) -> ItemInfo:
 	var new_iteminfo
@@ -158,21 +160,3 @@ func item_info_copy(type: int, copy: ItemInfo) -> ItemInfo:
 	new_iteminfo.destroying = copy.destroying
 
 	return new_iteminfo
-
-func _on_update_items_menu(item_near):
-	while item_on_ground.get_child_count() > 0:
-			var child =item_on_ground.get_child(0)
-			item_on_ground.remove_child(child)
-			child.queue_free()
-	for itm in item_near:
-		var txt = itm.item_info.name + " "
-		if itm.item_info.destrouble:
-			txt += str(itm.item_info.destroying * 100) + "%"
-		else:
-			txt += str(itm.item_info.count)
-		var iii = load("res://scenes/game/inventory/list_item.tscn").instantiate()
-		iii.texture = itm.item_info.icon_inventory
-		iii.player = player
-		iii.item_container = itm
-		iii.get_child(0).text = txt
-		item_on_ground.add_child(iii)

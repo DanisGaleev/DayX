@@ -46,6 +46,8 @@ var animation_d = {
 	State.Fire_attack_forward : "fire_attack_forward",
 }
 
+signal item_detected(item_near)
+
 var movement = Vector2()
 var last_direction = Vector2(0, 1)
 var entered_body = []
@@ -60,6 +62,7 @@ var type_of_weapon = WeaponType.NEAR_WEAPON
 var weight: float = 0.0
 var current_stamina = 0.0
 var is_using_stamina = false
+var item_near = []
 
 @export var speed = 10
 @export var dmg = 10
@@ -97,14 +100,14 @@ func _ready():
 	animation.play(animation_d[state])
 	animation.animation_finished.connect(last_animation)
 
-func choose_direction():
+func _choose_direction():
 	pass
 
 func regenerate(delta):
 	regeneration_time += delta
 	if regeneration_time >= regeneration_delta_time and health <= 100:
 		regeneration_time = 0
-		health + min(regeneration_value, 100 - health)
+		health += min(regeneration_value, 100 - health)
 
 func last_animation():
 	if block:
@@ -114,10 +117,10 @@ func last_animation():
 func rotate_attack_zone(angle):
 	attack_zone.rotation = angle - PI / 2
 	
-func move():
+func _move():
 	pass
 
-func attack():
+func _attack():
 	pass
 func recharge(inventory):
 	match(type_of_weapon):
@@ -128,7 +131,7 @@ func recharge(inventory):
 				if weapon_fire_2:
 					weapon_fire_2.recharge(inventory)
 
-func upd(delta):
+func _upd(_delta):
 	pass
 	
 func is_died() -> bool:
@@ -138,7 +141,7 @@ func _process(delta):
 	if is_died():
 		queue_free()
 	regenerate(delta)
-	upd(delta)
+	_upd(delta)
 	if is_using_stamina:
 		current_stamina = max(0, current_stamina - stamina_cost_per_second * delta)
 		if current_stamina <= 0:
@@ -159,3 +162,17 @@ func _on_AttackZone_body_entered(body):
 func _on_AttackZone_body_exited(body):
 	if body != self:
 		entered_body.remove_at(entered_body.find(body))
+
+
+func _on_items_trigger_area_entered(area):
+	if area.is_in_group("items"):
+		item_near.append(area.get_parent())
+		item_detected.emit(item_near)
+	
+
+
+func _on_items_trigger_area_exited(area):
+	if area.is_in_group("items"):
+		item_near.erase(area.get_parent())
+		item_detected.emit(item_near)
+		
