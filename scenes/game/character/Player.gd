@@ -74,10 +74,6 @@ func _input(event):
 			slt.upd()
 	if event.is_action_pressed("recharge"):
 		recharge(inventory)
-	if event.is_action_pressed("pick_up"):
-		for item in get_tree().get_nodes_in_group("item_world"):
-			if item.global_position.distance_to(position) <= 50:
-				inventory.add_item(item.item_info, item)
 	if event.is_action_pressed("sprint_run"):
 		is_using_stamina = true
 	if event.is_action_released("sprint_run"):
@@ -140,41 +136,6 @@ func choose_direction():
 		else:
 			state = State.Idle_back
 func _upd(delta):
-	#if inventory.visible:
-		#while inventory.item_on_ground.get_child_count() > 0:
-			#var child = inventory.item_on_ground.get_child(0)
-			#inventory.item_on_ground.remove_child(child)
-			#child.queue_free()
-		#var current_items_list = {}
-		#
-		#for itm in get_tree().get_nodes_in_group("item_world"):
-			#if itm.global_position.distance_to(position) <= 50:
-				#current_items_list[itm] = true
-		#if current_items_list != last_items_list:
-			#last_items_list = current_items_list
-			#for itm in current_items_list:
-				#var txt = itm.item_info.name + " "
-				#if itm.item_info.destrouble:
-					#txt += str(itm.item_info.destroying * 100) + "%"
-				#else:
-					#txt += str(itm.item_info.count)
-				#var iii = load("res://scenes/game/inventory/list_item.tscn").instantiate()
-				#iii.texture = itm.item_info.icon_inventory
-				#iii.player = self
-				#iii.item_container = itm
-				#iii.get_child(0).text = txt
-				#inventory.item_on_ground.add_child(iii)
-				
-		#inventory.item_on_ground.clear()
-		#for itm in get_tree().get_nodes_in_group("item_world"):
-			#if itm.global_position.distance_to(position) <= 50:
-				#var txt = itm.item_info.name + " "
-				#if itm.item_info.destrouble:
-					#txt += str(itm.item_info.destroying * 100) + "%"
-				#else:
-					#txt += str(itm.item_info.count)
-				#inventory.item_on_ground.add_item(txt, itm.item_info.icon_inventory)
-				#inventory.item_on_ground.set_item_tooltip_enabled(inventory.item_on_ground.get_item_count() - 1, false)
 	match(type_of_weapon):
 			WeaponType.NEAR_WEAPON:
 				if  state < State.Run_forward  or State.Near_attack_right < state :
@@ -190,7 +151,7 @@ func _upd(delta):
 				if hand_weapon == null:
 					delta_time_near += delta
 				else:
-					hand_weapon.update(delta)
+					hand_weapon._update(delta)
 			WeaponType.FIRE_WEAPON_1:
 				if  state < State.Run_forward  or State.Run_right < state :
 					var angle = round(rad_to_deg(last_direction.angle()))

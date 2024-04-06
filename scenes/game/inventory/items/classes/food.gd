@@ -20,3 +20,6 @@ func _use(_args): #eat or drink
 func _get_info():
 	var desc = "Hunger reduction: %s\nThirst reduction: %s\nHealth increase: %s"
 	return super() + desc % [hunger, thirst, health]
+func dublicate():
+	var new_item_info = Food.new(item_pattern, count, destroying)
+	return new_item_info

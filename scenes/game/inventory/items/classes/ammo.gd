@@ -19,7 +19,6 @@ func _init(item_pattern=null, count=1, destroying=0):
 		
 func _use(_args): #add ammo to magazine
 	var weapon = _args[0].weapon_fire_1
-	print(weapon)
 	if weapon != null and weapon.name in name_of_weapon:
 		var can_add = min(weapon.magazine - weapon.ammo_in_magazine, self.count)
 		weapon.ammo_in_magazine += can_add
@@ -48,3 +47,7 @@ func _get_info():
 	for nm in name_of_weapon:
 		desc += "    " + nm + '\n'
 	return "%s%s" % [super(), desc]
+
+func duplicate():
+	var new_item_info = Ammo.new(item_pattern, count, destroying)
+	return new_item_info

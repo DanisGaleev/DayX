@@ -53,7 +53,7 @@ func _ready():
 func get_id_by_position(inventory_or_equip_zone=true) -> int:
 	var mid_pos = global_position + size / 2
 	if inventory_or_equip_zone: #inventory zone
-		position -= Vector2(372, 50)
+		mid_pos -= Vector2(372, 50)
 		return int(mid_pos.x) / 68 + int(mid_pos.y / 68) * 4
 	else: #equip zone
 		mid_pos -= Vector2(0, 50)
@@ -63,7 +63,6 @@ func in_inventory(pos: Vector2) -> bool:
 	return pos.x <= 372 + 238 and pos.x >= 372 and pos.y <= 200 + 50 and pos.y >= 50
 		
 func in_equip(pos: Vector2) -> bool:
-	prints(pos, "postion")
 	if pos.x >= 65 and pos.x <= 65 + 57 and pos.y >= 57 and pos.y <= 57 + 57:
 		return true
 	if pos.x >= 8 and pos.x <= 8 + 57 and pos.y > 97 and pos.y <= 97 + 57:
@@ -160,10 +159,8 @@ func _process(delta):
 	elif get_parent().get_parent().visible and not one_time:
 		one_time = true
 		var middle = get_global_rect().position + size / 2
-		print(middle)
 		if in_inventory(middle): #check if now in inventory
 			var swap_id = get_id_by_position()
-			print(prev_pos)
 			if in_equip(prev_pos): #check if was in equip
 				upd()
 				set_position_by_id(false)
@@ -171,7 +168,6 @@ func _process(delta):
 				if inventory[swap_id].item != null:
 					var swap_item = inventory[swap_id].item
 					if swap_item.name == self.item.name and self.item.stackable: #check if can stack
-
 						var diff = swap_item.max_count - swap_item.count
 						if diff >= self.item.count: # check if can fetch
 							swap_item.count += diff #swap normalisation
@@ -193,11 +189,12 @@ func _process(delta):
 						inventory[swap_id].item = self.item
 						inventory[swap_id].upd()
 						inventory[swap_id].set_position_by_id()
+						
 						self.item = swap_item
-
 						upd()
 						set_position_by_id()
 				else: #if swap-item is null
+					print("inventory")
 					inventory[swap_id].item = self.item
 					inventory[swap_id].upd()
 					inventory[swap_id].set_position_by_id()
@@ -250,7 +247,6 @@ func _on_Slot_gui_input(event: InputEvent):
 	elif item and event.is_action("right_click") and item.type != Enums.ItemType.AMMO :#and (item is WeaponFire or item is HandWeapon):
 		self.item.equip([player, self])
 	elif item and event.is_action("right_click") and item.type == Enums.ItemType.AMMO :#and (item is WeaponFire or item is HandWeapon):
-		print("RRRR")
 		item._use([player, self])
 
 func _on_info_mouse_entered():

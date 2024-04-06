@@ -23,18 +23,16 @@ func equip(args): #equip on player (not equip zone)
 	player.weight += self.weight
 	
 	if player.hand_weapon:
-		print("axe")
 		player.animations_dictionary["WeaponHandAnimation"].sprite_frames = animation
 	
 func hit(args): #hit
 	if delta_time_between >= time_between_hit:
 		delta_time_between = 0
-		print("hit")
-		args[0].attack()
+		args[0]._attack()
 		destroy([])
-		args[2].get_node("Player").noise_level = 3.0
+		args[0].get_node("Player").noise_level = 3.0
 		await args[2].get_tree().create_timer(0.1).timeout
-		args[2].get_node("Player").noise_level = 0.0
+		args[0].get_node("Player").noise_level = 0.0
 
 func _update(delta):
 	delta_time_between += delta
@@ -42,3 +40,6 @@ func _update(delta):
 func _get_info():
 	var desc = "Cooldown time: %s\nDamage: %s" % [time_between_hit, damage]
 	return super() + desc
+func dublicate():
+	var new_item_info = HandWeapon.new(item_pattern, count, destroying)
+	return new_item_info

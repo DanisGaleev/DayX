@@ -23,7 +23,7 @@ var recharging: bool
 
 func _init(item_pattern=null, count=1, destroying=0, _ammo_in_magazine=0):
 	if item_pattern:
-		super(item_pattern, count, destroying)
+		super(item_pattern,count, destroying)
 		ammo_in_magazine = _ammo_in_magazine
 		if ammo_in_magazine > 0:
 			can_shot = true
@@ -64,7 +64,6 @@ func fire(args): #fire
 		bullet_b.global_position = args[1]
 		args[2].add_child(bullet_b)
 		delta_time_between = 0
-		prints("weapon", destroying)
 		
 		args[2].get_node("Player").noise_level = 20.0
 		await args[2].get_tree().create_timer(0.1).timeout
@@ -94,3 +93,7 @@ func _get_info():
 	var desc = "Fire rate: %s\nReload time: %s\nMagazine: %s\nAccuracy: %s"
 	desc = desc % [time_between_shot, reload_time, magazine, accuracy]
 	return super() + desc
+	
+func dublicate():
+	var new_item_info = WeaponFire.new(item_pattern, count, destroying, ammo_in_magazine)
+	return new_item_info

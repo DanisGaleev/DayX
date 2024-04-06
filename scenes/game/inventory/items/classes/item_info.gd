@@ -14,6 +14,7 @@ var destrouble: bool
 var destroying_value: float
 var destroying: float
 var animation: SpriteFrames
+var item_pattern: ItemPattern
 
 func _init(item_pattern=null, _count=1, _destroying=0):
 	if item_pattern:
@@ -31,6 +32,7 @@ func _init(item_pattern=null, _count=1, _destroying=0):
 		self.destroying_value = item_pattern.destroying_value
 		self.destroying = _destroying
 		self.animation = item_pattern.animation
+		self.item_pattern = item_pattern
 func _use(_args) -> void:
 	pass
 func destroy(args) -> void:
@@ -51,3 +53,6 @@ func _get_info():
 	desc = desc % [name, description, stackable, count, 
 		max_count, weight_per_one, weight_per_one * count, destrouble, destroying, destroying_value]
 	return desc
+
+func dublicate():
+	pass

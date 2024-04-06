@@ -43,3 +43,7 @@ func _get_info():
 	desc = desc % [slots_count, cold_resistance, armoring,
 		max_carry_weight]
 	return "%s" % super() + desc
+
+func dublicate():
+	var new_item_info = Dress.new(item_pattern, count, destroying)
+	return new_item_info
