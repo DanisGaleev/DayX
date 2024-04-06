@@ -1,8 +1,8 @@
 extends TextureRect
 
-var item
-
 @export var player: Player
+
+var item
 var inventory
 var equip
 var item_container
@@ -48,6 +48,7 @@ func add_item(item, item_container, count=item.count):
 						item.weight = count * item.weight_per_one
 						slot.upd()
 						player.weight += total_min_cnt * item.weight_per_one
+
 			if count > 0:
 				for slot in inventory:
 					var slot_item = slot.item
@@ -67,19 +68,21 @@ func add_item(item, item_container, count=item.count):
 							slot.upd()
 							player.weight += total_min_cnt * item.weight_per_one
 			item.count -= (was_count - count)
+
 	if equip_id != -1 and equip[equip_id].item == null:
 		equip[equip_id].item = item.dublicate()
 		item.count = 0
 		equip[equip_id].upd()
+
 	if item.count <= 0:
 		item_container.queue_free()
 		queue_free()
+
 	player.update_player_params()
 
 func _on_add_one_pressed():
 	add_item(item_container.item_info, item_container, 1)
 	player.item_detected.emit(player.item_near)
-
 
 func _on_add_all_pressed():
 	add_item(item_container.item_info ,item_container)

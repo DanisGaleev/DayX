@@ -12,7 +12,6 @@ func _on_in_trigger_body_entered(body):
 		$Out.visible = !$Out.visible
 		$Door.visible = !$Door.visible
 
-
 func _on_in_trigger_body_exited(body):
 	if body.name == "Player":
 		$Out.visible = !$Out.visible

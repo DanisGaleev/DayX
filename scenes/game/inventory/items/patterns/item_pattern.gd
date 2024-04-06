@@ -1,6 +1,6 @@
+class_name ItemPattern
 extends Resource
 
-class_name ItemPattern
 @export_category("General Params")
 @export var name : String
 @export_multiline var description

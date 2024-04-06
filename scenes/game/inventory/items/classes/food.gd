@@ -1,4 +1,5 @@
-class_name Food extends ItemInfo
+class_name Food
+extends ItemInfo
 
 var hunger: int
 var thirst: int
@@ -11,15 +12,16 @@ func _init(item_pattern=null, count=1, destroying=0):
 		self.thirst = item_pattern.thirst
 		self.health = item_pattern.health
 	
-func _use(_args): #eat or drink
-	var player = _args[0]
+func use(args): #eat or drink
+	var player = args[0]
 	player.hunger += self.hunger
 	player.thirst += self.thirst
 	player.health += self.health
 
-func _get_info():
+func get_info():
 	var desc = "Hunger reduction: %s\nThirst reduction: %s\nHealth increase: %s"
 	return super() + desc % [hunger, thirst, health]
+
 func dublicate():
 	var new_item_info = Food.new(item_pattern, count, destroying)
 	return new_item_info

@@ -13,5 +13,5 @@ enum DressType{
 	ARMOR,
 	SHIRT,
 	PANTS,
-	BACKPACK
+	BACKPACK,
 }

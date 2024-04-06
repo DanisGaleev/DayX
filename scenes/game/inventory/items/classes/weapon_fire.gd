@@ -1,6 +1,5 @@
-extends ItemInfo
-
 class_name WeaponFire
+extends ItemInfo
 
 var bullet = preload("res://scenes/game/small_scenes/Bullet.tscn")
 
@@ -10,15 +9,14 @@ var magazine: int
 var ammo_in_magazine: int
 var accuracy: float
 
-var speed
-var damage
-var damage_deviation
-var distance
+var speed: float
+var damage: float
+var damage_deviation: float
+var distance: float
 
-var delta_time_recharge = 0
-var delta_time_between = 0
+var delta_time_recharge = 0.0
+var delta_time_between = 0.0
 var can_shot = false
-
 var recharging: bool
 
 func _init(item_pattern=null, count=1, destroying=0, _ammo_in_magazine=0):
@@ -37,16 +35,16 @@ func equip(args): #equip
 	var slot = args[1]
 	if player.weapon_fire_1 == null:
 		player.weapon_fire_1 = self
-		player.inventory.equip[0].item = self
-		player.inventory.equip[0].upd()
+		player.inventory.equip[6].item = self
+		player.inventory.equip[6].upd()
 		slot.item = null
 		slot.upd()
-	elif args[0].weapon_fire_2 == null:
-		args[0].weapon_fire_2 = self
-		args[0].inventory.equip[1].item = self
-		args[0].inventory.equip[1].upd()
-		args[1].item = null
-		args[1].upd()
+	elif player.weapon_fire_2 == null:
+		player.weapon_fire_2 = self
+		player.inventory.equip[7].item = self
+		player.inventory.equip[7].upd()
+		slot.item = null
+		slot.upd()
 	if player.weapon_fire_1:
 		player.animations_dictionary["WeaponFire1Animation"].sprite_frames = animation
 	if player.weapon_fire_2:
@@ -69,7 +67,7 @@ func fire(args): #fire
 		await args[2].get_tree().create_timer(0.1).timeout
 		args[2].get_node("Player").noise_level = 0.0
 	
-func _update(delta):
+func update(delta):
 	if ammo_in_magazine <= 0:
 		can_shot = false
 	if recharging:
@@ -89,7 +87,7 @@ func recharge(inventory):
 			recharging = true
 			break
 			
-func _get_info():
+func get_info():
 	var desc = "Fire rate: %s\nReload time: %s\nMagazine: %s\nAccuracy: %s"
 	desc = desc % [time_between_shot, reload_time, magazine, accuracy]
 	return super() + desc

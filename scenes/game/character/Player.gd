@@ -1,13 +1,13 @@
+class_name Player
 extends Character
 
-class_name Player
-
-@onready var fire_position = $AttackZone/FirePosition
 var inventory: Inventory
 var last_items_list = {}
 var first_time_update = false
-
 var noise_level = 0.0
+
+@onready var fire_position = $AttackZone/FirePosition
+
 func _ready():
 	super()
 	inventory = get_parent().get_parent().get_node("GUI/CanvasLayer/Inv")
@@ -52,13 +52,14 @@ func _input(event):
 				state = State.Fire_attack_right
 			else:
 				state = State.Fire_attack_back
-	if event.is_action_pressed("attack"):
+
+	if event.is_action_pressed("attack") and not inventory.visible:
 		match(type_of_weapon):
 			WeaponType.NEAR_WEAPON:
 				if hand_weapon == null:
 					if delta_time_near >= wait_time:
 						delta_time_near = 0.0
-						_attack()
+						attack()
 						noise_level = 5.0
 						await get_tree().create_timer(0.1).timeout
 						noise_level = 0.0
@@ -70,34 +71,71 @@ func _input(event):
 			WeaponType.FIRE_WEAPON_2:
 				if weapon_fire_2 != null:
 					self.weapon_fire_2.fire([self.position.direction_to(get_global_mouse_position()), fire_position.global_position, get_parent(), 2])
-		for slt in inventory.equip:
-			slt.upd()
+		
+		for slot in inventory.equip:
+			slot.upd()
+	
 	if event.is_action_pressed("recharge"):
 		recharge(inventory)
+		
 	if event.is_action_pressed("sprint_run"):
 		is_using_stamina = true
 	if event.is_action_released("sprint_run"):
 		is_using_stamina = false
 
-func _attack():
-	if state < State.Run_forward or state > State.Run_right:
-		last_state = state
-		var min_dst = 9999
-		var angle = int(rad_to_deg(attack_zone.rotation) + 90)
-		if angle < -45 and angle > -135:
-			state = State.Near_attack_forward
-		elif (angle >= -180 and angle < -135) or (angle <= 180 and angle > 135):
-			state = State.Near_attack_left
-		elif (angle >= 0 and angle <= 45) or (angle >= -45 and angle <= 0):
-			state = State.Near_attack_right
-		else:
-			state = State.Near_attack_back
-		block = true
-		animation.play(animation_d[state])
+func _physics_process(delta):
+	choose_direction()
+	set_velocity(movement)
+	move_and_slide()
 
-	for body in entered_body:
-		if body is Character:
-			body.health -= dmg
+func upd(delta):
+	match(type_of_weapon):
+			WeaponType.NEAR_WEAPON:
+				if  state < State.Run_forward  or State.Near_attack_right < state:
+					var angle = round(rad_to_deg(last_direction.angle()))
+					if angle < -45 and angle > -135:
+						state = State.Idle_forward
+					elif (angle >= -180 and angle < -135) or (angle <= 180 and angle > 135):
+						state = State.Idle_left
+					elif (angle >= 0 and angle <= 45) or (angle >= -45 and angle <= 0):
+						state = State.Idle_right
+					else:
+						state = State.Idle_back
+				if hand_weapon == null:
+					delta_time_near += delta
+				else:
+					hand_weapon._update(delta)
+			WeaponType.FIRE_WEAPON_1:
+				if  state < State.Run_forward  or State.Run_right < state:
+					var angle = round(rad_to_deg(last_direction.angle()))
+					if angle < -45 and angle > -135:
+						state = State.Fire_attack_forward
+					elif (angle >= -180 and angle < -135) or (angle <= 180 and angle > 135):
+						state = State.Fire_attack_left
+					elif (angle >= 0 and angle <= 45) or (angle >= -45 and angle <= 0):
+						state = State.Fire_attack_right
+					else:
+						state = State.Fire_attack_back
+				if weapon_fire_1 != null:
+					weapon_fire_1._update(delta)
+			WeaponType.FIRE_WEAPON_2:
+				if  state < State.Run_forward  or State.Run_right < state:
+					var angle = round(rad_to_deg(last_direction.angle()))
+					if angle < -45 and angle > -135:
+						state = State.Fire_attack_forward
+					elif (angle >= -180 and angle < -135) or (angle <= 180 and angle > 135):
+						state = State.Fire_attack_left
+					elif (angle >= 0 and angle <= 45) or (angle >= -45 and angle <= 0):
+						state = State.Fire_attack_right
+					else:
+						state = State.Fire_attack_back
+				if weapon_fire_2 != null:
+					weapon_fire_2.update(delta)
+
+	rotate_attack_zone(self.position.direction_to(get_global_mouse_position()).angle())
+	for animation_name in animations_dictionary:
+			if animations_dictionary[animation_name].sprite_frames:
+				animations_dictionary[animation_name].play(animation_d[state])
 
 func choose_direction():
 	var is_action = false
@@ -135,58 +173,26 @@ func choose_direction():
 			state = State.Idle_right
 		else:
 			state = State.Idle_back
-func _upd(delta):
-	match(type_of_weapon):
-			WeaponType.NEAR_WEAPON:
-				if  state < State.Run_forward  or State.Near_attack_right < state :
-					var angle = round(rad_to_deg(last_direction.angle()))
-					if angle < -45 and angle > -135:
-						state = State.Idle_forward
-					elif (angle >= -180 and angle < -135) or (angle <= 180 and angle > 135):
-						state = State.Idle_left
-					elif (angle >= 0 and angle <= 45) or (angle >= -45 and angle <= 0):
-						state = State.Idle_right
-					else:
-						state = State.Idle_back
-				if hand_weapon == null:
-					delta_time_near += delta
-				else:
-					hand_weapon._update(delta)
-			WeaponType.FIRE_WEAPON_1:
-				if  state < State.Run_forward  or State.Run_right < state :
-					var angle = round(rad_to_deg(last_direction.angle()))
-					if angle < -45 and angle > -135:
-						state = State.Fire_attack_forward
-					elif (angle >= -180 and angle < -135) or (angle <= 180 and angle > 135):
-						state = State.Fire_attack_left
-					elif (angle >= 0 and angle <= 45) or (angle >= -45 and angle <= 0):
-						state = State.Fire_attack_right
-					else:
-						state = State.Fire_attack_back
-				if weapon_fire_1 != null:
-					weapon_fire_1._update(delta)
-			WeaponType.FIRE_WEAPON_2:
-				if  state < State.Run_forward  or State.Run_right < state :
-					var angle = round(rad_to_deg(last_direction.angle()))
-					if angle < -45 and angle > -135:
-						state = State.Fire_attack_forward
-					elif (angle >= -180 and angle < -135) or (angle <= 180 and angle > 135):
-						state = State.Fire_attack_left
-					elif (angle >= 0 and angle <= 45) or (angle >= -45 and angle <= 0):
-						state = State.Fire_attack_right
-					else:
-						state = State.Fire_attack_back
-				if weapon_fire_2 != null:
-					weapon_fire_2.update(delta)
-	rotate_attack_zone(self.position.direction_to(get_global_mouse_position()).angle())
-	for anm in animations_dictionary:
-			if animations_dictionary[anm].sprite_frames:
-				animations_dictionary[anm].play(animation_d[state])
-func _physics_process(delta):
-	choose_direction()
-	set_velocity(movement)
-	move_and_slide()
-	
+
+func attack():
+	if state < State.Run_forward or state > State.Run_right:
+		last_state = state
+		var angle = int(rad_to_deg(attack_zone.rotation) + 90)
+		if angle < -45 and angle > -135:
+			state = State.Near_attack_forward
+		elif (angle >= -180 and angle < -135) or (angle <= 180 and angle > 135):
+			state = State.Near_attack_left
+		elif (angle >= 0 and angle <= 45) or (angle >= -45 and angle <= 0):
+			state = State.Near_attack_right
+		else:
+			state = State.Near_attack_back
+		block = true
+		animation.play(animation_d[state])
+		
+		for body in entered_body:
+			if body is Character:
+				body.health -= dmg
+
 func update_player_params():
 	var equip = inventory.equip
 	hand_weapon = equip[4].item

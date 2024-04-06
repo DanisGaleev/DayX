@@ -1,11 +1,11 @@
 extends RigidBody2D
 
-@onready var alive_timer = $AliveTimer
-
 @export var speed:float
 @export var damage: int
 @export var distance: float
 @export var direction: Vector2
+
+@onready var alive_timer = $AliveTimer
 
 func _ready():
 	alive_timer.wait_time = distance / speed

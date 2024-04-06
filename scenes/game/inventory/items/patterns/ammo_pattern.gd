@@ -1,5 +1,5 @@
-extends ItemPattern
 class_name AmmoPattern
+extends ItemPattern
 
 @export_range(1, 100) var damage: float
 @export_range(200, 1000) var speed: float

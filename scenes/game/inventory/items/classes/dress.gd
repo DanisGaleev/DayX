@@ -5,7 +5,7 @@ var dress_type: Enums.DressType
 var slots_count: int
 var cold_resistance: int
 var armoring: int
-var max_carry_weight
+var max_carry_weight: float
 
 func _init(item_pattern=null, count=1, destroying=0):
 	super(item_pattern, count, 0)
@@ -38,7 +38,7 @@ func equip(args): #equip
 		args[0].cold_resistance += self.cold_resistance
 		args[0].max_weight += self.max_carry_weight
 
-func _get_info():
+func get_info():
 	var desc = "Number of slots: %s\nCold resistance: %s\nArmoring: %s\nCarry weight: %s"
 	desc = desc % [slots_count, cold_resistance, armoring,
 		max_carry_weight]

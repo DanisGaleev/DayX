@@ -2,6 +2,7 @@ extends Node2D
 
 @export_group("World")
 @export var nav_node_path: NodePath
+
 var zombie = preload("res://scenes/game/character/Zombie.tscn")
 
 func _ready():

@@ -6,8 +6,6 @@ var item_info: ItemInfo
 var items: Array
 
 func _ready():
-	seed(global_position.x + global_position.y - global_position.length() + global_position.angle())
-	randomize()
 	var dict: Dictionary
 	for i in arr:
 		var x = i.split(";")

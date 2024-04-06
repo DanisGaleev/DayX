@@ -33,8 +33,10 @@ func _init(item_pattern=null, _count=1, _destroying=0):
 		self.destroying = _destroying
 		self.animation = item_pattern.animation
 		self.item_pattern = item_pattern
-func _use(_args) -> void:
+
+func use(args) -> void:
 	pass
+
 func destroy(args) -> void:
 	if destrouble:
 		destroying += destroying_value
@@ -44,10 +46,10 @@ func destroy(args) -> void:
 		else:
 			args[0].weapon_fire_2 = null
 
-func _update(_delta):
+func update(delta):
 	pass
 	
-func _get_info():
+func get_info():
 	var desc = "Name: %s\nDescription: %s\nStackable: %s\nCount: %s\n"
 	desc += "Max count: %s\nWeight per one: %s\nWeight: %s\nDestrouble: %s\nDestroying: %s\nDestroying value: %s\n"
 	desc = desc % [name, description, stackable, count, 

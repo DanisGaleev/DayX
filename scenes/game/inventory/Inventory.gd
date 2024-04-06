@@ -1,12 +1,13 @@
-extends Control
 class_name Inventory
+extends Control
+
 var inventory = []
 var equip = []
+var player
 
 @onready var grid_inventory = $Inventory/InventoryGrid
 @onready var grid_equip = $EquipInv/Control
 @onready var item_on_ground = $ItemsList/VBoxContainer
-var player
 
 func _ready():
 	for cell in grid_inventory.get_children():
@@ -16,6 +17,7 @@ func _ready():
 		celll.player = player
 		equip.append(celll)
 	player.item_detected.connect(_on_update_items_menu)
+	
 func _input(event):
 	if event.is_action_pressed("inventory"):
 		visible = not visible
@@ -23,9 +25,9 @@ func _input(event):
 func _on_update_items_menu(item_near):
 	# clean items_menu
 	while item_on_ground.get_child_count() > 0:
-			var child = item_on_ground.get_child(0)
-			item_on_ground.remove_child(child)
-			child.queue_free()
+		var child = item_on_ground.get_child(0)
+		item_on_ground.remove_child(child)
+		child.queue_free()
 	
 	# add new items to items_menu
 	for item in item_near:
