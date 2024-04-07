@@ -16,8 +16,8 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("hand_weapon"):
 		type_of_weapon = WeaponType.NEAR_WEAPON
-		if hand_weapon:
-			delta_time_near = hand_weapon.wait_time
+		#if hand_weapon:
+			#delta_time_near = hand_weapon.wait_time
 		if state <= State.Idle_right or State.Near_attack_forward <= state:
 			var angle = round(rad_to_deg(last_direction.angle()))
 			if angle < -45 and angle > -135:
@@ -59,12 +59,13 @@ func _input(event):
 				if hand_weapon == null:
 					if delta_time_near >= wait_time:
 						delta_time_near = 0.0
-						attack()
+						attack_animation()
+						enemy_hit(['player', 'zombie'], dmg)
 						noise_level = 5.0
 						await get_tree().create_timer(0.1).timeout
 						noise_level = 0.0
 				else:
-					hand_weapon.hit([self])
+					hand_weapon.hit([self, ["player", "zombie"]])
 			WeaponType.FIRE_WEAPON_1:
 				if weapon_fire_1 != null:
 					self.weapon_fire_1.fire([self.position.direction_to(get_global_mouse_position()), fire_position.global_position, get_parent(), 1])
@@ -104,7 +105,7 @@ func upd(delta):
 				if hand_weapon == null:
 					delta_time_near += delta
 				else:
-					hand_weapon._update(delta)
+					hand_weapon.update(delta)
 			WeaponType.FIRE_WEAPON_1:
 				if  state < State.Run_forward  or State.Run_right < state:
 					var angle = round(rad_to_deg(last_direction.angle()))
@@ -117,7 +118,7 @@ func upd(delta):
 					else:
 						state = State.Fire_attack_back
 				if weapon_fire_1 != null:
-					weapon_fire_1._update(delta)
+					weapon_fire_1.update(delta)
 			WeaponType.FIRE_WEAPON_2:
 				if  state < State.Run_forward  or State.Run_right < state:
 					var angle = round(rad_to_deg(last_direction.angle()))
@@ -174,7 +175,7 @@ func choose_direction():
 		else:
 			state = State.Idle_back
 
-func attack():
+func attack_animation():
 	if state < State.Run_forward or state > State.Run_right:
 		last_state = state
 		var angle = int(rad_to_deg(attack_zone.rotation) + 90)
@@ -188,10 +189,6 @@ func attack():
 			state = State.Near_attack_back
 		block = true
 		animation.play(animation_d[state])
-		
-		for body in entered_body:
-			if body is Character:
-				body.health -= dmg
 
 func update_player_params():
 	var equip = inventory.equip
@@ -207,4 +204,23 @@ func update_player_params():
 			cold_resistance += equip[i].item.cold_resistance
 			max_weight += equip[i].item.max_carry_weight
 			weight += equip[i].item.weight_per_one
+	
+	if equip[0].item != null:
+		animations_dictionary["HelmetAnimation"].sprite_frames = equip[0].item.animation
+	if equip[1].item != null:
+		animations_dictionary["VestAnimation"].sprite_frames = equip[1].item.animation
+	if equip[2].item != null:
+		animations_dictionary["ShirtAnimation"].sprite_frames = equip[2].item.animation
+	if equip[3].item != null:
+		animations_dictionary["BagAnimation"].sprite_frames = equip[3].item.animation
+	if equip[4].item != null:
+		animations_dictionary["HandWeaponAnimation"].sprite_frames = equip[4].item.animation
+	if equip[5].item != null:
+		animations_dictionary["PantsAnimation"].sprite_frames = equip[5].item.animation
+	if equip[6].item != null:
+		animations_dictionary["Firearm1Animation"].sprite_frames = equip[6].item.animation
+	if equip[7].item != null:
+		animations_dictionary["Firearm2Animation"].sprite_frames = equip[7].item.animation
+	
+	
 

@@ -30,25 +30,25 @@ func _init(item_pattern=null, count=1, destroying=0, _ammo_in_magazine=0):
 		self.magazine = item_pattern.magazine
 		self.accuracy = item_pattern.accuracy
 
-func equip(args): #equip
-	var player = args[0]
-	var slot = args[1]
-	if player.weapon_fire_1 == null:
-		player.weapon_fire_1 = self
-		player.inventory.equip[6].item = self
-		player.inventory.equip[6].upd()
-		slot.item = null
-		slot.upd()
-	elif player.weapon_fire_2 == null:
-		player.weapon_fire_2 = self
-		player.inventory.equip[7].item = self
-		player.inventory.equip[7].upd()
-		slot.item = null
-		slot.upd()
-	if player.weapon_fire_1:
-		player.animations_dictionary["WeaponFire1Animation"].sprite_frames = animation
-	if player.weapon_fire_2:
-		player.animations_dictionary["WeaponFire2Animation"].sprite_frames = animation
+#func equip(args): #equip
+	#var player = args[0]
+	#var slot = args[1]
+	#if player.weapon_fire_1 == null:
+		#player.weapon_fire_1 = self
+		#player.inventory.equip[6].item = self
+		#player.inventory.equip[6].upd()
+		#slot.item = null
+		#slot.upd()
+	#elif player.weapon_fire_2 == null:
+		#player.weapon_fire_2 = self
+		#player.inventory.equip[7].item = self
+		#player.inventory.equip[7].upd()
+		#slot.item = null
+		#slot.upd()
+	#if player.weapon_fire_1:
+		#player.animations_dictionary["WeaponFire1Animation"].sprite_frames = animation
+	#if player.weapon_fire_2:
+		#player.animations_dictionary["WeaponFire2Animation"].sprite_frames = animation
 	
 func fire(args): #fire
 	if can_shot and ammo_in_magazine > 0 and delta_time_between >= time_between_shot:
@@ -82,7 +82,7 @@ func update(delta):
 func recharge(inventory):
 	for i in inventory.inventory:
 		if i.item != null and (i.item is Ammo) and (self.name in i.item.name_of_weapon):
-			i.item._use([inventory.player, i])
+			i.item.use([inventory.player, i])
 			i.upd()
 			recharging = true
 			break

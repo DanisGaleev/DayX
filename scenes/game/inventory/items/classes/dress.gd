@@ -15,28 +15,28 @@ func _init(item_pattern=null, count=1, destroying=0):
 		self.cold_resistance = item_pattern.cold_resistance
 		self.armoring = item_pattern.armoring
 		self.max_carry_weight = item_pattern.max_carry_weight
-	
-func equip(args): #equip
-	if args[0].inventory.equip[dress_type + 1].item == null:
-		match dress_type:
-			Enums.DressType.HEADDRESS:
-				args[0].animations_dictionary["HeaddressAnimation"].sprite_frames = animation 
-			Enums.DressType.ARMOR:
-				args[0].animations_dictionary["ArmorAnimation"].sprite_frames = animation 
-			Enums.DressType.SHIRT:
-				args[0].animations_dictionary["ShirtAnimation"].sprite_frames = animation 
-			Enums.DressType.PANTS:
-				args[0].animations_dictionary["PantsAnimation"].sprite_frames = animation 
-			Enums.DressType.BACKPACK:
-				args[0].animations_dictionary["BackpackAnimation"].sprite_frames = animation 
-		args[0].inventory.equip[dress_type + 1].item = self
-		args[0].inventory.equip[dress_type + 1].upd()
-		args[1].item = null
-		args[1].upd()
-
-		args[0].armoring += self.armoring
-		args[0].cold_resistance += self.cold_resistance
-		args[0].max_weight += self.max_carry_weight
+	#
+#func equip(args): #equip
+	#if args[0].inventory.equip[dress_type + 1].item == null:
+		#match dress_type:
+			#Enums.DressType.HEADDRESS:
+				#args[0].animations_dictionary["HeaddressAnimation"].sprite_frames = animation 
+			#Enums.DressType.ARMOR:
+				#args[0].animations_dictionary["ArmorAnimation"].sprite_frames = animation 
+			#Enums.DressType.SHIRT:
+				#args[0].animations_dictionary["ShirtAnimation"].sprite_frames = animation 
+			#Enums.DressType.PANTS:
+				#args[0].animations_dictionary["PantsAnimation"].sprite_frames = animation 
+			#Enums.DressType.BACKPACK:
+				#args[0].animations_dictionary["BackpackAnimation"].sprite_frames = animation 
+		#args[0].inventory.equip[dress_type + 1].item = self
+		#args[0].inventory.equip[dress_type + 1].upd()
+		#args[1].item = null
+		#args[1].upd()
+#
+		#args[0].armoring += self.armoring
+		#args[0].cold_resistance += self.cold_resistance
+		#args[0].max_weight += self.max_carry_weight
 
 func get_info():
 	var desc = "Number of slots: %s\nCold resistance: %s\nArmoring: %s\nCarry weight: %s"

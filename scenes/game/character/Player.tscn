@@ -353,13 +353,7 @@ shape = SubResource("43")
 [node name="FirePosition" type="Marker2D" parent="AttackZone" index="1"]
 position = Vector2(0, 19)
 
-[node name="WeaponFire1Animation" parent="Animations" index="0"]
-animation = &""
-
 [node name="PantsAnimation" parent="Animations" index="3"]
-animation = &""
-
-[node name="HeaddressAnimation" parent="Animations" index="7"]
 animation = &""
 
 [node name="CollisionShape2D" parent="ItemsTrigger" index="0"]

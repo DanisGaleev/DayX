@@ -38,7 +38,9 @@ func upd(delta):
 	choose_direction()
 	rotate_attack_zone(choose_goal())
 	if delta_time_near >= wait_time and len(entered_body) > 0:
-		attack()
+		delta_time_near = 0
+		attack_animation()
+		enemy_hit(['player'], dmg)
 
 func choose_goal() -> float:
 	if player != null:
@@ -71,8 +73,7 @@ func choose_direction():
 		else:
 			state = State.Idle_back
 
-func attack():
-	delta_time_near = 0
+func attack_animation():
 	last_state = state
 	var angle = int(rad_to_deg(attack_zone.rotation) + 90)
 	if angle < -45 and angle > -135:
@@ -85,10 +86,6 @@ func attack():
 		state = State.Near_attack_back
 	block = true
 	animation.play(animation_d[state])
-
-	for body in entered_body:
-		if body.name == "Player":
-			body.health -= dmg
 
 func calculate_noise_level() -> bool:
 	var dst = player.position.distance_to(position)

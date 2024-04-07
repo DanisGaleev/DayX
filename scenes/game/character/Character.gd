@@ -131,9 +131,14 @@ func update_stamina(delta):
 func rotate_attack_zone(angle) -> void:
 	attack_zone.rotation = angle - PI / 2
 	
-func attack() -> void:
+func attack_animation() -> void:
 	pass
 	
+func enemy_hit(enemy_groups: Array, damage: float) -> void:
+	for body in entered_body:
+		if intersect(body.get_groups(), enemy_groups):
+			body.health -= damage
+
 func is_died() -> bool:
 	return health <= 0
 	
@@ -156,7 +161,15 @@ func last_animation() -> void:
 	if block:
 		state = last_state
 		block = false
-		
+	
+func intersect(array1, array2):
+	var intersection = false
+	for item in array1:
+		if array2.has(item):
+			intersection = true
+			break
+	return intersection
+
 func _on_AttackZone_body_entered(body):
 	if body != self:
 		entered_body.append(body)

@@ -27,7 +27,6 @@ nav_node_path = NodePath("Map1")
 z_index = 1
 position = Vector2(335, 355)
 platform_floor_layers = 4294967295
-max_weight = 100
 
 [node name="ZombieSpawnerTimer" type="Timer" parent="World"]
 wait_time = 10.0
