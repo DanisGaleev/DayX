@@ -62,15 +62,16 @@ func add_item(item, item_container, count=item.count):
 							var total_min_cnt = min(diff, weight_diff)
 							slot_item.count = total_min_cnt
 							slot_item.weight = slot_item.count * slot_item.weight_per_one
-							count = count - total_min_cnt
+							count -= total_min_cnt
 							item.weight = count * item.weight_per_one
 							slot.item = slot_item
 							slot.upd()
 							player.weight += total_min_cnt * item.weight_per_one
 			item.count -= (was_count - count)
 
-	if equip_id != -1 and equip[equip_id].item == null:
+	if equip_id != -1 and equip[equip_id].item == null and item.weight <= player.max_weight - player.weight:
 		equip[equip_id].item = item.dublicate()
+		player.weight += item.weight
 		item.count = 0
 		equip[equip_id].upd()
 

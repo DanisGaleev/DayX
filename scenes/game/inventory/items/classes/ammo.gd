@@ -27,6 +27,8 @@ func use(args): #add ammo to magazine
 		weapon.distance = distance
 		self.count -= can_add
 		weapon.recharging = true
+		args[0].weight -= can_add * weight_per_one
+	
 	weapon = args[0].weapon_fire_2
 	if weapon != null and weapon.name in name_of_weapon:
 		var can_add = min(weapon.magazine - weapon.ammo_in_magazine, self.count)
@@ -37,6 +39,7 @@ func use(args): #add ammo to magazine
 		weapon.distance = distance
 		self.count -= can_add
 		weapon.recharging = true
+		args[0].weight -= can_add * weight_per_one
 	args[1].upd()
 
 func get_info():

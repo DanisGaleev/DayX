@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://bdgsu0t7ou4un"]
+
+[ext_resource type="PackedScene" uid="uid://rimysbs738as" path="res://scenes/game/maps/buildings/building.tscn" id="1_o67id"]
+[ext_resource type="Texture2D" uid="uid://cb423r0k3k35v" path="res://assets/images/map/building/b_military_barrack2_int-sheet0.png" id="2_5o728"]
+[ext_resource type="Texture2D" uid="uid://bw1lbdt0cv65i" path="res://assets/images/map/building/b_military_barrack2-sheet0.png" id="3_2mhap"]
+[ext_resource type="Texture2D" uid="uid://batmhuuofmagk" path="res://assets/images/map/building/doors.png" id="4_4awos"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xk3bt"]
+size = Vector2(117, 115)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_st5hn"]
+a = Vector2(-66, -42)
+b = Vector2(-66, 85)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_xshbv"]
+a = Vector2(-23, 85)
+b = Vector2(-66, 85)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_o0qd7"]
+a = Vector2(2, 85)
+b = Vector2(66, 85)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_53x6f"]
+a = Vector2(66, -42)
+b = Vector2(66, 85)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_iyj2s"]
+a = Vector2(66, -42)
+b = Vector2(-66, -42)
+
+[node name="SovietBarrak" instance=ExtResource("1_o67id")]
+dropable_items = Array[String](["ak74;0.2;WeaponFire;1"])
+
+[node name="Spawn" type="Marker2D" parent="ItemsSpawnPositions" index="0"]
+position = Vector2(14, 4)
+
+[node name="Spawn2" type="Marker2D" parent="ItemsSpawnPositions" index="1"]
+position = Vector2(-23, 22)
+
+[node name="Spawn3" type="Marker2D" parent="ItemsSpawnPositions" index="2"]
+position = Vector2(12, 58)
+
+[node name="CollisionShape2D" parent="InTrigger" index="0"]
+position = Vector2(-0.5, 22.5)
+shape = SubResource("RectangleShape2D_xk3bt")
+
+[node name="Navigation" parent="." index="2"]
+polygon = PackedVector2Array(-66, -42, -66, 85, 66, 85, 66, -42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body" index="0"]
+shape = SubResource("SegmentShape2D_st5hn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Body" index="1"]
+shape = SubResource("SegmentShape2D_xshbv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Body" index="2"]
+shape = SubResource("SegmentShape2D_o0qd7")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Body" index="3"]
+shape = SubResource("SegmentShape2D_53x6f")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Body" index="4"]
+shape = SubResource("SegmentShape2D_iyj2s")
+
+[node name="In" parent="." index="4"]
+position = Vector2(-67, -78)
+texture = ExtResource("2_5o728")
+centered = false
+
+[node name="Out" parent="." index="5"]
+position = Vector2(-74, -82)
+texture = ExtResource("3_2mhap")
+centered = false
+
+[node name="Door" parent="." index="6"]
+position = Vector2(-10, 68)
+texture = ExtResource("4_4awos")
+region_enabled = true
+region_rect = Rect2(235, 204, 19, 32)

@@ -5,44 +5,44 @@ class_name Character
 signal item_detected(item_near)
 signal attack_animation_finished
 
-enum Type {Zombie, Player}
+enum Type {ZOMBIE, PLAYER}
 enum WeaponType{NEAR_WEAPON, FIRE_WEAPON_1, FIRE_WEAPON_2}
 
 enum State {
-	Idle_forward,
-	Idle_back,
-	Idle_left,
-	Idle_right,
-	Run_forward,
-	Run_back,
-	Run_left,
-	Run_right,
-	Near_attack_forward,
-	Near_attack_back,
-	Near_attack_left,
-	Near_attack_right,
-	Fire_attack_forward,
-	Fire_attack_back,
-	Fire_attack_left,
-	Fire_attack_right,
+	IDLE_FORWARD,
+	IDLE_BACK,
+	IDLE_LEFT,
+	IDLE_RIGHT,
+	RUN_FORWARD,
+	RUN_BACK,
+	RUN_LEFT,
+	RUN_RIGHT,
+	NEAR_ATTACK_FORWARD,
+	NEAR_ATTACK_BACK,
+	NEAR_ATTACK_LEFT,
+	NEAR_ATTACK_RIGHT,
+	FIRE_ATTACK_FORWARD,
+	FIRE_ATTACK_BACK,
+	FIRE_ATTACK_LEFT,
+	FIRE_ATTACK_RIGHT,
 }
-var animation_d = {
-	State.Idle_forward : "idle_forward",
-	State.Run_forward : "run_forward",
-	State.Idle_back : "idle_back",
-	State.Run_back : "run_back",
-	State.Idle_left : "idle_left",
-	State.Run_left : "run_left",
-	State.Idle_right : "idle_right",
-	State.Run_right : "run_right",
-	State.Near_attack_back : "near_attack_back",
-	State.Near_attack_left : "near_attack_left",
-	State.Near_attack_right : "near_attack_right",
-	State.Near_attack_forward : "near_attack_forward",
-	State.Fire_attack_back : "fire_attack_back",
-	State.Fire_attack_left : "fire_attack_left",
-	State.Fire_attack_right : "fire_attack_right",
-	State.Fire_attack_forward : "fire_attack_forward",
+var animation_and_states = {
+	State.IDLE_FORWARD : "idle_forward",
+	State.RUN_FORWARD : "run_forward",
+	State.IDLE_BACK : "idle_back",
+	State.RUN_BACK : "run_back",
+	State.IDLE_LEFT : "idle_left",
+	State.RUN_LEFT : "run_left",
+	State.IDLE_RIGHT : "idle_right",
+	State.RUN_RIGHT : "run_right",
+	State.NEAR_ATTACK_BACK : "near_attack_back",
+	State.NEAR_ATTACK_LEFT : "near_attack_left",
+	State.NEAR_ATTACK_RIGHT : "near_attack_right",
+	State.NEAR_ATTACK_FORWARD : "near_attack_forward",
+	State.FIRE_ATTACK_BACK : "fire_attack_back",
+	State.FIRE_ATTACK_LEFT : "fire_attack_left",
+	State.FIRE_ATTACK_RIGHT : "fire_attack_right",
+	State.FIRE_ATTACK_FORWARD : "fire_attack_forward",
 }
 
 @export_category("Base params")
@@ -53,7 +53,7 @@ var animation_d = {
 @export var dmg = 10
 @export var armoring = 0
 @export var cold_resistance = 0
-@export var type = Type.Zombie
+@export var type = Type.ZOMBIE
 @export var max_weight = 100
 
 @export_category("Stamina params")
@@ -63,7 +63,7 @@ var animation_d = {
 @export var strint_speed_boost = 5
 
 @export_category("Other")
-@export var state = State.Idle_back
+@export var state = State.IDLE_BACK
 @export var playerble = false
 @export var angry_distance = 50
 @export var wait_time = 0.1
@@ -97,7 +97,7 @@ func _ready():
 	current_stamina = max_stamina
 	for anm in animations.get_children():
 		animations_dictionary[anm.name] = anm
-	animation.play(animation_d[state])
+	animation.play(animation_and_states[state])
 	animation.animation_finished.connect(last_animation)
 
 func _process(delta):
@@ -107,8 +107,8 @@ func _process(delta):
 	upd(delta)
 	update_stamina(delta)
 	delta_time_near += delta
-	if animation.animation != animation_d[state] and not block:
-		animation.play(animation_d[state])
+	if animation.animation != animation_and_states[state] and not block:
+		animation.play(animation_and_states[state])
 
 func upd(delta) -> void:
 	pass

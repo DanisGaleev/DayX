@@ -31,14 +31,15 @@ func _on_update_items_menu(item_near):
 	
 	# add new items to items_menu
 	for item in item_near:
-		var text_info = item.item_info.name + " "
-		if item.item_info.destrouble:
-			text_info += str(item.item_info.destroying * 100) + "%"
-		else:
-			text_info += str(item.item_info.count)
-		var list_item = load("res://scenes/game/inventory/list_item.tscn").instantiate()
-		list_item.texture = item.item_info.icon_inventory
-		list_item.player = player
-		list_item.item_container = item
-		list_item.get_child(0).text = text_info
-		item_on_ground.add_child(list_item)
+		if item.item_info != null:
+			var text_info = item.item_info.name + " "
+			if item.item_info.destrouble:
+				text_info += str(item.item_info.destroying * 100) + "%"
+			else:
+				text_info += str(item.item_info.count)
+			var list_item = load("res://scenes/game/inventory/list_item.tscn").instantiate()
+			list_item.texture = item.item_info.icon_inventory
+			list_item.player = player
+			list_item.item_container = item
+			list_item.get_child(0).text = text_info
+			item_on_ground.add_child(list_item)

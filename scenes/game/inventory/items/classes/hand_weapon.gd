@@ -34,7 +34,6 @@ func hit(args): #hit
 		args[0].noise_level = 3.0
 		await args[0].get_tree().create_timer(0.1).timeout
 		args[0].noise_level = 0.0
-		print("hand")
 
 func update(delta):
 	delta_time_between += delta

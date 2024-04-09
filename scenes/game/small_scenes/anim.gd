@@ -1,4 +1,4 @@
-extends  Node
+extends Node
 
 enum ANIMATION_TYPE{
 	WEAPON_NEAR,

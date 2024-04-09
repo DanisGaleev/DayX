@@ -3,11 +3,10 @@ extends Node2D
 @export_group("World")
 @export var nav_node_path: NodePath
 
-var zombie = preload("res://scenes/game/character/Zombie.tscn")
+var zombie = preload("res://scenes/game/character/zombie.tscn")
 
 func _ready():
 	randomize()
-
 
 func _on_ZombieSpawnerTimer_timeout():
 	var zombie_node = zombie.instantiate()

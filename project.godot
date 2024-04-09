@@ -30,6 +30,11 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="DayX"
 
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
 [editor_plugins]
 
 enabled=PackedStringArray()

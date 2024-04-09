@@ -1,7 +1,7 @@
 class_name WeaponFire
 extends ItemInfo
 
-var bullet = preload("res://scenes/game/small_scenes/Bullet.tscn")
+var bullet = preload("res://scenes/game/small_scenes/bullet.tscn")
 
 var time_between_shot: float
 var reload_time: float

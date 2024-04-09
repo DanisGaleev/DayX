@@ -53,39 +53,39 @@ func choose_direction():
 		movement = speed * global_position.direction_to(nav.get_next_path_position())#speed * position.direction_to(player.position)
 		var angle = round(rad_to_deg(movement.angle()))
 		if angle < -45 and angle > -135:
-			state = State.Run_forward
+			state = State.RUN_FORWARD
 		elif (angle >= -180 and angle < -135) or (angle <= 180 and angle > 135):
-			state = State.Run_left
+			state = State.RUN_LEFT
 		elif (angle >= 0 and angle <= 45) or (angle >= -45 and angle <= 0):
-			state = State.Run_right
+			state = State.RUN_RIGHT
 		else:
-			state = State.Run_back
+			state = State.RUN_BACK
 		view_angry_zone.rotation_degrees = angle
 		last_direction = movement
 	else:
 		var angle = round(rad_to_deg(last_direction.angle()))
 		if angle < -45 and angle > -135:
-			state = State.Idle_forward
+			state = State.IDLE_FORWARD
 		elif (angle >= -180 and angle < -135) or (angle <= 180 and angle > 135):
-			state = State.Idle_left
+			state = State.IDLE_LEFT
 		elif (angle >= 0 and angle <= 45) or (angle >= -45 and angle <= 0):
-			state = State.Idle_right
+			state = State.IDLE_RIGHT
 		else:
-			state = State.Idle_back
+			state = State.IDLE_BACK
 
 func attack_animation():
 	last_state = state
 	var angle = int(rad_to_deg(attack_zone.rotation) + 90)
 	if angle < -45 and angle > -135:
-		state = State.Near_attack_forward
+		state = State.NEAR_ATTACK_FORWARD
 	elif (angle >= -180 and angle < -135) or (angle <= 180 and angle > 135):
-		state = State.Near_attack_left
+		state = State.NEAR_ATTACK_LEFT
 	elif (angle >= 0 and angle <= 45) or (angle >= -45 and angle <= 0):
-		state = State.Near_attack_right
+		state = State.NEAR_ATTACK_RIGHT
 	else:
-		state = State.Near_attack_back
+		state = State.NEAR_ATTACK_BACK
 	block = true
-	animation.play(animation_d[state])
+	animation.play(animation_and_states[state])
 
 func calculate_noise_level() -> bool:
 	var dst = player.position.distance_to(position)

@@ -73,7 +73,7 @@ func _process(delta):
 					if swap_item.name == self.item.name and self.item.stackable: #check if can stack
 						var diff = swap_item.max_count - swap_item.count
 						if diff >= self.item.count: # check if can fetch
-							swap_item.count += diff #swap normalisation
+							swap_item.count += item.count #swap normalisation
 							inventory[swap_id].upd()
 							inventory[swap_id].set_position_by_id()
 
@@ -127,19 +127,19 @@ func _process(delta):
 				set_position_by_id()
 			else:
 				set_position_by_id(false)
-
-		player.hand_weapon = equip[2].item
-		player.weapon_fire_1 = equip[0].item
-		player.weapon_fire_2 = equip[1].item
-		player.armoring = 0
-		player.cold_resistance = 0
-		player.max_weight = 50
-
-		for i in range(0, 8):# item in equip and has dress params
-			if equip[i].item!=null and equip[i].item is Dress:
-				player.armoring += equip[i].item.armoring
-				player.cold_resistance += equip[i].item.cold_resistance
-				player.max_weight += equip[i].item.max_carry_weight
+		player.update_player_params()
+		#player.hand_weapon = equip[4].item
+		#player.weapon_fire_1 = equip[6].item
+		#player.weapon_fire_2 = equip[7].item
+		#player.armoring = 0
+		#player.cold_resistance = 0
+		#player.max_weight = 50
+#
+		#for i in range(0, 8):# item in equip and has dress params
+			#if equip[i].item != null and equip[i].item is Dress:
+				#player.armoring += equip[i].item.armoring
+				#player.cold_resistance += equip[i].item.cold_resistance
+				#player.max_weight += equip[i].item.max_carry_weight
 
 func is_empty() -> bool:
 	return self.item == null
@@ -225,9 +225,7 @@ func _on_Slot_gui_input(event: InputEvent):
 
 	if event.is_action_released("left_click") and dragging and item:
 		dragging = false
-	elif item and event.is_action("right_click") and item.type != Enums.ItemType.AMMO :#and (item is WeaponFire or item is HandWeapon):
-		self.item.equip([player, self])
-	elif item and event.is_action("right_click") and item.type == Enums.ItemType.AMMO :#and (item is WeaponFire or item is HandWeapon):
+	elif item and event.is_action("right_click"):#and (item is WeaponFire or item is HandWeapon):
 		item.use([player, self])
 
 func _on_info_mouse_entered():
