@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="FoodPattern" load_steps=6 format=3 uid="uid://bdw4midbx8bbn"]
+
+[ext_resource type="Texture2D" uid="uid://dt4fji2r6j5o1" path="res://assets/images/game/animation/items/items_inventory0.png" id="1_haq5t"]
+[ext_resource type="Texture2D" uid="uid://dkkce2jiej4oy" path="res://assets/images/game/animation/items/food/canned_bean.png" id="2_6eaph"]
+[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/food_pattern.gd" id="3_hwoi0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_paq55"]
+atlas = ExtResource("1_haq5t")
+region = Rect2(7, 2, 17, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ghye"]
+atlas = ExtResource("2_6eaph")
+region = Rect2(0, 0, 7, 8)
+
+[resource]
+script = ExtResource("3_hwoi0")
+hunger = -15
+thirst = -5
+health = 0
+name = "Canned bean"
+description = "Beans in a crumpled tin can."
+type = 0
+stackable = false
+count = 1
+max_count = 1
+weight_per_one = 0.0
+destroying = 0.0
+destrouble = false
+destroying_value = 0.001
+icon_inventory = SubResource("AtlasTexture_paq55")
+icon_world = SubResource("AtlasTexture_0ghye")

@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="FoodPattern" load_steps=6 format=3 uid="uid://drxlnstdaeh57"]
+
+[ext_resource type="Texture2D" uid="uid://cbpj75m4ytocr" path="res://assets/images/game/animation/items/items_inventory1.png" id="1_qnc2o"]
+[ext_resource type="Texture2D" uid="uid://v3n2rp7noybe" path="res://assets/images/game/animation/items/food/cooked_rabbit_meat.png" id="2_7f8y8"]
+[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/food_pattern.gd" id="3_fwnim"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lauj"]
+atlas = ExtResource("1_qnc2o")
+region = Rect2(229, 2, 23, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxlce"]
+atlas = ExtResource("2_7f8y8")
+region = Rect2(0, 0, 8, 9)
+
+[resource]
+script = ExtResource("3_fwnim")
+hunger = -35
+thirst = 6
+health = 15
+name = "Roast rabbit meat"
+description = "Juicy rabbit meat."
+type = 0
+stackable = false
+count = 1
+max_count = 1
+weight_per_one = 0.0
+destroying = 0.0
+destrouble = false
+destroying_value = 0.001
+icon_inventory = SubResource("AtlasTexture_2lauj")
+icon_world = SubResource("AtlasTexture_yxlce")

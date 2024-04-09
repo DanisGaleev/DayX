@@ -132,7 +132,8 @@ func upd(delta):
 						state = State.FIRE_ATTACK_BACK
 				if weapon_fire_2 != null:
 					weapon_fire_2.update(delta)
-
+	hunger_update(delta)
+	thirst_updare(delta)
 	rotate_attack_zone(self.position.direction_to(get_global_mouse_position()).angle())
 	for animation_name in animations_dictionary:
 			if animations_dictionary[animation_name].sprite_frames:
@@ -188,7 +189,8 @@ func attack_animation():
 		else:
 			state = State.NEAR_ATTACK_BACK
 		block = true
-		print_debug(animation_and_states[state])
+		animation.play(animation_and_states[state])
+
 
 func update_player_params():
 	var equip = inventory.equip

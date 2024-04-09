@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buxbvntxdfck4"
-path="res://.godot/imported/tactical_bacon-sheet0.png-f30af9629c909436ebe25895a984fe87.ctex"
+uid="uid://cse2x686lxxg2"
+path="res://.godot/imported/banana.png-9401aa8a4d717c009819409362cd2203.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/game/animation/items/food/tactical_bacon-sheet0.png"
-dest_files=["res://.godot/imported/tactical_bacon-sheet0.png-f30af9629c909436ebe25895a984fe87.ctex"]
+source_file="res://assets/images/game/animation/items/food/banana.png"
+dest_files=["res://.godot/imported/banana.png-9401aa8a4d717c009819409362cd2203.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

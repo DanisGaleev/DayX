@@ -25,6 +25,8 @@ func _physics_process(delta):
 	
 	var is_player_found = false
 	raycasts.rotation = last_direction.angle() - PI / 2
+	raycasts.global_position = global_position + Vector2(1, 0).rotated(raycasts.rotation + PI / 2) * 12
+	print(global_position, get_node("Shape2D").global_position, raycasts.global_position, raycasts.rotation_degrees)
 	for ray in raycasts.get_children():
 		if ray.get_collider() and ray.get_collider().name == "Player":
 			how_triggered = Triggered.VIEW
@@ -93,7 +95,7 @@ func calculate_noise_level() -> bool:
 	
 func _on_PathFind_timeout():
 	if how_triggered == Triggered.VIEW:
-		nav.target_position = player.position
+		nav.target_position = player.position - position.direction_to(player.position) * 16
 	elif calculate_noise_level():
 		var x = randf_range(player.position.x - 20, player.position.x - 20)
 		var y = randf_range(player.position.y - 20, player.position.y - 20)

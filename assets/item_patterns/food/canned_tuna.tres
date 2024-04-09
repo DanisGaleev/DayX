@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="FoodPattern" load_steps=6 format=3 uid="uid://wdijwfp2jtte"]
+
+[ext_resource type="Texture2D" uid="uid://dt4fji2r6j5o1" path="res://assets/images/game/animation/items/items_inventory0.png" id="1_l32ly"]
+[ext_resource type="Texture2D" uid="uid://bnbbougosxt0g" path="res://assets/images/game/animation/items/food/canned_tuna.png" id="2_q7cvb"]
+[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/food_pattern.gd" id="3_mcx6f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sx38"]
+atlas = ExtResource("1_l32ly")
+region = Rect2(32, 7, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fietq"]
+atlas = ExtResource("2_q7cvb")
+region = Rect2(0, 0, 8, 8)
+
+[resource]
+script = ExtResource("3_mcx6f")
+hunger = -25
+thirst = 5
+health = 0
+name = "Canned tuna"
+description = "Tuna in a crumpled package."
+type = 0
+stackable = false
+count = 1
+max_count = 1
+weight_per_one = 0.0
+destroying = 0.0
+destrouble = false
+destroying_value = 0.001
+icon_inventory = SubResource("AtlasTexture_0sx38")
+icon_world = SubResource("AtlasTexture_fietq")

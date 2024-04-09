@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="FoodPattern" load_steps=6 format=3 uid="uid://doj1ss47mtuyd"]
+
+[ext_resource type="Texture2D" uid="uid://cbpj75m4ytocr" path="res://assets/images/game/animation/items/items_inventory1.png" id="1_dwwqa"]
+[ext_resource type="Texture2D" uid="uid://fo620ymvls63" path="res://assets/images/game/animation/items/food/bilberry.png" id="2_akrv3"]
+[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/food_pattern.gd" id="3_ow05j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tut1y"]
+atlas = ExtResource("1_dwwqa")
+region = Rect2(37, 40, 22, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gf3v8"]
+atlas = ExtResource("2_akrv3")
+region = Rect2(0, 0, 9, 7)
+
+[resource]
+script = ExtResource("3_ow05j")
+hunger = -7
+thirst = -7
+health = 0
+name = "Billibery"
+description = "Bilberry."
+type = 0
+stackable = false
+count = 1
+max_count = 1
+weight_per_one = 0.0
+destroying = 0.0
+destrouble = false
+destroying_value = 0.001
+icon_inventory = SubResource("AtlasTexture_tut1y")
+icon_world = SubResource("AtlasTexture_gf3v8")

@@ -50,6 +50,6 @@ func get_info():
 		desc += "    " + nm + '\n'
 	return super() + desc
 
-func duplicate():
+func dublicate():
 	var new_item_info = Ammo.new(item_pattern, count, destroying)
 	return new_item_info

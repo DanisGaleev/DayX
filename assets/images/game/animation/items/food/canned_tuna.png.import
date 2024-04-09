@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bliijd3l222g5"
-path="res://.godot/imported/tactical_bacon-sheet0.png-6a0d4d899458523c75ac06810076137d.ctex"
+uid="uid://bnbbougosxt0g"
+path="res://.godot/imported/canned_tuna.png-7b809718d9651896f499e4ad082d02d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/tactical_bacon-sheet0.png"
-dest_files=["res://.godot/imported/tactical_bacon-sheet0.png-6a0d4d899458523c75ac06810076137d.ctex"]
+source_file="res://assets/images/game/animation/items/food/canned_tuna.png"
+dest_files=["res://.godot/imported/canned_tuna.png-7b809718d9651896f499e4ad082d02d4.ctex"]
 
 [params]
 

@@ -5,6 +5,7 @@ extends Sprite2D
 var item_info: ItemInfo
 var items: Array
 
+
 func _ready():
 	var dict: Dictionary
 	for i in arr:

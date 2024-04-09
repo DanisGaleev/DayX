@@ -29,6 +29,7 @@ a = Vector2(114, 144)
 b = Vector2(114, 20)
 
 [node name="CityHouse0" instance=ExtResource("1_foqqw")]
+dropable_items = Array[String](["jeans;0.1;Dress;pants;1", "apple;0.2;Food;1", "banana;0.1;Food;1", "canned_tuna;0.1;Food;1", "canned_bean;0.1;Food;1", "12cal;0.1;Ammo;7", "22lr;0.1;Ammo;22", "bag;0.1;Dress;backpack;1", "civilian_tent;0.1;Dress;backpack;1"])
 
 [node name="Spawn" type="Marker2D" parent="ItemsSpawnPositions" index="0" groups=["spawn"]]
 position = Vector2(-69, 87)

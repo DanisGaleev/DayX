@@ -54,7 +54,7 @@ func add_item(item, item_container, count=item.count):
 					var slot_item = slot.item
 					if count > 0:
 						if slot_item == null:
-							slot_item = item.duplicate()
+							slot_item = item.dublicate()
 							var diff = min(count, item.max_count)# минимальное количество по кол-ву айтемов
 							var weight_diff = diff
 							if item.weight_per_one != 0:

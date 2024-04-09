@@ -2,13 +2,15 @@
 
 [ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/food_pattern.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dt4fji2r6j5o1" path="res://assets/images/game/animation/items/items_inventory0.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://buxbvntxdfck4" path="res://assets/images/game/animation/items/food/tactical_bacon-sheet0.png" id="3"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_70yhi"]
+[ext_resource type="Texture2D" uid="uid://c0l1sdt33r1i3" path="res://assets/images/game/animation/items/food/tactical_bacon.png" id="2_s3ipw"]
 
 [sub_resource type="AtlasTexture" id="1"]
 atlas = ExtResource("2")
 region = Rect2(71, 2, 17, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j873f"]
+atlas = ExtResource("2_s3ipw")
+region = Rect2(0, 0, 7, 8)
 
 [resource]
 script = ExtResource("1")
@@ -26,5 +28,4 @@ destroying = 0.0
 destrouble = false
 destroying_value = 0.0
 icon_inventory = SubResource("1")
-icon_world = ExtResource("3")
-animation = SubResource("SpriteFrames_70yhi")
+icon_world = SubResource("AtlasTexture_j873f")

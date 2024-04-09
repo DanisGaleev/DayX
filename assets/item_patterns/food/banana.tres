@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="FoodPattern" load_steps=6 format=3 uid="uid://cx2ps6la7ya67"]
+
+[ext_resource type="Texture2D" uid="uid://dt4fji2r6j5o1" path="res://assets/images/game/animation/items/items_inventory0.png" id="1_e3sgv"]
+[ext_resource type="Texture2D" uid="uid://cse2x686lxxg2" path="res://assets/images/game/animation/items/food/banana.png" id="2_8hvag"]
+[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/food_pattern.gd" id="3_nsqba"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbtf3"]
+atlas = ExtResource("1_e3sgv")
+region = Rect2(199, 2, 18, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk7e2"]
+atlas = ExtResource("2_8hvag")
+region = Rect2(0, 0, 9, 5)
+
+[resource]
+script = ExtResource("3_nsqba")
+hunger = -9
+thirst = -4
+health = 0
+name = "Banana"
+description = "Banana."
+type = 0
+stackable = false
+count = 1
+max_count = 1
+weight_per_one = 0.0
+destroying = 0.0
+destrouble = false
+destroying_value = 0.001
+icon_inventory = SubResource("AtlasTexture_tbtf3")
+icon_world = SubResource("AtlasTexture_hk7e2")

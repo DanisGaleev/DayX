@@ -48,7 +48,9 @@ var animation_and_states = {
 @export_category("Base params")
 @export var health = 100
 @export var hunger = 20
+@export var hunger_increase_speed = 1
 @export var thirst = 20
+@export var thirst_increase_speed = 1
 @export var speed = 10
 @export var dmg = 10
 @export var armoring = 0
@@ -153,9 +155,16 @@ func recharge(inventory) -> void:
 
 func regenerate(delta) -> void:
 	regeneration_time += delta
-	if regeneration_time >= regeneration_delta_time and health <= 100:
+	if thirst != 100 and hunger != 100 and \
+		regeneration_time >= regeneration_delta_time and health <= 100:
 		regeneration_time = 0
 		health += min(regeneration_value, 100 - health)
+
+func hunger_update(delta) -> void:
+	hunger += min(delta * hunger_increase_speed, 100 - hunger)
+
+func thirst_updare(delta):
+	thirst += min(delta * thirst_increase_speed, 100 - thirst)
 
 func last_animation() -> void:
 	if block:

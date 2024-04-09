@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="FoodPattern" load_steps=6 format=3 uid="uid://0rruanibvgte"]
+
+[ext_resource type="Texture2D" uid="uid://dt4fji2r6j5o1" path="res://assets/images/game/animation/items/items_inventory0.png" id="1_dr1cu"]
+[ext_resource type="Texture2D" uid="uid://bew4prwf1km7k" path="res://assets/images/game/animation/items/food/apple.png" id="2_l33hk"]
+[ext_resource type="Script" path="res://scenes/game/inventory/items/patterns/food_pattern.gd" id="3_cqgrs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu04h"]
+atlas = ExtResource("1_dr1cu")
+region = Rect2(167, 6, 16, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4atgx"]
+atlas = ExtResource("2_l33hk")
+region = Rect2(0, 0, 7, 6)
+
+[resource]
+script = ExtResource("3_cqgrs")
+hunger = -10
+thirst = -4
+health = 0
+name = "Apple"
+description = "Red ripe apple."
+type = 0
+stackable = false
+count = 1
+max_count = 1
+weight_per_one = 0.2
+destroying = 0.0
+destrouble = false
+destroying_value = 0.001
+icon_inventory = SubResource("AtlasTexture_cu04h")
+icon_world = SubResource("AtlasTexture_4atgx")
