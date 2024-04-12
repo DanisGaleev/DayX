@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cfv8eejpfgyq" path="res://scenes/game/inventory/inventory.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://dl1xi2a2hp2ae" path="res://scenes/game/small_scenes/player_health_bar.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://dbbmmiyxsjlsj" path="res://scenes/game/character/zombie.tscn" id="5_f527r"]
-[ext_resource type="PackedScene" uid="uid://s77kho4hi6fn" path="res://scenes/game/maps/map_1.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://brrt2pgk6xo4h" path="res://scenes/game/maps/map_1.tscn" id="6"]
 [ext_resource type="Script" path="res://scenes/game/game/world.gd" id="7"]
 [ext_resource type="Script" path="res://scenes/game/game/gui.gd" id="8"]
 [ext_resource type="PackedScene" uid="uid://xkn36x4g1uxr" path="res://scenes/game/small_scenes/player_hunger_bar.tscn" id="8_jqs2x"]
@@ -19,23 +19,19 @@ font_size = 12
 
 [node name="World" type="Node2D" parent="."]
 script = ExtResource("7")
-nav_node_path = NodePath("Map1")
 
 [node name="Map1" parent="World" instance=ExtResource("6")]
 
 [node name="Player" parent="World" instance=ExtResource("2")]
 z_index = 1
-position = Vector2(335, 355)
+position = Vector2(1716, 2117)
 platform_floor_layers = 4294967295
 
 [node name="ZombieSpawnerTimer" type="Timer" parent="World"]
 wait_time = 10.0
 
-[node name="TileMap" type="TileMap" parent="World"]
-format = 2
-
 [node name="Zombie" parent="World" instance=ExtResource("5_f527r")]
-position = Vector2(113, 120)
+position = Vector2(-403, 1469)
 platform_floor_layers = 4294967295
 navmap_path = NodePath("../Map1")
 

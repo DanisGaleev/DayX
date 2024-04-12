@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://bdgsu0t7ou4un"]
 
 [ext_resource type="PackedScene" uid="uid://rimysbs738as" path="res://scenes/game/maps/buildings/building.tscn" id="1_o67id"]
-[ext_resource type="Texture2D" uid="uid://cb423r0k3k35v" path="res://assets/images/map/building/b_military_barrack2_int-sheet0.png" id="2_5o728"]
-[ext_resource type="Texture2D" uid="uid://bw1lbdt0cv65i" path="res://assets/images/map/building/b_military_barrack2-sheet0.png" id="3_2mhap"]
+[ext_resource type="Texture2D" uid="uid://cb423r0k3k35v" path="res://assets/images/map/building/soviet_barrak_in.png" id="2_5o728"]
+[ext_resource type="Texture2D" uid="uid://bw1lbdt0cv65i" path="res://assets/images/map/building/soviet_barrak_out.png" id="3_2mhap"]
 [ext_resource type="Texture2D" uid="uid://batmhuuofmagk" path="res://assets/images/map/building/doors.png" id="4_4awos"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xk3bt"]

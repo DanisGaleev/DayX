@@ -26,7 +26,6 @@ func _physics_process(delta):
 	var is_player_found = false
 	raycasts.rotation = last_direction.angle() - PI / 2
 	raycasts.global_position = global_position + Vector2(1, 0).rotated(raycasts.rotation + PI / 2) * 12
-	print(global_position, get_node("Shape2D").global_position, raycasts.global_position, raycasts.rotation_degrees)
 	for ray in raycasts.get_children():
 		if ray.get_collider() and ray.get_collider().name == "Player":
 			how_triggered = Triggered.VIEW

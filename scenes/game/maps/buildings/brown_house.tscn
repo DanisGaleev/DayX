@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://bah3r7mduyvxl"]
 
 [ext_resource type="PackedScene" uid="uid://rimysbs738as" path="res://scenes/game/maps/buildings/building.tscn" id="1"]
-[ext_resource type="Texture2D" uid="uid://d142jeqpw75j0" path="res://assets/images/map/building/b_village_brown_int-sheet0.png" id="2_bcas7"]
-[ext_resource type="Texture2D" uid="uid://cy0qbll4oi6ad" path="res://assets/images/map/building/b_village_brown-sheet0.png" id="3_5f6ko"]
+[ext_resource type="Texture2D" uid="uid://d142jeqpw75j0" path="res://assets/images/map/building/brown_house_in.png" id="2_bcas7"]
+[ext_resource type="Texture2D" uid="uid://cy0qbll4oi6ad" path="res://assets/images/map/building/brown_house_out.png" id="3_3qvlx"]
 [ext_resource type="Texture2D" uid="uid://batmhuuofmagk" path="res://assets/images/map/building/doors.png" id="4_cxpij"]
 
 [sub_resource type="RectangleShape2D" id="6"]
@@ -41,6 +41,8 @@ position = Vector2(-1, 17)
 shape = SubResource("6")
 
 [node name="Navigation" parent="." index="2"]
+position = Vector2(0, 17.5)
+scale = Vector2(1, 0.698276)
 polygon = PackedVector2Array(-80, -58, 80, -58, 80, 58, -80, 58)
 
 [node name="Body" parent="." index="3"]
@@ -66,7 +68,7 @@ texture = ExtResource("2_bcas7")
 
 [node name="Out" parent="." index="5"]
 position = Vector2(-1, -19)
-texture = ExtResource("3_5f6ko")
+texture = ExtResource("3_3qvlx")
 
 [node name="Door" parent="." index="6"]
 position = Vector2(62, 41)

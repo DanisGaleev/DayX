@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bsrsd1p16blsl"]
 
 [ext_resource type="PackedScene" uid="uid://cfunwgy3oe1gk" path="res://scenes/game/maps/obtacles/obtacle.tscn" id="1_j3bdi"]
-[ext_resource type="Texture2D" uid="uid://brdne3givnbom" path="res://assets/images/map/ground_enviroment_tilemap.png" id="2_yl5el"]
+[ext_resource type="Texture2D" uid="uid://brdne3givnbom" path="res://assets/images/map/ground_enviroment.png" id="2_yl5el"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_47y37"]
 

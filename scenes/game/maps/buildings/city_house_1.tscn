@@ -1,76 +1,106 @@
-[gd_scene load_steps=11 format=3 uid="uid://cdi7srespeqgb"]
+[gd_scene load_steps=17 format=3 uid="uid://cjivr2pdo0osx"]
 
-[ext_resource type="PackedScene" uid="uid://rimysbs738as" path="res://scenes/game/maps/buildings/building.tscn" id="1_u55jg"]
-[ext_resource type="Texture2D" uid="uid://dn0yy758us4ri" path="res://assets/images/map/building/city_1_in.png" id="2_014w4"]
-[ext_resource type="Texture2D" uid="uid://c4peh6k3s60pj" path="res://assets/images/map/building/city_1_out.png" id="3_aau2f"]
-[ext_resource type="Texture2D" uid="uid://batmhuuofmagk" path="res://assets/images/map/building/doors.png" id="4_h4uac"]
+[ext_resource type="PackedScene" uid="uid://rimysbs738as" path="res://scenes/game/maps/buildings/building.tscn" id="1_8bdyh"]
+[ext_resource type="Texture2D" uid="uid://cooig2fd6y3qb" path="res://assets/images/map/building/city_1_in.png" id="2_hp2yh"]
+[ext_resource type="Texture2D" uid="uid://7gthk2knj2iq" path="res://assets/images/map/building/city_1_out.png" id="3_x4ki5"]
+[ext_resource type="Texture2D" uid="uid://batmhuuofmagk" path="res://assets/images/map/building/doors.png" id="4_s6tkk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_43dve"]
-size = Vector2(210, 112)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ie865"]
+size = Vector2(215, 114)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_j10je"]
-a = Vector2(1, 41)
-b = Vector2(227, 41)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_s8bfs"]
+a = Vector2(1, 47)
+b = Vector2(1, 173)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_lqiss"]
-a = Vector2(1, 41)
-b = Vector2(1, 170)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_oujqi"]
+a = Vector2(85.5, 173)
+b = Vector2(1, 173)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_esss7"]
-a = Vector2(174, 170)
-b = Vector2(1, 170)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_pp8d7"]
+a = Vector2(85.5, 173)
+b = Vector2(85.5, 101)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_eukgg"]
-a = Vector2(205, 170)
-b = Vector2(227, 170)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_17kqc"]
+a = Vector2(85.5, 173)
+b = Vector2(97, 173)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_xxmvt"]
-a = Vector2(227, 41)
-b = Vector2(227, 170)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_dhcue"]
+a = Vector2(141.5, 173)
+b = Vector2(130, 173)
 
-[node name="CityHouse1" instance=ExtResource("1_u55jg")]
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_uukns"]
+a = Vector2(141.5, 173)
+b = Vector2(141.5, 158)
 
-[node name="Spawn" type="Marker2D" parent="ItemsSpawnPositions" index="0" groups=["spawn"]]
-position = Vector2(186, 107)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_evsag"]
+a = Vector2(141.5, 173)
+b = Vector2(226, 173)
 
-[node name="InTrigger" parent="." index="1"]
-visible = false
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_fb57y"]
+a = Vector2(226, 47)
+b = Vector2(226, 173)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_gs8gs"]
+a = Vector2(226, 47)
+b = Vector2(1, 47)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_tdm2n"]
+a = Vector2(226, 125)
+b = Vector2(138, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4t0r2"]
+atlas = ExtResource("4_s6tkk")
+region = Rect2(47, 145, 27, 34)
+
+[node name="CityHouse2" instance=ExtResource("1_8bdyh")]
 
 [node name="CollisionShape2D" parent="InTrigger" index="0"]
-position = Vector2(111, 105)
-shape = SubResource("RectangleShape2D_43dve")
+position = Vector2(113.5, 111)
+shape = SubResource("RectangleShape2D_ie865")
 
 [node name="Navigation" parent="." index="2"]
-position = Vector2(-1, 0)
-polygon = PackedVector2Array(2, 1, 228, 1, 228, 170, 2, 170)
+polygon = PackedVector2Array(1, 47, 226, 47, 226, 173, 1, 173)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body" index="0"]
-shape = SubResource("SegmentShape2D_j10je")
+shape = SubResource("SegmentShape2D_s8bfs")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Body" index="1"]
-shape = SubResource("SegmentShape2D_lqiss")
+shape = SubResource("SegmentShape2D_oujqi")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Body" index="2"]
-shape = SubResource("SegmentShape2D_esss7")
+shape = SubResource("SegmentShape2D_pp8d7")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Body" index="3"]
-shape = SubResource("SegmentShape2D_eukgg")
+shape = SubResource("SegmentShape2D_17kqc")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Body" index="4"]
-shape = SubResource("SegmentShape2D_xxmvt")
+shape = SubResource("SegmentShape2D_dhcue")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Body" index="5"]
+shape = SubResource("SegmentShape2D_uukns")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Body" index="6"]
+shape = SubResource("SegmentShape2D_evsag")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Body" index="7"]
+shape = SubResource("SegmentShape2D_fb57y")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Body" index="8"]
+shape = SubResource("SegmentShape2D_gs8gs")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Body" index="9"]
+shape = SubResource("SegmentShape2D_tdm2n")
 
 [node name="In" parent="." index="4"]
-texture = ExtResource("2_014w4")
+texture = ExtResource("2_hp2yh")
 centered = false
 
 [node name="Out" parent="." index="5"]
-position = Vector2(0, -120)
-texture = ExtResource("3_aau2f")
+position = Vector2(-1, -116)
+texture = ExtResource("3_x4ki5")
 centered = false
 
 [node name="Door" parent="." index="6"]
-position = Vector2(175, 130)
-texture = ExtResource("4_h4uac")
+position = Vector2(100, 139)
+texture = SubResource("AtlasTexture_4t0r2")
 centered = false
-region_enabled = true
-region_rect = Rect2(87, 129, 27, 38)

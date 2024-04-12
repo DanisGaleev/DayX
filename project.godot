@@ -19,6 +19,10 @@ config/icon="res://icon.png"
 
 Enums="*res://scenes/game/inventory/items/classes/item_type.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/viewport_width=640

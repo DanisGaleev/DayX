@@ -1,15 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dc15g1nkqoyjo"]
+[gd_scene load_steps=2 format=3 uid="uid://bbry6cvlfw0k4"]
 
-[ext_resource type="TileSet" uid="uid://cdsvfclervmmp" path="res://assets/images/map/MapTileSet.tres" id="1"]
+[ext_resource type="TileSet" uid="uid://c845ciln8n7sg" path="res://assets/images/map/map.tres" id="1_gijj8"]
 
 [node name="Map" type="Node2D"]
 
-[node name="Ground" type="TileMap" parent="."]
-tile_set = ExtResource("1")
-format = 2
-
 [node name="NavigationMap" type="NavigationRegion2D" parent="."]
 
-[node name="Buildings" type="Node2D" parent="NavigationMap"]
+[node name="TileMap" type="TileMap" parent="NavigationMap"]
+texture_filter = 1
+tile_set = ExtResource("1_gijj8")
+format = 2
 
 [node name="Obtacles" type="Node2D" parent="NavigationMap"]
+
+[node name="Buildings" type="Node2D" parent="NavigationMap"]

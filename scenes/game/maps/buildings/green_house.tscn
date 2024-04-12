@@ -1,0 +1,99 @@
+[gd_scene load_steps=16 format=3 uid="uid://c1gdc57op7mdm"]
+
+[ext_resource type="PackedScene" uid="uid://rimysbs738as" path="res://scenes/game/maps/buildings/building.tscn" id="1_37qxb"]
+[ext_resource type="Texture2D" uid="uid://nd7p17xehyad" path="res://assets/images/map/building/green_house_in.png" id="2_b6vng"]
+[ext_resource type="Texture2D" uid="uid://djyii5pfbh11r" path="res://assets/images/map/building/green_house_out.png" id="3_fnl6j"]
+[ext_resource type="Texture2D" uid="uid://batmhuuofmagk" path="res://assets/images/map/building/doors.png" id="4_beiwu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbx7o"]
+size = Vector2(115, 72)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_6qf6q"]
+a = Vector2(1, 40)
+b = Vector2(1, 120)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_pnc86"]
+a = Vector2(39, 120)
+b = Vector2(1, 120)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1jmaw"]
+a = Vector2(39, 127)
+b = Vector2(39, 120)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_2l5sr"]
+a = Vector2(51, 127)
+b = Vector2(39, 127)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_k0jf4"]
+a = Vector2(75, 127)
+b = Vector2(89, 127)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_d4ahq"]
+a = Vector2(89, 120)
+b = Vector2(89, 127)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_bfnux"]
+a = Vector2(89, 120)
+b = Vector2(126, 120)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_s351m"]
+a = Vector2(126, 40)
+b = Vector2(126, 120)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_yjhe7"]
+a = Vector2(126, 40)
+b = Vector2(1, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myxps"]
+atlas = ExtResource("4_beiwu")
+region = Rect2(47, 183, 18, 33)
+
+[node name="GreenHouse" instance=ExtResource("1_37qxb")]
+
+[node name="CollisionShape2D" parent="InTrigger" index="0"]
+position = Vector2(63.5, 81)
+shape = SubResource("RectangleShape2D_gbx7o")
+
+[node name="Navigation" parent="." index="2"]
+polygon = PackedVector2Array(1, 40, 126, 40, 126, 120, 89, 120, 89, 127, 39, 127, 39, 120, 1, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body" index="0"]
+shape = SubResource("SegmentShape2D_6qf6q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Body" index="1"]
+shape = SubResource("SegmentShape2D_pnc86")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Body" index="2"]
+shape = SubResource("SegmentShape2D_1jmaw")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Body" index="3"]
+shape = SubResource("SegmentShape2D_2l5sr")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Body" index="4"]
+shape = SubResource("SegmentShape2D_k0jf4")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Body" index="5"]
+shape = SubResource("SegmentShape2D_d4ahq")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Body" index="6"]
+shape = SubResource("SegmentShape2D_bfnux")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Body" index="7"]
+shape = SubResource("SegmentShape2D_s351m")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Body" index="8"]
+shape = SubResource("SegmentShape2D_yjhe7")
+
+[node name="In" parent="." index="4"]
+texture = ExtResource("2_b6vng")
+centered = false
+
+[node name="Out" parent="." index="5"]
+position = Vector2(-5, -4)
+texture = ExtResource("3_fnl6j")
+centered = false
+
+[node name="Door" parent="." index="6"]
+position = Vector2(55, 92)
+texture = SubResource("AtlasTexture_myxps")
+centered = false
