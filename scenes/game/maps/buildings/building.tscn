@@ -22,12 +22,13 @@ collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_yk5q5")
 
 [node name="In" type="Sprite2D" parent="."]
-
-[node name="Out" type="Sprite2D" parent="."]
 z_index = 3
 
+[node name="Out" type="Sprite2D" parent="."]
+z_index = 5
+
 [node name="Door" type="Sprite2D" parent="."]
-z_index = 10
+z_index = 5
 
 [connection signal="body_entered" from="InTrigger" to="." method="_on_in_trigger_body_entered"]
 [connection signal="body_exited" from="InTrigger" to="." method="_on_in_trigger_body_exited"]

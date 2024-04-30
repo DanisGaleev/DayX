@@ -18,19 +18,21 @@ font_size = 12
 [node name="Game" type="Node"]
 
 [node name="World" type="Node2D" parent="."]
+y_sort_enabled = true
 script = ExtResource("7")
 
 [node name="Map1" parent="World" instance=ExtResource("6")]
 
 [node name="Player" parent="World" instance=ExtResource("2")]
-z_index = 1
-position = Vector2(1716, 2117)
+z_index = 4
+position = Vector2(1291, -1593)
 platform_floor_layers = 4294967295
 
 [node name="ZombieSpawnerTimer" type="Timer" parent="World"]
 wait_time = 10.0
 
 [node name="Zombie" parent="World" instance=ExtResource("5_f527r")]
+z_index = 0
 position = Vector2(-403, 1469)
 platform_floor_layers = 4294967295
 navmap_path = NodePath("../Map1")

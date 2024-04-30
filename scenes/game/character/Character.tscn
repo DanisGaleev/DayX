@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/game/character/character.gd" id="1"]
 
 [node name="Character" type="CharacterBody2D"]
+z_index = 5
 platform_floor_layers = 4294967041
 script = ExtResource("1")
 

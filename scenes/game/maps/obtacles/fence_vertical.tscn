@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dus17r4t43wik"]
+
+[ext_resource type="PackedScene" uid="uid://cfunwgy3oe1gk" path="res://scenes/game/maps/obtacles/obtacle.tscn" id="1_gpnun"]
+[ext_resource type="Texture2D" uid="uid://hnx338efevv6" path="res://assets/images/map/fence_vertical.png" id="2_rb7q1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6qnd"]
+size = Vector2(9, 111)
+
+[node name="FenceVertical" instance=ExtResource("1_gpnun")]
+z_index = 4
+y_sort_enabled = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_rb7q1")
+
+[node name="Shape2D" parent="." index="1"]
+position = Vector2(-7.5, -0.5)
+shape = SubResource("RectangleShape2D_l6qnd")

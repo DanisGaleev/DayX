@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://fwa2r8saqdqi"]
+[gd_scene load_steps=19 format=3 uid="uid://fwa2r8saqdqi"]
 
 [ext_resource type="PackedScene" uid="uid://rimysbs738as" path="res://scenes/game/maps/buildings/building.tscn" id="1_7cmsu"]
 [ext_resource type="Texture2D" uid="uid://dewrlsnyylsbr" path="res://assets/images/map/building/red_house_in.png" id="2_o6kia"]
@@ -48,6 +48,10 @@ b = Vector2(144, 32)
 a = Vector2(60, 32)
 b = Vector2(60, 38)
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_nlpf2"]
+a = Vector2(1, 38)
+b = Vector2(60, 38)
+
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_qar25"]
 a = Vector2(170, 83)
 b = Vector2(170, 107)
@@ -95,10 +99,13 @@ shape = SubResource("SegmentShape2D_6iqhs")
 [node name="CollisionShape2D10" type="CollisionShape2D" parent="Body" index="9"]
 shape = SubResource("SegmentShape2D_wa21e")
 
-[node name="CollisionShape2D11" type="CollisionShape2D" parent="Body" index="10"]
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="Body" index="10"]
+shape = SubResource("SegmentShape2D_nlpf2")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="Body" index="11"]
 shape = SubResource("SegmentShape2D_qar25")
 
-[node name="CollisionShape2D12" type="CollisionShape2D" parent="Body" index="11"]
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="Body" index="12"]
 shape = SubResource("SegmentShape2D_qar25")
 
 [node name="In" parent="." index="4"]
