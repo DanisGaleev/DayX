@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://yqgeoa3kvict"]
+
+[ext_resource type="PackedScene" uid="uid://cfunwgy3oe1gk" path="res://scenes/game/maps/obtacles/obtacle.tscn" id="1_udiuq"]
+[ext_resource type="Texture2D" uid="uid://b0avxrwl8e8uu" path="res://assets/images/map/ee_radiotower-sheet0.png" id="2_oi7n8"]
+[ext_resource type="Texture2D" uid="uid://pdeiqb4el5ru" path="res://assets/images/map/ee_radiotower_part2-sheet0.png" id="3_ol66b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1sbkw"]
+size = Vector2(130, 58)
+
+[node name="Radiotower" instance=ExtResource("1_udiuq")]
+z_index = 5
+y_sort_enabled = true
+
+[node name="Sprite2D" parent="." index="0"]
+y_sort_enabled = true
+texture = ExtResource("2_oi7n8")
+centered = false
+
+[node name="Shape2D" parent="." index="1"]
+position = Vector2(78, 58)
+shape = SubResource("RectangleShape2D_1sbkw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="2"]
+y_sort_enabled = true
+position = Vector2(6, -289)
+texture = ExtResource("3_ol66b")
+centered = false

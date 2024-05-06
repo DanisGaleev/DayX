@@ -1,12 +1,12 @@
-extends Control
+extends CanvasLayer
 
-@onready var health_bar = $CanvasLayer/MarginContainer/Bars/HealthBar/ProgressBar
-@onready var hunger_bar = $CanvasLayer/MarginContainer/Bars/HungerBar/ProgressBar
-@onready var thirst_bar = $CanvasLayer/MarginContainer/Bars/ThirstBar/ProgressBar
-@onready var stamina_bar = $CanvasLayer/MarginContainer/Bars/StaminaBar/ProgressBar
-@onready var weight_field = $CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/Weight
-@onready var ammo1_field = $CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Ammo1
-@onready var ammo2_field = $CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Ammo2
+@onready var health_bar = $MarginContainer/Stats/HealthBar
+@onready var hunger_bar = $MarginContainer/Stats/HungerBar
+@onready var thirst_bar = $MarginContainer/Stats/ThirstBar
+@onready var stamina_bar = $MarginContainer/StaminaBar/ProgressBar
+@onready var weight_field = $MarginContainer/HBoxContainer/VBoxContainer/Weight
+@onready var ammo1_field = $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Ammo1
+@onready var ammo2_field = $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Ammo2
 
 
 var player: Player

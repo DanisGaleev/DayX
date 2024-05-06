@@ -4,15 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://df8jqd4o3ncvb" path="res://assets/images/map/fence_horizontal.png" id="2_82fr6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2skx"]
-size = Vector2(67, 27)
+size = Vector2(64, 12)
 
 [node name="FenceHorizontal" instance=ExtResource("1_1y0ws")]
-z_index = 4
 y_sort_enabled = true
 
 [node name="Sprite2D" parent="." index="0"]
+z_index = 4
+y_sort_enabled = true
 texture = ExtResource("2_82fr6")
 
 [node name="Shape2D" parent="." index="1"]
-position = Vector2(0.5, 11.5)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_g2skx")

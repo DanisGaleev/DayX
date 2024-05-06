@@ -10,7 +10,7 @@ var noise_level = 0.0
 
 func _ready():
 	super()
-	inventory = get_parent().get_parent().get_node("GUI/CanvasLayer/Inv")
+	inventory = get_parent().get_parent().get_node("HUD/Inv")
 	inventory.player = self
 
 func _input(event):

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://g3jkrl47kyhb"]
+
+[ext_resource type="PackedScene" uid="uid://cvsbj21s0v42c" path="res://scenes/game/game/progress_bar.tscn" id="1_yfce3"]
+[ext_resource type="Texture2D" uid="uid://cmhrch4rt1r1t" path="res://assets/images/ui/progress_bar/Subtract.png" id="2_44v3b"]
+[ext_resource type="Texture2D" uid="uid://do7m2g3vtfwuq" path="res://assets/images/ui/progress_bar/Subtract-1.png" id="3_fnm8g"]
+[ext_resource type="Texture2D" uid="uid://by7sm71jpfgp7" path="res://assets/images/ui/progress_bar/Subtract-2.png" id="4_yp08l"]
+
+[node name="Stats" type="MarginContainer"]
+offset_right = 120.0
+offset_bottom = 120.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="HealthBar" parent="." instance=ExtResource("1_yfce3")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 100.0
+texture_progress = ExtResource("2_44v3b")
+tint_under = Color(1, 1, 1, 0)
+tint_progress = Color(1, 0.133333, 0.0705882, 1)
+
+[node name="HungerBar" parent="." instance=ExtResource("1_yfce3")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 100.0
+texture_progress = ExtResource("3_fnm8g")
+tint_under = Color(1, 1, 1, 0)
+tint_progress = Color(0.180392, 1, 0.0705882, 1)
+
+[node name="ThirstBar" parent="." instance=ExtResource("1_yfce3")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 100.0
+texture_progress = ExtResource("4_yp08l")
+tint_progress = Color(0.0196078, 0.168627, 1, 1)
